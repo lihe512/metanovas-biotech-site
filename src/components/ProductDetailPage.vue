@@ -21,88 +21,18 @@
     </section>
 
     <!-- Contact Us & Footer 联系我们和页脚 -->
-    <footer class="footer">
-      <div class="container">
-        <!-- Contact Us Section -->
-        <section id="contact" class="contact-section">
-          <h2 class="section-title">Contact Us</h2>
-          <div class="contact-content">
-            <div class="contact-card">
-              <img src="/home_slices/工作.png" alt="工作" class="contact-icon-img" />
-              <a href="mailto:hr@metanovas.com">hr@metanovas.com</a>
-            </div>
-            <div class="contact-card">
-              <img src="/home_slices/合作伙伴.png" alt="合作伙伴" class="contact-icon-img" />
-              <a href="mailto:bd@metanovas.com">bd@metanovas.com</a>
-            </div>
-            <div class="contact-card">
-              <img src="/home_slices/新闻.png" alt="新闻" class="contact-icon-img" />
-              <a href="mailto:pr@metanovas.com">pr@metanovas.com</a>
-            </div>
-          </div>
-        </section>
-        
-        <!-- Footer Content -->
-        <div class="footer-content">
-          <div class="footer-brand">
-            <div class="footer-logo">
-              <div class="logo-text-group">
-                <span class="logo-icon">M</span>
-                <div class="logo-text-wrap">
-                  <span class="logo-main">MetaNovas</span>
-                  <span class="logo-sub">BIOTECH</span>
-                </div>
-              </div>
-            </div>
-            <div class="footer-brand-text">
-              <span class="footer-arrow">→</span>
-              <span class="footer-tagline">MetaNovas Biotech</span>
-            </div>
-            <!-- <p class="footer-chinese">上海元圻执药科技有限公司</p> -->
-          </div>
-          <div class="footer-links-group">
-            <div class="link-column">
-              <h4>About us</h4>
-              <a href="#">Cooperative</a>
-              <a href="#">Partnerships</a>
-              <a href="#">R&D services</a>
-              <a href="#">Awards and Honours</a>
-              <a href="#">Products</a>
-            </div>
-            <div class="link-column">
-              <h4>Products</h4>
-              <a href="#">MetaTLR</a>
-              <a href="#">ClearAcne Magic</a>
-              <a href="#">MetaCono</a>
-              <a href="#">OmniYouth</a>
-              <a href="#">Metascalp</a>
-              <a href="#">PureSmile</a>
-            </div>
-            <div class="link-column">
-              <h4>Technology</h4>
-              <a href="#">MetaLLM<sup>&reg;</sup></a>
-              <a href="#">MetaKG<sup>&reg;</sup></a>
-              <a href="#">MetaOmics<sup>&reg;</sup></a>
-              <a href="#">MetaPep<sup>&reg;</sup></a>
-            </div>
-            <div class="link-column contact-us-column">
-              <h4 class="contact-us-title">Contact us</h4>
-              <a href="#">Contact us</a>
-            </div>
-          </div>
-        </div>
-        <div class="footer-bottom">
-          <p>© 2024 MetaNovas Biotech. All Rights Reserved.</p>
-          <p>These statements have not been evaluated by the Food and Drug Administration.</p>
-        </div>
-      </div>
-    </footer>
+    <FooterSection />
   </div>
 </template>
 
 <script>
+import FooterSection from './parts/FooterSection.vue';
+
 export default {
   name: 'ProductDetailPage',
+  components: {
+    FooterSection
+  },
   data() {
     return {
       productSlug: '',
@@ -149,6 +79,9 @@ export default {
     loadProductData() {
       // 根据不同的产品slug加载不同的数据
       const productMap = {
+        'MetaTlr':{
+          title: 'MetaTlr',
+        },
         'clearacne-magic': {
           title: 'ClearAcne Magic',
           efficacyData: [
@@ -214,6 +147,9 @@ export default {
             'Dandruff reduction',
             'Barrier improvement'
           ]
+        },
+        'PureSmile':{
+          title: 'PureSmile',
         },
       };
 

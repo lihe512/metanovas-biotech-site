@@ -3,10 +3,10 @@
     <!-- 自定义鼠标 -->
     <div class="cursor-ball" ref="cursorBall"></div>
     <div class="cursor-trail" v-for="(trail, index) in trails" :key="index" :style="trail.style"></div>
-    
+
     <!-- 背景层 -->
     <div class="page-background"></div>
-    
+
     <!--  Hero Section -->
     <section class="hero-section" ref="heroSection" @wheel="handleWheel">
       <div class="hero-content">
@@ -77,7 +77,11 @@
         <div class="about-content">
           <div class="about-text">
             <h2 class="section-title">About Us</h2>
-            <p>MetaNovas Biotech is an innovative biotechnology company established in early 2021 in San Jose, USA and Shanghai, China. Our mission is to integrate artificial intelligence with life sciences and delve into complex biological networks through deep learning knowledge graphs, natural language processing and multi-omicsanalysis, MetaNovas is dedicated to becoming a global leader in AI-driven efficient ingredient and product design and development platforms.</p>
+            <p>MetaNovas Biotech is an innovative biotechnology company established in early 2021 in San Jose, USA and
+              Shanghai, China. Our mission is to integrate artificial intelligence with life sciences and delve into
+              complex biological networks through deep learning knowledge graphs, natural language processing and
+              multi-omicsanalysis, MetaNovas is dedicated to becoming a global leader in AI-driven efficient ingredient
+              and product design and development platforms.</p>
             <button class="about-btn">
               <img :src="aboutBtnImage" alt="More" class="about-btn-img" />
               <span class="about-btn-text">More <span class="btn-arrow">→</span></span>
@@ -93,9 +97,10 @@
 
     <!-- Cooperative Partnerships 合作伙伴 -->
     <section id="partners" class="partners-section" ref="partnersSection" @wheel="handleWheel">
-      <div class="container">
+      <div class="container" id="Cooperative">
         <h2 class="section-title">Cooperative Partnerships</h2>
-        <p class="partners-description">MetaNovas closely collaborates with global academic and industrial leaders. We have established strong partnerships with numerous international brands and actively supported their R&D.</p>
+        <p class="partners-description">MetaNovas closely collaborates with global academic and industrial leaders. We
+          have established strong partnerships with numerous international brands and actively supported their R&D.</p>
         <div class="partners-logos">
           <div class="partner-logo">
             <img :src="partnerLogo1" alt="Partner" class="partner-logo-img" />
@@ -135,21 +140,21 @@
             <div class="tech-name">| Digestible data</div>
             <div class="tech-icon">
               <img :src="techImage1" alt="Digestible data" />
-          </div>
+            </div>
           </div>
           <!-- Computation-driven -->
           <div class="tech-card">
             <div class="tech-name">| Computation-driven</div>
             <div class="tech-icon">
               <img :src="techImage2" alt="Computation-driven" />
-          </div>
+            </div>
           </div>
           <!-- System biology -->
           <div class="tech-card">
             <div class="tech-name">| System biology</div>
             <div class="tech-icon">
               <img :src="techImage3" alt="System biology" />
-          </div>
+            </div>
           </div>
           <!-- Precision targeting -->
           <div class="tech-card">
@@ -164,7 +169,7 @@
 
     <!-- R&D Services 研发服务 -->
     <section id="research" class="research-section" ref="researchSection" @wheel="handleWheel">
-      <div class="container">
+      <div class="container" id="RDservices">
         <h2 class="section-title">R&D Services</h2>
         <div class="research-services-list">
           <div class="research-service-item">
@@ -185,14 +190,15 @@
           </div>
         </div>
         <div class="research-content-wrapper">
-        <div class="research-content">
-          <div class="research-text">
-              <p>Through the fusion of artificial intelligence and science, MetaNovas provides end-to-end R&D services in the health sectors of cosmetics, nutritions, pharmaceuticals and others.</p>
+          <div class="research-content">
+            <div class="research-text">
+              <p>Through the fusion of artificial intelligence and science, MetaNovas provides end-to-end R&D services
+                in the health sectors of cosmetics, nutritions, pharmaceuticals and others.</p>
               <div class="research-stats">
                 <div class="stat-item">
                   <img :src="stat45Image" alt="45%" class="stat-img" />
                   <span class="stat-label">R&D success Increase<br>over 45%</span>
-          </div>
+                </div>
                 <div class="stat-item">
                   <img :src="timeImage" alt="Time" class="stat-time-img" />
                   <span class="stat-label">Reduce R&D cycle<br>from months to weeks</span>
@@ -206,19 +212,16 @@
 
     <!-- Awards and Honors 奖项荣誉 -->
     <section class="awards-section" ref="awardsSection" @wheel="handleWheel">
-      <div class="container">
+      <div class="container" id="AwardsHonours">
         <h2 class="section-title">Awards and Honors</h2>
-        <p class="awards-description">MetaNovas has not only received recognition in numerous international top-tier events for its professional knowledge and leading R&D capabilities, but also earned acclaim from various mainstream international media.</p>
+        <p class="awards-description">MetaNovas has not only received recognition in numerous international top-tier
+          events for its professional knowledge and leading R&D capabilities, but also earned acclaim from various
+          mainstream international media.</p>
         <div class="awards-content-wrapper">
           <div class="awards-content">
             <div class="awards-timeline">
-              <div 
-                v-for="(award, index) in awardsData" 
-                :key="index"
-                class="timeline-item"
-                :class="{ active: currentAwardIndex === index }"
-                @click="currentAwardIndex = index"
-              >
+              <div v-for="(award, index) in awardsData" :key="index" class="timeline-item"
+                :class="{ active: currentAwardIndex === index }" @click="currentAwardIndex = index">
                 <div class="timeline-dot"></div>
                 <p class="timeline-text">{{ award.text }}</p>
                 <div v-if="currentAwardIndex === index" class="active-glow"></div>
@@ -235,13 +238,9 @@
                 </div>
               </div>
               <div class="carousel-container">
-                <div 
-                  v-for="(award, index) in awardsData" 
-                  :key="index"
-                  class="carousel-item"
+                <div v-for="(award, index) in awardsData" :key="index" class="carousel-item"
                   :class="{ active: currentAwardIndex === index }"
-                  :style="{ zIndex: awardsData.length - Math.abs(index - currentAwardIndex) }"
-                >
+                  :style="{ zIndex: awardsData.length - Math.abs(index - currentAwardIndex) }">
                   <img :src="award.image" :alt="award.text" />
                 </div>
               </div>
@@ -253,7 +252,7 @@
 
     <!-- Products 产品 -->
     <section id="products" class="products-section" ref="productsSection" @wheel="handleWheel">
-      <div class="container">
+      <div class="container" id="Products">
         <h2 class="section-title">Products</h2>
         <div class="products-grid">
           <div class="product-card" v-for="(product, index) in products" :key="index">
@@ -274,7 +273,9 @@
     <section id="services" class="services-section" ref="servicesSection" @wheel="handleWheel">
       <div class="container">
         <h2 class="section-title">Services</h2>
-        <p class="services-description">MetaNovas is also innovative service that we offer to all our start-ups is our R&D service platform. Our team of innovators, data scientists and cosmetic chemists specialize in: AI-driven product development for R&D teams.</p>
+        <p class="services-description">MetaNovas is also innovative service that we offer to all our start-ups is our
+          R&D service platform. Our team of innovators, data scientists and cosmetic chemists specialize in: AI-driven
+          product development for R&D teams.</p>
         <div class="services-grid">
           <div class="service-card" v-for="(service, index) in services" :key="index">
             <div class="service-image">
@@ -286,90 +287,19 @@
         </div>
       </div>
     </section>
+    <FooterSection />
 
-    <!-- Contact Us & Footer 联系我们和页脚 -->
-    <footer class="footer">
-      <div class="container">
-        <!-- Contact Us Section -->
-        <section id="contact" class="contact-section">
-          <h2 class="section-title center">Contact Us</h2>
-          <div class="contact-content">
-            <div class="contact-card">
-              <img :src="contactIcon1" alt="工作" class="contact-icon-img" />
-              <a href="mailto:hr@metanovas.com">hr@metanovas.com</a>
-            </div>
-            <div class="contact-card">
-              <img :src="contactIcon2" alt="合作伙伴" class="contact-icon-img" />
-              <a href="mailto:bd@metanovas.com">bd@metanovas.com</a>
-            </div>
-            <div class="contact-card">
-              <img :src="contactIcon3" alt="新闻" class="contact-icon-img" />
-              <a href="mailto:pr@metanovas.com">pr@metanovas.com</a>
-            </div>
-          </div>
-        </section>
-        
-        <!-- Footer Content -->
-        <div class="footer-content">
-          <div class="footer-brand">
-            <div class="footer-logo">
-              <div class="logo-text-group">
-                <span class="logo-icon">M</span>
-                <div class="logo-text-wrap">
-                  <span class="logo-main">MetaNovas</span>
-                  <span class="logo-sub">BIOTECH</span>
-                </div>
-              </div>
-            </div>
-            <div class="footer-brand-text">
-              <span class="footer-arrow">→</span>
-              <span class="footer-tagline">MetaNovas Biotech</span>
-            </div>
-            <!-- <p class="footer-chinese">上海元圻执药科技有限公司</p> -->
-          </div>
-          <div class="footer-links-group">
-            <div class="link-column">
-              <h4>About us</h4>
-              <a href="#">Cooperative</a>
-              <a href="#">Partnerships</a>
-              <a href="#">R&D services</a>
-              <a href="#">Awards and Honours</a>
-              <a href="#">Products</a>
-            </div>
-            <div class="link-column">
-              <h4>Products</h4>
-              <a href="#">MetaTLR</a>
-              <a href="#">ClearAcne Magic</a>
-              <a href="#">MetaCono</a>
-              <a href="#">OmniYouth</a>
-              <a href="#">Metascalp</a>
-              <a href="#">PureSmile</a>
-            </div>
-            <div class="link-column">
-              <h4>Technology</h4>
-              <a href="#">MetaLLM<sup>&reg;</sup></a>
-              <a href="#">MetaKG<sup>&reg;</sup></a>
-              <a href="#">MetaOmics<sup>&reg;</sup></a>
-              <a href="#">MetaPep<sup>&reg;</sup></a>
-            </div>
-            <div class="link-column">
-              <h4>Contact us</h4>
-              <a href="#">Contact us</a>
-            </div>
-          </div>
-        </div>
-        <div class="footer-bottom">
-          <p>© 2024 MetaNovas Biotech. All Rights Reserved.</p>
-          <p>These statements have not been evaluated by the Food and Drug Administration.</p>
-        </div>
-      </div>
-    </footer>
   </div>
 </template>
 
 <script>
+import FooterSection from './parts/FooterSection.vue';
+
 export default {
   name: 'HomePage',
+  components: {
+    FooterSection
+  },
   data() {
     return {
       activeTab: 'drugable',
@@ -381,6 +311,7 @@ export default {
       isMouseInPage: false,
       isScrolling: false,
       currentAwardIndex: 0,
+      isScrollingToAnchor: false, // 是否正在滚动到锚点
       awardsImages: [
         '/轮播图_slices/awards-card-02@2x.png',
         '/轮播图_slices/awards-card-03@2x.png',
@@ -515,15 +446,6 @@ export default {
       const filename = '形状 5 拷贝 6.png';
       return '/home_slices/' + encodeURIComponent(filename);
     },
-    contactIcon1() {
-      return '/home_slices/' + encodeURIComponent('工作.png');
-    },
-    contactIcon2() {
-      return '/home_slices/' + encodeURIComponent('合作伙伴.png');
-    },
-    contactIcon3() {
-      return '/home_slices/' + encodeURIComponent('新闻.png');
-    }
   },
   mounted() {
     this.initScrollAnimations();
@@ -545,7 +467,7 @@ export default {
       this.mouseX = e.clientX;
       this.mouseY = e.clientY;
       this.isMouseInPage = true;
-      
+
       // 更新主光标位置
       if (this.$refs.cursorBall) {
         this.$refs.cursorBall.style.left = e.clientX + 'px';
@@ -553,7 +475,7 @@ export default {
         this.$refs.cursorBall.style.opacity = '1';
       }
     },
-    
+
     onMouseLeave() {
       this.isMouseInPage = false;
       if (this.$refs.cursorBall) {
@@ -562,28 +484,28 @@ export default {
       // 清空残影
       this.trails = [];
     },
-    
+
     // 初始化残影系统
     initCursorTrail() {
       // 存储历史位置
       this.positions = [];
-      
+
       const updateTrails = () => {
         if (this.isMouseInPage) {
           // 添加当前位置到历史
           this.positions.unshift({ x: this.mouseX, y: this.mouseY });
-          
+
           // 限制历史长度
           if (this.positions.length > this.trailCount) {
             this.positions.pop();
           }
-          
+
           // 更新残影
           this.trails = this.positions.map((pos, index) => {
             const opacity = 1 - (index / this.trailCount) * 0.8;
             const scale = 1 - (index / this.trailCount) * 0.4;
             const size = 36 * scale;
-            
+
             return {
               style: {
                 left: pos.x + 'px',
@@ -597,13 +519,13 @@ export default {
             };
           });
         }
-        
+
         this.trailAnimationFrame = requestAnimationFrame(updateTrails);
       };
-      
+
       updateTrails();
     },
-    
+
     initScrollAnimations() {
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -617,7 +539,7 @@ export default {
         observer.observe(el);
       });
     },
-    
+
     getImageUrl(filename) {
       // 分离路径和文件名，只编码文件名部分
       const parts = filename.split('/');
@@ -627,7 +549,7 @@ export default {
       });
       return '/' + encodedParts.join('/');
     },
-    
+
     getProductBgImage(index) {
       const images = [
         '矩形 10.png',
@@ -638,7 +560,7 @@ export default {
       ];
       return '/home_slices/' + encodeURIComponent(images[index] || '矩形 10.png');
     },
-    
+
     getProductIcon(index) {
       const icons = [
         '形状 7.png',
@@ -649,7 +571,7 @@ export default {
       ];
       return '/home_slices/' + encodeURIComponent(icons[index] || '形状 7.png');
     },
-    
+
     getServiceImage(index) {
       const images = [
         '图层 92.png',
@@ -658,7 +580,7 @@ export default {
       ];
       return '/home_slices/' + encodeURIComponent(images[index] || '图层 92.png');
     },
-    
+
     handleImageError(event, logoNum) {
       console.error(`Logo ${logoNum} failed to load:`, event.target.src);
       // 尝试使用普通版本
@@ -674,36 +596,40 @@ export default {
         event.target.src = '/home_slices/' + encodeURIComponent(filenames[logoNum - 1]);
       }
     },
-    
+
     getCarouselItemClass(index) {
       const total = this.awardsData.length;
       const current = this.currentAwardIndex;
-      
+
       if (index === current) {
         return 'active';
       }
-      
+
       // 计算前一个索引（已展示过的）
       const prevIndex = (current - 1 + total) % total;
       if (index === prevIndex) {
         return 'prev';
       }
-      
+
       // 计算后一个索引（即将展示的）
       const nextIndex = (current + 1) % total;
       if (index === nextIndex) {
         return 'next';
       }
-      
+
       return '';
     },
-    
+
     startAwardsCarousel() {
       this.awardsCarouselInterval = setInterval(() => {
         this.currentAwardIndex = (this.currentAwardIndex + 1) % this.awardsData.length;
       }, 3000);
     },
     handleWheel(e) {
+      // 如果是锚点跳转触发的滚动，跳过滚动捕捉
+      if (window.scrollToAnchor) {
+        return;
+      }
       // 只在向下滚动时触发
       if (e.deltaY > 0) {
         const currentSection = e.currentTarget;
@@ -730,7 +656,7 @@ export default {
         this.$refs.productsSection,
         this.$refs.servicesSection
       ];
-      
+
       const currentIndex = sections.indexOf(currentSection);
       if (currentIndex >= 0 && currentIndex < sections.length - 1) {
         return sections[currentIndex + 1];
@@ -787,7 +713,7 @@ export default {
   pointer-events: none;
   z-index: 10000;
   transform: translate(-50%, -50%);
-  box-shadow: 
+  box-shadow:
     0 0 10px rgba(68, 150, 115, 0.8),
     0 0 20px rgba(68, 150, 115, 0.5),
     0 0 40px rgba(68, 150, 115, 0.3);
@@ -861,44 +787,6 @@ export default {
   align-items: center;
 }
 
-.logo-text-group {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.logo-icon {
-  width: 36px;
-  height: 36px;
-  background: linear-gradient(135deg, #3DD9C9 0%, #1a8a7a 100%);
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 16px;
-  font-weight: 700;
-  color: #fff;
-}
-
-.logo-text-wrap {
-  display: flex;
-  flex-direction: column;
-}
-
-.logo-main {
-  font-size: 16px;
-  font-weight: 600;
-  color: #fff;
-  line-height: 1.2;
-}
-
-.logo-sub {
-  font-size: 10px;
-  color: rgba(255, 255, 255, 0.6);
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
 .navbar-links {
   display: flex;
   gap: 50px;
@@ -956,7 +844,7 @@ export default {
 }
 
 .hero-content:hover .hero-title {
-  text-shadow: 
+  text-shadow:
     0 0 30px rgba(64, 253, 179, 0.6),
     0 0 60px rgba(61, 217, 201, 0.4),
     0 10px 30px rgba(0, 0, 0, 0.5);
@@ -983,7 +871,7 @@ export default {
   text-align: left;
   white-space: nowrap;
   transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-  margin-left:-35px;
+  margin-left: -35px;
 }
 
 .hero-title-main {
@@ -1036,9 +924,7 @@ export default {
 
 .hero-visual:hover .hero-sphere-img {
   transform: scale(1.1) rotate(10deg);
-  filter: drop-shadow(0 0 100px rgba(61, 217, 201, 0.9)) 
-          drop-shadow(0 0 180px rgba(61, 217, 201, 0.6))
-          drop-shadow(0 0 250px rgba(64, 253, 179, 0.4));
+  filter: drop-shadow(0 0 100px rgba(61, 217, 201, 0.9)) drop-shadow(0 0 180px rgba(61, 217, 201, 0.6)) drop-shadow(0 0 250px rgba(64, 253, 179, 0.4));
 }
 
 .hero-visual:hover .sphere-glow-ring {
@@ -1094,13 +980,27 @@ export default {
 }
 
 @keyframes ringPulse {
-  0%, 100% { opacity: 0.3; transform: scale(1); }
-  50% { opacity: 0.6; transform: scale(1.02); }
+
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.6;
+    transform: scale(1.02);
+  }
 }
 
 @keyframes ringRotate {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* 浮动粒子 */
@@ -1114,26 +1014,68 @@ export default {
   animation: particleFloat 8s ease-in-out infinite;
 }
 
-.particle-1 { right: 80px; top: 20%; animation-delay: 0s; }
-.particle-2 { right: 180px; top: 10%; animation-delay: 1s; width: 6px; height: 6px; }
-.particle-3 { right: 30px; top: 60%; animation-delay: 2s; width: 10px; height: 10px; }
-.particle-4 { right: 280px; top: 40%; animation-delay: 3s; width: 5px; height: 5px; }
-.particle-5 { right: 130px; top: 80%; animation-delay: 4s; }
-.particle-6 { right: 330px; top: 70%; animation-delay: 5s; width: 7px; height: 7px; }
+.particle-1 {
+  right: 80px;
+  top: 20%;
+  animation-delay: 0s;
+}
+
+.particle-2 {
+  right: 180px;
+  top: 10%;
+  animation-delay: 1s;
+  width: 6px;
+  height: 6px;
+}
+
+.particle-3 {
+  right: 30px;
+  top: 60%;
+  animation-delay: 2s;
+  width: 10px;
+  height: 10px;
+}
+
+.particle-4 {
+  right: 280px;
+  top: 40%;
+  animation-delay: 3s;
+  width: 5px;
+  height: 5px;
+}
+
+.particle-5 {
+  right: 130px;
+  top: 80%;
+  animation-delay: 4s;
+}
+
+.particle-6 {
+  right: 330px;
+  top: 70%;
+  animation-delay: 5s;
+  width: 7px;
+  height: 7px;
+}
 
 @keyframes particleFloat {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0) translateX(0);
     opacity: 0.6;
   }
+
   25% {
     transform: translateY(-30px) translateX(10px);
     opacity: 1;
   }
+
   50% {
     transform: translateY(-15px) translateX(-15px);
     opacity: 0.8;
   }
+
   75% {
     transform: translateY(-40px) translateX(5px);
     opacity: 0.9;
@@ -1152,15 +1094,13 @@ export default {
   object-fit: cover;
   border-radius: 50%;
   animation: floatSphere 6s ease-in-out infinite, sphereGlow 3s ease-in-out infinite alternate;
-  filter: drop-shadow(0 0 45px rgba(61, 217, 201, 0.6)) 
-          drop-shadow(0 0 90px rgba(61, 217, 201, 0.4))
-          drop-shadow(0 0 130px rgba(64, 253, 179, 0.2));
+  filter: drop-shadow(0 0 45px rgba(61, 217, 201, 0.6)) drop-shadow(0 0 90px rgba(61, 217, 201, 0.4)) drop-shadow(0 0 130px rgba(64, 253, 179, 0.2));
   transition: all 0.5s ease;
   position: relative;
   z-index: 1;
   /* 边缘模糊渐变 */
-  mask-image: radial-gradient(circle, rgba(0,0,0,1) 50%, rgba(0,0,0,0.8) 65%, rgba(0,0,0,0.4) 80%, rgba(0,0,0,0) 100%);
-  -webkit-mask-image: radial-gradient(circle, rgba(0,0,0,1) 50%, rgba(0,0,0,0.8) 65%, rgba(0,0,0,0.4) 80%, rgba(0,0,0,0) 100%);
+  mask-image: radial-gradient(circle, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0.8) 65%, rgba(0, 0, 0, 0.4) 80%, rgba(0, 0, 0, 0) 100%);
+  -webkit-mask-image: radial-gradient(circle, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0.8) 65%, rgba(0, 0, 0, 0.4) 80%, rgba(0, 0, 0, 0) 100%);
 }
 
 /* 球体闪烁光效 */
@@ -1172,10 +1112,10 @@ export default {
   width: 550px;
   height: 550px;
   border-radius: 50%;
-  background: radial-gradient(circle at 30% 30%, 
-    rgba(64, 253, 179, 0.3) 0%,
-    rgba(61, 217, 201, 0.2) 20%,
-    transparent 50%);
+  background: radial-gradient(circle at 30% 30%,
+      rgba(64, 253, 179, 0.3) 0%,
+      rgba(61, 217, 201, 0.2) 20%,
+      transparent 50%);
   animation: shimmerRotate 8s linear infinite;
   pointer-events: none;
   z-index: 2;
@@ -1190,10 +1130,10 @@ export default {
   height: 620px;
   border-radius: 50%;
   background: radial-gradient(circle,
-    rgba(61, 217, 201, 0.2) 0%,
-    rgba(64, 253, 179, 0.15) 30%,
-    rgba(61, 217, 201, 0.1) 50%,
-    transparent 70%);
+      rgba(61, 217, 201, 0.2) 0%,
+      rgba(64, 253, 179, 0.15) 30%,
+      rgba(61, 217, 201, 0.1) 50%,
+      transparent 70%);
   animation: auraPulse 4s ease-in-out infinite;
   pointer-events: none;
   z-index: 0;
@@ -1250,15 +1190,20 @@ export default {
 
 /* 悬浮动画 */
 @keyframes floatSphere {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0px) rotate(0deg);
   }
+
   25% {
     transform: translateY(-20px) rotate(2deg);
   }
+
   50% {
     transform: translateY(-10px) rotate(-1deg);
   }
+
   75% {
     transform: translateY(-25px) rotate(1deg);
   }
@@ -1267,14 +1212,11 @@ export default {
 /* 球体发光动画 */
 @keyframes sphereGlow {
   0% {
-    filter: drop-shadow(0 0 50px rgba(61, 217, 201, 0.6)) 
-            drop-shadow(0 0 100px rgba(61, 217, 201, 0.4))
-            drop-shadow(0 0 150px rgba(64, 253, 179, 0.2));
+    filter: drop-shadow(0 0 50px rgba(61, 217, 201, 0.6)) drop-shadow(0 0 100px rgba(61, 217, 201, 0.4)) drop-shadow(0 0 150px rgba(64, 253, 179, 0.2));
   }
+
   100% {
-    filter: drop-shadow(0 0 70px rgba(61, 217, 201, 0.8)) 
-            drop-shadow(0 0 130px rgba(61, 217, 201, 0.6))
-            drop-shadow(0 0 180px rgba(64, 253, 179, 0.4));
+    filter: drop-shadow(0 0 70px rgba(61, 217, 201, 0.8)) drop-shadow(0 0 130px rgba(61, 217, 201, 0.6)) drop-shadow(0 0 180px rgba(64, 253, 179, 0.4));
   }
 }
 
@@ -1284,9 +1226,11 @@ export default {
     transform: translate(-50%, -50%) rotate(0deg);
     opacity: 0.3;
   }
+
   50% {
     opacity: 0.6;
   }
+
   100% {
     transform: translate(-50%, -50%) rotate(360deg);
     opacity: 0.3;
@@ -1295,10 +1239,13 @@ export default {
 
 /* 光晕脉冲动画 */
 @keyframes auraPulse {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translate(-50%, -50%) scale(1);
     opacity: 0.3;
   }
+
   50% {
     transform: translate(-50%, -50%) scale(1.1);
     opacity: 0.5;
@@ -1310,6 +1257,7 @@ export default {
   0% {
     transform: translateY(-50%) rotate(0deg);
   }
+
   100% {
     transform: translateY(-50%) rotate(360deg);
   }
@@ -1317,9 +1265,12 @@ export default {
 
 /* 发光脉冲动画 */
 @keyframes glowPulse {
-  0%, 100% {
+
+  0%,
+  100% {
     filter: drop-shadow(0 0 40px rgba(61, 217, 201, 0.4)) drop-shadow(0 0 80px rgba(61, 217, 201, 0.2));
   }
+
   50% {
     filter: drop-shadow(0 0 60px rgba(61, 217, 201, 0.6)) drop-shadow(0 0 100px rgba(61, 217, 201, 0.4));
   }
@@ -1548,9 +1499,12 @@ export default {
 }
 
 @keyframes titleGlow {
-  0%, 100% {
+
+  0%,
+  100% {
     text-shadow: 0 0 20px rgba(68, 150, 115, 0.5);
   }
+
   50% {
     text-shadow: 0 0 30px rgba(68, 150, 115, 0.8), 0 0 40px rgba(68, 150, 115, 0.4);
   }
@@ -1659,13 +1613,13 @@ export default {
   transform: translateX(-50%);
   width: 100vw;
   height: 100%;
-  background: linear-gradient(to bottom, 
-    #000000 0%,
-    #000000 80%,
-    rgba(0, 0, 0, 0.9) 90%,
-    rgba(0, 0, 0, 0.7) 95%,
-    rgba(0, 0, 0, 0.4) 98%,
-    rgba(0, 0, 0, 0) 100%);
+  background: linear-gradient(to bottom,
+      #000000 0%,
+      #000000 80%,
+      rgba(0, 0, 0, 0.9) 90%,
+      rgba(0, 0, 0, 0.7) 95%,
+      rgba(0, 0, 0, 0.4) 98%,
+      rgba(0, 0, 0, 0) 100%);
   z-index: 0;
 }
 
@@ -1860,7 +1814,7 @@ export default {
 
 .tech-icon:hover {
   border-color: #449673;
-  box-shadow: 
+  box-shadow:
     0 0 60px rgba(68, 150, 115, 0.5),
     0 0 100px rgba(68, 150, 115, 0.3),
     inset 0 0 40px rgba(68, 150, 115, 0.1);
@@ -1893,9 +1847,11 @@ export default {
   0% {
     background-position: 0% 50%;
   }
+
   50% {
     background-position: 100% 50%;
   }
+
   100% {
     background-position: 0% 50%;
   }
@@ -1961,9 +1917,12 @@ export default {
 }
 
 @keyframes iconPulse {
-  0%, 100% {
+
+  0%,
+  100% {
     text-shadow: 0 0 8px rgba(68, 150, 115, 0.3);
   }
+
   50% {
     text-shadow: 0 0 15px rgba(68, 150, 115, 0.6), 0 0 25px rgba(61, 217, 201, 0.3);
   }
@@ -1977,9 +1936,12 @@ export default {
 }
 
 @keyframes iconGlow {
-  0%, 100% {
+
+  0%,
+  100% {
     text-shadow: 0 0 20px rgba(68, 150, 115, 0.8), 0 0 30px rgba(61, 217, 201, 0.5);
   }
+
   50% {
     text-shadow: 0 0 30px rgba(68, 150, 115, 1), 0 0 50px rgba(61, 217, 201, 0.8);
   }
@@ -2024,9 +1986,12 @@ export default {
 }
 
 @keyframes gradientShift {
-  0%, 100% {
+
+  0%,
+  100% {
     background-position: 0% 50%;
   }
+
   50% {
     background-position: 100% 50%;
   }
@@ -2038,9 +2003,12 @@ export default {
 }
 
 @keyframes lineGlow {
-  0%, 100% {
+
+  0%,
+  100% {
     box-shadow: 0 0 10px rgba(68, 150, 115, 0.6);
   }
+
   50% {
     box-shadow: 0 0 20px rgba(68, 150, 115, 0.9), 0 0 30px rgba(61, 217, 201, 0.5);
   }
@@ -2267,7 +2235,7 @@ export default {
 
 .awards-content-wrapper:hover {
   border-color: rgba(68, 150, 115, 0.8);
-  box-shadow: 
+  box-shadow:
     0 0 60px rgba(68, 150, 115, 0.3),
     0 0 100px rgba(68, 150, 115, 0.2),
     inset 0 0 80px rgba(68, 150, 115, 0.1);
@@ -2283,10 +2251,13 @@ export default {
 }
 
 @keyframes pulseGlow {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: scale(1);
     opacity: 0.3;
   }
+
   50% {
     transform: scale(1.1);
     opacity: 0.5;
@@ -2340,7 +2311,7 @@ export default {
 .timeline-item:hover {
   transform: translateX(10px) translateY(-2px);
   border-color: rgba(68, 150, 115, 0.3);
-  box-shadow: 
+  box-shadow:
     0 10px 40px rgba(0, 0, 0, 0.3),
     0 0 30px rgba(68, 150, 115, 0.2),
     inset 0 0 20px rgba(68, 150, 115, 0.05);
@@ -2366,7 +2337,7 @@ export default {
 .timeline-item:hover .timeline-dot {
   background: #449673;
   border-color: #3DD9C9;
-  box-shadow: 
+  box-shadow:
     0 0 15px rgba(68, 150, 115, 0.6),
     0 0 30px rgba(68, 150, 115, 0.3);
   transform: scale(1.3);
@@ -2375,7 +2346,7 @@ export default {
 .timeline-item.active {
   border-color: rgba(68, 150, 115, 0.5);
   background: linear-gradient(135deg, rgba(68, 150, 115, 0.15) 0%, rgba(61, 217, 201, 0.1) 100%);
-  box-shadow: 
+  box-shadow:
     0 15px 50px rgba(0, 0, 0, 0.4),
     0 0 40px rgba(68, 150, 115, 0.3),
     inset 0 0 30px rgba(68, 150, 115, 0.1);
@@ -2389,7 +2360,7 @@ export default {
 .timeline-item.active .timeline-dot {
   background: linear-gradient(135deg, #449673, #3DD9C9);
   border-color: #3DD9C9;
-  box-shadow: 
+  box-shadow:
     0 0 20px rgba(68, 150, 115, 0.8),
     0 0 40px rgba(68, 150, 115, 0.5),
     0 0 60px rgba(61, 217, 201, 0.3);
@@ -2398,14 +2369,17 @@ export default {
 }
 
 @keyframes dotPulse {
-  0%, 100% {
-    box-shadow: 
+
+  0%,
+  100% {
+    box-shadow:
       0 0 20px rgba(68, 150, 115, 0.8),
       0 0 40px rgba(68, 150, 115, 0.5),
       0 0 60px rgba(61, 217, 201, 0.3);
   }
+
   50% {
-    box-shadow: 
+    box-shadow:
       0 0 30px rgba(68, 150, 115, 1),
       0 0 60px rgba(68, 150, 115, 0.7),
       0 0 90px rgba(61, 217, 201, 0.5);
@@ -2441,9 +2415,12 @@ export default {
 }
 
 @keyframes textGlow {
-  0%, 100% {
+
+  0%,
+  100% {
     filter: brightness(1);
   }
+
   50% {
     filter: brightness(1.2);
   }
@@ -2468,6 +2445,7 @@ export default {
     width: 0;
     opacity: 0;
   }
+
   to {
     width: 50px;
     opacity: 1;
@@ -2475,9 +2453,12 @@ export default {
 }
 
 @keyframes glowPulse {
-  0%, 100% {
+
+  0%,
+  100% {
     box-shadow: 0 0 15px rgba(68, 150, 115, 0.8), 0 0 30px rgba(61, 217, 201, 0.5);
   }
+
   50% {
     box-shadow: 0 0 25px rgba(68, 150, 115, 1), 0 0 50px rgba(61, 217, 201, 0.8);
   }
@@ -2544,14 +2525,18 @@ export default {
 }
 
 @keyframes circleFloat {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translate(0, 0) scale(1);
     opacity: 0.6;
   }
+
   33% {
     transform: translate(20px, -20px) scale(1.1);
     opacity: 0.8;
   }
+
   66% {
     transform: translate(-15px, 15px) scale(0.9);
     opacity: 0.7;
@@ -2565,14 +2550,12 @@ export default {
   transform: translate(-50%, -50%);
   width: 500px;
   height: 500px;
-  background: conic-gradient(
-    from 0deg,
-    rgba(68, 150, 115, 0.2) 0deg,
-    rgba(61, 217, 201, 0.25) 90deg,
-    rgba(68, 150, 115, 0.2) 180deg,
-    rgba(61, 217, 201, 0.25) 270deg,
-    rgba(68, 150, 115, 0.2) 360deg
-  );
+  background: conic-gradient(from 0deg,
+      rgba(68, 150, 115, 0.2) 0deg,
+      rgba(61, 217, 201, 0.25) 90deg,
+      rgba(68, 150, 115, 0.2) 180deg,
+      rgba(61, 217, 201, 0.25) 270deg,
+      rgba(68, 150, 115, 0.2) 360deg);
   border-radius: 50%;
   filter: blur(70px);
   animation: orbRotate 15s linear infinite;
@@ -2583,6 +2566,7 @@ export default {
   from {
     transform: translate(-50%, -50%) rotate(0deg);
   }
+
   to {
     transform: translate(-50%, -50%) rotate(360deg);
   }
@@ -2602,7 +2586,7 @@ export default {
   height: 5px;
   background: radial-gradient(circle, rgba(68, 150, 115, 1) 0%, rgba(61, 217, 201, 0.8) 50%, transparent 100%);
   border-radius: 50%;
-  box-shadow: 
+  box-shadow:
     0 0 15px rgba(68, 150, 115, 0.8),
     0 0 30px rgba(68, 150, 115, 0.4),
     0 0 45px rgba(61, 217, 201, 0.3);
@@ -2610,32 +2594,84 @@ export default {
   animation-delay: var(--delay);
 }
 
-.particle:nth-child(1) { top: 10%; left: 20%; }
-.particle:nth-child(2) { top: 20%; right: 15%; }
-.particle:nth-child(3) { top: 30%; left: 10%; }
-.particle:nth-child(4) { top: 40%; right: 25%; }
-.particle:nth-child(5) { top: 50%; left: 30%; }
-.particle:nth-child(6) { top: 60%; right: 10%; }
-.particle:nth-child(7) { bottom: 30%; left: 15%; }
-.particle:nth-child(8) { bottom: 20%; right: 30%; }
-.particle:nth-child(9) { bottom: 40%; left: 25%; }
-.particle:nth-child(10) { top: 15%; left: 50%; }
-.particle:nth-child(11) { bottom: 15%; right: 20%; }
-.particle:nth-child(12) { top: 70%; left: 40%; }
+.particle:nth-child(1) {
+  top: 10%;
+  left: 20%;
+}
+
+.particle:nth-child(2) {
+  top: 20%;
+  right: 15%;
+}
+
+.particle:nth-child(3) {
+  top: 30%;
+  left: 10%;
+}
+
+.particle:nth-child(4) {
+  top: 40%;
+  right: 25%;
+}
+
+.particle:nth-child(5) {
+  top: 50%;
+  left: 30%;
+}
+
+.particle:nth-child(6) {
+  top: 60%;
+  right: 10%;
+}
+
+.particle:nth-child(7) {
+  bottom: 30%;
+  left: 15%;
+}
+
+.particle:nth-child(8) {
+  bottom: 20%;
+  right: 30%;
+}
+
+.particle:nth-child(9) {
+  bottom: 40%;
+  left: 25%;
+}
+
+.particle:nth-child(10) {
+  top: 15%;
+  left: 50%;
+}
+
+.particle:nth-child(11) {
+  bottom: 15%;
+  right: 20%;
+}
+
+.particle:nth-child(12) {
+  top: 70%;
+  left: 40%;
+}
 
 @keyframes particleFloat {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translate(0, 0) scale(1);
     opacity: 0.4;
   }
+
   25% {
     transform: translate(15px, -20px) scale(1.3);
     opacity: 0.8;
   }
+
   50% {
     transform: translate(-10px, -30px) scale(0.8);
     opacity: 0.6;
   }
+
   75% {
     transform: translate(20px, -10px) scale(1.2);
     opacity: 0.9;
@@ -2675,15 +2711,20 @@ export default {
 }
 
 @keyframes cardFloat {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translate(-50%, -50%) scale(1) rotateY(0deg) translateY(0) rotateZ(0deg);
   }
+
   25% {
     transform: translate(-50%, -50%) scale(1.02) rotateY(2deg) translateY(-8px) rotateZ(0.5deg);
   }
+
   50% {
     transform: translate(-50%, -50%) scale(1) rotateY(0deg) translateY(-12px) rotateZ(0deg);
   }
+
   75% {
     transform: translate(-50%, -50%) scale(1.02) rotateY(-2deg) translateY(-8px) rotateZ(-0.5deg);
   }
@@ -2735,10 +2776,13 @@ export default {
 }
 
 @keyframes borderGlow {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 0.6;
     filter: blur(15px);
   }
+
   50% {
     opacity: 1;
     filter: blur(20px);
@@ -2749,9 +2793,11 @@ export default {
   0% {
     background-position: 0% 50%;
   }
+
   50% {
     background-position: 100% 50%;
   }
+
   100% {
     background-position: 0% 50%;
   }
@@ -2767,7 +2813,7 @@ export default {
   border: 2px solid transparent;
   border-radius: 14px;
   background: linear-gradient(135deg, rgba(68, 150, 115, 0.3), rgba(61, 217, 201, 0.3)) padding-box,
-              linear-gradient(135deg, rgba(68, 150, 115, 0.8), rgba(61, 217, 201, 0.8)) border-box;
+    linear-gradient(135deg, rgba(68, 150, 115, 0.8), rgba(61, 217, 201, 0.8)) border-box;
   opacity: 0;
   z-index: -1;
   transition: opacity 0.6s ease;
@@ -2780,13 +2826,16 @@ export default {
 }
 
 @keyframes borderPulse {
-  0%, 100% {
-    box-shadow: 
+
+  0%,
+  100% {
+    box-shadow:
       0 0 20px rgba(68, 150, 115, 0.5),
       inset 0 0 20px rgba(68, 150, 115, 0.1);
   }
+
   50% {
-    box-shadow: 
+    box-shadow:
       0 0 40px rgba(68, 150, 115, 0.8),
       0 0 60px rgba(61, 217, 201, 0.5),
       inset 0 0 30px rgba(68, 150, 115, 0.2);
@@ -2815,9 +2864,12 @@ export default {
 }
 
 @keyframes imgGlow {
-  0%, 100% {
+
+  0%,
+  100% {
     filter: drop-shadow(0 25px 80px rgba(0, 0, 0, 0.7)) drop-shadow(0 0 60px rgba(68, 150, 115, 0.5)) drop-shadow(0 0 100px rgba(61, 217, 201, 0.3));
   }
+
   50% {
     filter: drop-shadow(0 30px 100px rgba(0, 0, 0, 0.8)) drop-shadow(0 0 80px rgba(68, 150, 115, 0.7)) drop-shadow(0 0 120px rgba(61, 217, 201, 0.5));
   }
@@ -2892,7 +2944,7 @@ export default {
 
 .product-card:hover {
   transform: translateY(-8px) scale(1.02);
-  box-shadow: 
+  box-shadow:
     0 20px 60px rgba(0, 0, 0, 0.4),
     0 0 40px rgba(68, 150, 115, 0.2),
     inset 0 0 30px rgba(68, 150, 115, 0.1);
@@ -2976,9 +3028,12 @@ export default {
 }
 
 @keyframes iconFloat {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0);
   }
+
   50% {
     transform: translateY(-5px);
   }
@@ -3112,7 +3167,7 @@ export default {
 
 .service-card:hover {
   transform: translateY(-8px) scale(1.02);
-  box-shadow: 
+  box-shadow:
     0 20px 60px rgba(0, 0, 0, 0.4),
     0 0 40px rgba(68, 150, 115, 0.2),
     inset 0 0 30px rgba(68, 150, 115, 0.1);
@@ -3191,414 +3246,5 @@ export default {
 .service-card:hover .service-desc {
   color: rgba(255, 255, 255, 0.9);
   transform: translateX(3px);
-}
-
-
-.contact-content {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 30px;
-  margin-top: 60px;
-  flex-wrap: wrap;
-}
-
-.contact-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 25px;
-  background: rgba(20, 20, 20, 0.9);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 16px;
-  padding: 40px 50px;
-  min-width: 220px;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-  position: relative;
-  overflow: hidden;
-}
-
-.contact-card:hover {
-  background: rgba(30, 30, 30, 0.95);
-  border-color: rgba(68, 150, 115, 0.6);
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: 
-    0 15px 40px rgba(68, 150, 115, 0.3),
-    0 0 30px rgba(68, 150, 115, 0.2),
-    inset 0 0 20px rgba(68, 150, 115, 0.1);
-}
-
-.contact-card::before {
-  content: '';
-  position: absolute;
-  top: -2px;
-  left: -2px;
-  right: -2px;
-  bottom: -2px;
-  background: linear-gradient(135deg, rgba(68, 150, 115, 0.3), rgba(61, 217, 201, 0.3));
-  border-radius: 16px;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  z-index: -1;
-}
-
-.contact-card:hover::before {
-  opacity: 1;
-}
-
-.contact-icon-img {
-  width: 40px;
-  height: 40px;
-  object-fit: contain;
-  filter: brightness(0) invert(1);
-  margin-top: 5px;
-}
-
-.contact-card a {
-  color: #ffffff;
-  text-decoration: none;
-  font-size: 14px;
-  transition: color 0.3s ease;
-  text-align: center;
-  font-weight: 500;
-}
-
-.contact-card:hover a {
-  color: #449673;
-}
-
-/* Contact Section inside Footer */
-.footer .contact-section {
-  padding: 0 0 100px;
-  position: relative;
-}
-
-/* Footer Content */
-.footer-content {
-  display: flex;
-  justify-content: space-between;
-  gap: 60px;
-  margin-bottom: 40px;
-  position: relative;
-  z-index: 1;
-}
-
-.footer-brand {
-  flex: 0 0 200px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  transition: all 0.3s ease;
-}
-
-.footer-logo {
-  margin-bottom: 16px;
-}
-
-.footer-brand {
-  position: relative;
-  cursor: pointer;
-}
-
-.footer-brand::before {
-  content: '';
-  position: absolute;
-  top: -10px;
-  left: -10px;
-  right: -10px;
-  bottom: -10px;
-  background: radial-gradient(circle, rgba(68, 150, 115, 0.1) 0%, transparent 70%);
-  border-radius: 12px;
-  opacity: 0;
-  transition: opacity 0.4s ease;
-  z-index: -1;
-}
-
-.footer-brand:hover {
-  transform: translateX(8px) translateY(-3px);
-}
-
-.footer-brand:hover::before {
-  opacity: 1;
-}
-
-.footer-logo {
-  margin-bottom: 16px;
-}
-
-.logo-text-group {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.footer-brand:hover .logo-text-group {
-  gap: 12px;
-}
-
-.logo-icon {
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
-  overflow: hidden;
-  box-shadow: 0 2px 8px rgba(61, 217, 201, 0.3);
-}
-
-.logo-icon::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 0;
-  height: 0;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
-  border-radius: 50%;
-  transition: all 0.5s ease;
-}
-
-.logo-icon::after {
-  content: '';
-  position: absolute;
-  top: -2px;
-  left: -2px;
-  right: -2px;
-  bottom: -2px;
-  background: linear-gradient(135deg, rgba(68, 150, 115, 0.6), rgba(61, 217, 201, 0.6));
-  border-radius: 8px;
-  opacity: 0;
-  transition: opacity 0.4s ease;
-  z-index: -1;
-}
-
-.footer-brand:hover .logo-icon {
-  transform: rotate(5deg) scale(1.1);
-  box-shadow: 
-    0 4px 16px rgba(61, 217, 201, 0.5),
-    0 0 30px rgba(68, 150, 115, 0.4),
-    inset 0 0 20px rgba(255, 255, 255, 0.1);
-  background: linear-gradient(135deg, #3DD9C9 0%, #449673 50%, #1a8a7a 100%);
-}
-
-.footer-brand:hover .logo-icon::before {
-  width: 120%;
-  height: 120%;
-  animation: logoShine 1.5s ease-in-out infinite;
-}
-
-.footer-brand:hover .logo-icon::after {
-  opacity: 1;
-  animation: logoGlow 2s ease-in-out infinite;
-}
-
-@keyframes logoShine {
-  0%, 100% {
-    opacity: 0.3;
-    transform: translate(-50%, -50%) scale(1);
-  }
-  50% {
-    opacity: 0.6;
-    transform: translate(-50%, -50%) scale(1.2);
-  }
-}
-
-@keyframes logoGlow {
-  0%, 100% {
-    opacity: 0.6;
-  }
-  50% {
-    opacity: 1;
-  }
-}
-
-.logo-main {
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
-  display: inline-block;
-}
-
-.footer-brand:hover .logo-main {
-  color: #3DD9C9;
-  text-shadow: 
-    0 0 10px rgba(61, 217, 201, 0.5),
-    0 0 20px rgba(68, 150, 115, 0.3);
-  transform: translateX(2px);
-}
-
-.logo-main::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: linear-gradient(90deg, #3DD9C9, #449673);
-  transition: width 0.4s ease;
-}
-
-.footer-brand:hover .logo-main::after {
-  width: 100%;
-}
-
-.logo-sub {
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.footer-brand:hover .logo-sub {
-  color: rgba(61, 217, 201, 0.9);
-  text-shadow: 0 0 8px rgba(61, 217, 201, 0.4);
-  transform: translateX(2px);
-}
-
-.footer-tagline {
-  font-size: 12px;
-  color: rgba(255, 255, 255, 0.5);
-}
-
-.footer-links-group {
-  display: flex;
-  gap: 60px;
-}
-
-.link-column {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.link-column h4 {
-  font-size: 16px;
-  font-weight: 600;
-  color: #ffffff;
-  margin-bottom: 12px;
-}
-
-.link-column h4.contact-us-title {
-  color: #000000;
-}
-
-.link-column.contact-us-column a {
-  color: #000000;
-}
-
-.link-column a {
-  position: relative;
-  font-size: 15px;
-  color: rgba(255, 255, 255, 0.8);
-  text-decoration: none;
-  transition: all 0.3s ease;
-}
-
-.link-column a::before {
-  content: '';
-  position: absolute;
-  left: -10px;
-  top: 50%;
-  transform: translateY(-50%) scaleX(0);
-  width: 4px;
-  height: 4px;
-  background: #449673;
-  border-radius: 50%;
-  transition: transform 0.3s ease;
-}
-
-.link-column a:hover {
-  color: #3DD9C9;
-  transform: translateX(5px);
-  text-shadow: 0 0 10px rgba(68, 150, 115, 0.5);
-}
-
-.link-column a:hover::before {
-  transform: translateY(-50%) scaleX(1);
-}
-
-.footer-bottom {
-  text-align: center;
-  padding-top: 30px;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.footer-bottom p {
-  font-size: 14px;
-  color: rgba(255, 255, 255, 0.6);
-  margin-bottom: 5px;
-}
-
-/* 响应式设计 */
-@media (max-width: 1024px) {
-  .hero-section {
-    flex-direction: column;
-    text-align: center;
-    padding-top: 120px;
-  }
-
-  .hero-content {
-    padding-left: 0;
-    flex: none;
-  }
-
-  .hero-visual {
-    flex: none;
-    padding-right: 0;
-    margin-top: 40px;
-  }
-
-  .hero-sphere-img {
-    width: 400px;
-  }
-
-  .about-content,
-  .research-content,
-  .awards-content {
-    flex-direction: column;
-  }
-
-  .products-grid,
-  .services-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 768px) {
-  .navbar-links {
-    display: none;
-  }
-
-  .hero-title {
-    font-size: 40px;
-  }
-
-  .featured-logos {
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  .tech-cards {
-    flex-wrap: wrap;
-  }
-
-  .products-grid,
-  .services-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .contact-content {
-    flex-direction: column;
-    gap: 40px;
-  }
-
-  .footer-brand {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-
-  .footer-links-group {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 40px;
-  }
 }
 </style>

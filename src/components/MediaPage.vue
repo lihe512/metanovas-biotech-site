@@ -1,5 +1,8 @@
 <template>
-  <div class="media-page">
+  <div class="media-page"  @mousemove="onMouseMove" @mouseleave="onMouseLeave">
+    <!-- 自定义鼠标 -->
+    <div class="cursor-ball" ref="cursorBall"></div>
+    <div class="cursor-trail" v-for="(trail, index) in trails" :key="index" :style="trail.style"></div>
     <!-- Hero Section -->
     <section class="hero-section" ref="heroSection">
       <div class="container">
@@ -99,89 +102,45 @@
       </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-      <div class="container">
-        <!-- Contact Us Section -->
-        <section id="contact" class="contact-section">
-          <h2 class="section-title">Contact Us</h2>
-          <div class="contact-content">
-            <div class="contact-card">
-              <img src="/home_slices/工作.png" alt="工作" class="contact-icon-img" />
-              <a href="mailto:hr@metanovas.com">hr@metanovas.com</a>
-            </div>
-            <div class="contact-card">
-              <img src="/home_slices/合作伙伴.png" alt="合作伙伴" class="contact-icon-img" />
-              <a href="mailto:bd@metanovas.com">bd@metanovas.com</a>
-            </div>
-            <div class="contact-card">
-              <img src="/home_slices/新闻.png" alt="新闻" class="contact-icon-img" />
-              <a href="mailto:pr@metanovas.com">pr@metanovas.com</a>
-            </div>
-          </div>
-        </section>
-        
-        <!-- Footer Content -->
-        <div class="footer-content">
-          <div class="footer-brand">
-            <div class="footer-logo">
-              <div class="logo-text-group">
-                <span class="logo-icon">M</span>
-                <div class="logo-text-wrap">
-                  <span class="logo-main">MetaNovas</span>
-                  <span class="logo-sub">BIOTECH</span>
-                </div>
-              </div>
-            </div>
-            <div class="footer-brand-text">
-              <span class="footer-arrow">→</span>
-              <span class="footer-tagline">MetaNovas Biotech</span>
-            </div>
-            <!-- <p class="footer-chinese">上海元圻执药科技有限公司</p> -->
-          </div>
-          <div class="footer-links-group">
-            <div class="link-column">
-              <h4>About us</h4>
-              <a href="#">Cooperative</a>
-              <a href="#">Partnerships</a>
-              <a href="#">R&D services</a>
-              <a href="#">Awards and Honours</a>
-              <a href="#">Products</a>
-            </div>
-            <div class="link-column">
-              <h4>Products</h4>
-              <a href="#">MetaTLR</a>
-              <a href="#">ClearAcne Magic</a>
-              <a href="#">MetaCono</a>
-              <a href="#">OmniYouth</a>
-              <a href="#">Metascalp</a>
-              <a href="#">PureSmile</a>
-            </div>
-            <div class="link-column">
-              <h4>Technology</h4>
-             <a href="#">MetaLLM<sup>&reg;</sup></a>
-              <a href="#">MetaKG<sup>&reg;</sup></a>
-              <a href="#">MetaOmics<sup>&reg;</sup></a>
-              <a href="#">MetaPep<sup>&reg;</sup></a>
-            </div>
-            <div class="link-column contact-us-column">
-              <h4 class="contact-us-title">Contact us</h4>
-              <a href="#">Contact us</a>
-            </div>
-          </div>
-        </div>
-        <div class="footer-bottom">
-          <p>© 2024 MetaNovas Biotech. All Rights Reserved.</p>
-          <p>These statements have not been evaluated by the Food and Drug Administration.</p>
-        </div>
-      </div>
-    </footer>
+    <FooterSection />
   </div>
 </template>
 
 <script>
+import FooterSection from './parts/FooterSection.vue';
+
 export default {
   name: 'MediaPage',
+  components: {
+    FooterSection
+  },
+  data() {
+    return {
+      // 鼠标残影数据
+      trails: [],
+      trailCount: 40,
+      mouseX: 0,
+      mouseY: 0,
+      isMouseInPage: false,
+      isScrolling: false,
+      currentAwardIndex: 0,
+    }
+  },
+  
+  mounted() {
+    this.initScrollAnimations();
+    this.initCursorTrail();
+    this.startAwardsCarousel();
+  },
+  beforeUnmount() {
+    // 清理动画
+    if (this.trailAnimationFrame) {
+      cancelAnimationFrame(this.trailAnimationFrame);
+    }
+    if (this.awardsCarouselInterval) {
+      clearInterval(this.awardsCarouselInterval);
+    }
+  },
   methods: {
     scrollToNews() {
       if (this.$refs.newsSection) {
@@ -190,12 +149,133 @@ export default {
           block: 'start' 
         });
       }
-    }
+    },
+    startAwardsCarousel() {
+      this.awardsCarouselInterval = setInterval(() => {
+        this.currentAwardIndex = (this.currentAwardIndex + 1) % this.awardsData.length;
+      }, 3000);
+    },
+    // 鼠标移动处理
+    onMouseMove(e) {
+      this.mouseX = e.clientX;
+      this.mouseY = e.clientY;
+      this.isMouseInPage = true;
+      
+      // 更新主光标位置
+      if (this.$refs.cursorBall) {
+        this.$refs.cursorBall.style.left = e.clientX + 'px';
+        this.$refs.cursorBall.style.top = e.clientY + 'px';
+        this.$refs.cursorBall.style.opacity = '1';
+      }
+    },
+    
+    onMouseLeave() {
+      this.isMouseInPage = false;
+      if (this.$refs.cursorBall) {
+        this.$refs.cursorBall.style.opacity = '0';
+      }
+      // 清空残影
+      this.trails = [];
+    },
+    
+    // 初始化残影系统
+    initCursorTrail() {
+      // 存储历史位置
+      this.positions = [];
+      
+      const updateTrails = () => {
+        if (this.isMouseInPage) {
+          // 添加当前位置到历史
+          this.positions.unshift({ x: this.mouseX, y: this.mouseY });
+          
+          // 限制历史长度
+          if (this.positions.length > this.trailCount) {
+            this.positions.pop();
+          }
+          
+          // 更新残影
+          this.trails = this.positions.map((pos, index) => {
+            const opacity = 1 - (index / this.trailCount) * 0.8;
+            const scale = 1 - (index / this.trailCount) * 0.4;
+            const size = 36 * scale;
+            
+            return {
+              style: {
+                left: pos.x + 'px',
+                top: pos.y + 'px',
+                width: size + 'px',
+                height: size + 'px',
+                opacity: opacity * 0.8,
+                transform: `translate(-50%, -50%) scale(${scale})`,
+                transition: 'opacity 0.3s ease-out'
+              }
+            };
+          });
+        }
+        
+        this.trailAnimationFrame = requestAnimationFrame(updateTrails);
+      };
+      
+      updateTrails();
+    },
+    
+    initScrollAnimations() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate-in');
+          }
+        });
+      }, { threshold: 0.1 });
+
+      document.querySelectorAll('.section-title, .featured-title, .tech-card, .product-card, .service-card').forEach(el => {
+        observer.observe(el);
+      });
+    },
   }
 };
 </script>
 
 <style scoped>
+  /* 自定义鼠标 - 蓝绿色小球 */
+.cursor-ball {
+  position: fixed;
+  width: 22px;
+  height: 22px;
+  background: radial-gradient(circle, #449673 0%, #3a7a5f 50%, rgba(68, 150, 115, 0.3) 100%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10000;
+  transform: translate(-50%, -50%);
+  box-shadow: 
+    0 0 10px rgba(68, 150, 115, 0.8),
+    0 0 20px rgba(68, 150, 115, 0.5),
+    0 0 40px rgba(68, 150, 115, 0.3);
+  transition: opacity 0.3s ease;
+  opacity: 0;
+}
+
+/* 鼠标残影 */
+.cursor-trail {
+  position: fixed;
+  background: radial-gradient(circle, #449673 0%, rgba(68, 150, 115, 0.5) 50%, transparent 100%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transition: opacity 0.3s ease-out;
+  box-shadow: 0 0 12px rgba(61, 217, 201, 0.5);
+}
+
+/* 让链接和按钮显示正常指针 */
+.home-page a,
+.home-page button,
+.home-page .tech-tab,
+.home-page .about-btn,
+.home-page .partner-logo,
+.home-page .product-card,
+.home-page .service-card {
+  cursor: none;
+}
 .media-page {
   min-height: 100vh;
   background: linear-gradient(180deg, #0a2a1a 0%, #000000 100%);

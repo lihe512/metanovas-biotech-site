@@ -21,10 +21,12 @@
             </router-link>
             <transition name="dropdown">
               <div v-if="showDropdown" class="dropdown-menu">
+                <router-link to="/products/MetaTlr" class="dropdown-item">MetaTlr</router-link>
                 <router-link to="/products/clearacne-magic" class="dropdown-item">ClearAcne Magic</router-link>
                 <router-link to="/products/metacono" class="dropdown-item">MetaCono</router-link>
                 <router-link to="/products/omniyouth" class="dropdown-item">OmniYouth</router-link>
                 <router-link to="/products/metascalp" class="dropdown-item">Metascalp</router-link>
+                <router-link to="/products/PureSmile" class="dropdown-item">PureSmile</router-link>
               </div>
             </transition>
           </div>
@@ -434,8 +436,8 @@ export default {
   content: '';
   position: absolute;
   left: 0;
-  top: 50%;
-  transform: translateY(-50%);
+  top: 100%;
+  /* transform: translateY(0%); */
   width: 0;
   height: 60%;
   background: linear-gradient(90deg, rgba(68, 150, 115, 0.8), rgba(61, 217, 201, 0.8));
@@ -443,7 +445,7 @@ export default {
   transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.dropdown-item::after {
+/* .dropdown-item::after {
   content: '';
   position: absolute;
   left: 0;
@@ -454,7 +456,7 @@ export default {
   border-radius: 10px;
   opacity: 0;
   transition: opacity 0.3s ease;
-}
+} */
 
 .dropdown-item:hover,
 .dropdown-item.router-link-active {
@@ -467,7 +469,7 @@ export default {
 
 .dropdown-item:hover::before,
 .dropdown-item.router-link-active::before {
-  width: 4px;
+  width: 0px;
 }
 
 .dropdown-item:hover::after,
