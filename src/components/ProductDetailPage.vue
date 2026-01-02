@@ -1,6 +1,9 @@
 <template>
-  <div class="product-detail-page">
+  <div class="product-detail-page" @mousemove="onMouseMove" @mouseleave="onMouseLeave">
     <!-- Hero Section -->
+    <!-- 自定义鼠标 -->
+    <div class="cursor-ball" ref="cursorBall"></div>
+    <div class="cursor-trail" v-for="(trail, index) in trails" :key="index" :style="trail.style"></div>
     <section class="hero-section" :class="productSlug">
       <!-- 背景装饰效果 -->
       <div class="hero-bg-effects">
@@ -35,6 +38,14 @@ export default {
   },
   data() {
     return {
+      // 鼠标残影数据
+      trails: [],
+      trailCount: 40,
+      mouseX: 0,
+      mouseY: 0,
+      isMouseInPage: false,
+      isScrolling: false,
+      currentAwardIndex: 0,
       productSlug: '',
       productData: {
         title: '',
@@ -54,10 +65,99 @@ export default {
       this.loadProductData();
     },
     slug(newVal) {
-    this.loadProduct(newVal)
-  }
+      this.loadProduct(newVal)
+    }
+  },
+  mounted() {
+    this.initCursorTrail();
+  },
+  beforeUnmount() {
+    // 清理动画
+    if (this.trailAnimationFrame) {
+      cancelAnimationFrame(this.trailAnimationFrame);
+    }
+    if (this.awardsCarouselInterval) {
+      clearInterval(this.awardsCarouselInterval);
+    }
   },
   methods: {
+    // 鼠标移动处理
+    onMouseMove(e) {
+      this.mouseX = e.clientX;
+      this.mouseY = e.clientY;
+      this.isMouseInPage = true;
+
+      // 更新主光标位置
+      if (this.$refs.cursorBall) {
+        this.$refs.cursorBall.style.left = e.clientX + 'px';
+        this.$refs.cursorBall.style.top = e.clientY + 'px';
+        this.$refs.cursorBall.style.opacity = '1';
+      }
+    },
+
+    onMouseLeave() {
+      this.isMouseInPage = false;
+      if (this.$refs.cursorBall) {
+        this.$refs.cursorBall.style.opacity = '0';
+      }
+      // 清空残影
+      this.trails = [];
+    },
+
+    // 初始化残影系统
+    initCursorTrail() {
+      // 存储历史位置
+      this.positions = [];
+
+      const updateTrails = () => {
+        if (this.isMouseInPage) {
+          // 添加当前位置到历史
+          this.positions.unshift({ x: this.mouseX, y: this.mouseY });
+
+          // 限制历史长度
+          if (this.positions.length > this.trailCount) {
+            this.positions.pop();
+          }
+
+          // 更新残影
+          this.trails = this.positions.map((pos, index) => {
+            const opacity = 1 - (index / this.trailCount) * 0.8;
+            const scale = 1 - (index / this.trailCount) * 0.4;
+            const size = 36 * scale;
+
+            return {
+              style: {
+                left: pos.x + 'px',
+                top: pos.y + 'px',
+                width: size + 'px',
+                height: size + 'px',
+                opacity: opacity * 0.8,
+                transform: `translate(-50%, -50%) scale(${scale})`,
+                transition: 'opacity 0.3s ease-out'
+              }
+            };
+          });
+        }
+
+        this.trailAnimationFrame = requestAnimationFrame(updateTrails);
+      };
+
+      updateTrails();
+    },
+
+    initScrollAnimations() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate-in');
+          }
+        });
+      }, { threshold: 0.1 });
+
+      document.querySelectorAll('.section-title, .featured-title, .tech-card, .product-card, .service-card').forEach(el => {
+        observer.observe(el);
+      });
+    },
     getImageUrl(filename) {
       // 分离路径和文件名，对每个部分进行编码
       const parts = filename.split('/');
@@ -82,11 +182,12 @@ export default {
     loadProductData() {
       // 根据不同的产品slug加载不同的数据
       const productMap = {
-        'MetaTlr':{
+        'MetaTlr': {
           title: 'MetaTlr',
         },
         'clearacne-magic': {
           title: 'ClearAcne Magic',
+          mainImage: '产品二级_slices/ClearAcneMagi.png',
           efficacyData: [
             { title: 'Inhibits P. acnes & S. aureus', description: 'Bacterial viability reduction' },
             { title: 'Inhibits acne-related inflammation & sebum secretion', description: 'Reduction of inflammatory cytokines' },
@@ -151,7 +252,7 @@ export default {
             'Barrier improvement'
           ]
         },
-        'PureSmile':{
+        'PureSmile': {
           title: 'PureSmile',
         },
       };
@@ -163,6 +264,46 @@ export default {
 </script>
 
 <style scoped>
+/* 自定义鼠标 - 蓝绿色小球 */
+.cursor-ball {
+  position: fixed;
+  width: 22px;
+  height: 22px;
+  background: radial-gradient(circle, #449673 0%, #3a7a5f 50%, rgba(68, 150, 115, 0.3) 100%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10000;
+  transform: translate(-50%, -50%);
+  box-shadow:
+    0 0 10px rgba(68, 150, 115, 0.8),
+    0 0 20px rgba(68, 150, 115, 0.5),
+    0 0 40px rgba(68, 150, 115, 0.3);
+  transition: opacity 0.3s ease;
+  opacity: 0;
+}
+
+/* 鼠标残影 */
+.cursor-trail {
+  position: fixed;
+  background: radial-gradient(circle, #449673 0%, rgba(68, 150, 115, 0.5) 50%, transparent 100%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transition: opacity 0.3s ease-out;
+  box-shadow: 0 0 12px rgba(61, 217, 201, 0.5);
+}
+
+/* 让链接和按钮显示正常指针 */
+.home-page a,
+.home-page button,
+.home-page .tech-tab,
+.home-page .about-btn,
+.home-page .partner-logo,
+.home-page .product-card,
+.home-page .service-card {
+  cursor: none;
+}
+
 .product-detail-page {
   min-height: 100vh;
   background: #000000;
@@ -229,12 +370,16 @@ export default {
 }
 
 @keyframes orbFloat {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translate(0, 0) scale(1);
   }
+
   33% {
     transform: translate(30px, -30px) scale(1.1);
   }
+
   66% {
     transform: translate(-20px, 20px) scale(0.9);
   }
@@ -257,18 +402,23 @@ export default {
 }
 
 @keyframes particleFloat {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translate(0, 0) scale(1);
     opacity: 0.3;
   }
+
   25% {
     transform: translate(20px, -30px) scale(1.2);
     opacity: 0.8;
   }
+
   50% {
     transform: translate(-15px, -50px) scale(0.8);
     opacity: 0.6;
   }
+
   75% {
     transform: translate(30px, -20px) scale(1.1);
     opacity: 0.7;
@@ -293,7 +443,7 @@ export default {
   font-weight: 700;
   margin-bottom: 0;
   color: #ffffff;
-  text-shadow: 
+  text-shadow:
     0 0 30px rgba(68, 150, 115, 0.6),
     0 0 60px rgba(68, 150, 115, 0.4),
     0 0 90px rgba(61, 217, 201, 0.3),
@@ -310,6 +460,7 @@ export default {
     opacity: 0;
     transform: translateY(-30px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -343,15 +494,18 @@ export default {
 }
 
 @keyframes titleGlow {
-  0%, 100% {
-    text-shadow: 
+
+  0%,
+  100% {
+    text-shadow:
       0 0 30px rgba(68, 150, 115, 0.6),
       0 0 60px rgba(68, 150, 115, 0.4),
       0 0 90px rgba(61, 217, 201, 0.3),
       0 4px 10px rgba(0, 0, 0, 0.3);
   }
+
   50% {
-    text-shadow: 
+    text-shadow:
       0 0 40px rgba(68, 150, 115, 0.8),
       0 0 80px rgba(68, 150, 115, 0.6),
       0 0 120px rgba(61, 217, 201, 0.4),
@@ -360,10 +514,13 @@ export default {
 }
 
 @keyframes titleAura {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 0.6;
     transform: scale(1);
   }
+
   50% {
     opacity: 1;
     transform: scale(1.1);
@@ -405,7 +562,7 @@ export default {
   height: auto;
   object-fit: contain;
   border-radius: 16px;
-  box-shadow: 
+  box-shadow:
     0 15px 40px rgba(0, 0, 0, 0.5),
     0 0 30px rgba(68, 150, 115, 0.2);
   transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
@@ -429,7 +586,7 @@ export default {
   border-radius: 16px;
   border: 2px solid transparent;
   background: linear-gradient(135deg, rgba(68, 150, 115, 0.3), rgba(61, 217, 201, 0.3)) padding-box,
-              linear-gradient(135deg, rgba(68, 150, 115, 0.5), rgba(61, 217, 201, 0.5)) border-box;
+    linear-gradient(135deg, rgba(68, 150, 115, 0.5), rgba(61, 217, 201, 0.5)) border-box;
   opacity: 0;
   transition: opacity 0.6s ease;
   z-index: 0;
@@ -442,9 +599,12 @@ export default {
 }
 
 @keyframes borderGlow {
-  0%, 100% {
+
+  0%,
+  100% {
     box-shadow: 0 0 20px rgba(68, 150, 115, 0.3), inset 0 0 20px rgba(68, 150, 115, 0.1);
   }
+
   50% {
     box-shadow: 0 0 40px rgba(68, 150, 115, 0.6), 0 0 60px rgba(61, 217, 201, 0.4), inset 0 0 30px rgba(68, 150, 115, 0.2);
   }
@@ -452,7 +612,7 @@ export default {
 
 .product-main-image:hover img {
   transform: translateY(-8px) scale(1.03);
-  box-shadow: 
+  box-shadow:
     0 30px 80px rgba(0, 0, 0, 0.7),
     0 0 70px rgba(68, 150, 115, 0.5),
     0 0 100px rgba(61, 217, 201, 0.3);
@@ -472,6 +632,7 @@ export default {
     opacity: 0;
     transform: translateY(60px) scale(0.95);
   }
+
   to {
     opacity: 1;
     transform: translateY(0) scale(1);
@@ -479,19 +640,25 @@ export default {
 }
 
 @keyframes imageFloat {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0);
   }
+
   50% {
     transform: translateY(-10px);
   }
 }
 
 @keyframes glowPulse {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 0.4;
     transform: translate(-50%, -50%) scale(1);
   }
+
   50% {
     opacity: 0.7;
     transform: translate(-50%, -50%) scale(1.1);
@@ -593,7 +760,7 @@ export default {
   background: rgba(30, 30, 30, 0.95);
   border-color: rgba(68, 150, 115, 0.6);
   transform: translateY(-8px) scale(1.02);
-  box-shadow: 
+  box-shadow:
     0 15px 40px rgba(68, 150, 115, 0.3),
     0 0 30px rgba(68, 150, 115, 0.2),
     inset 0 0 20px rgba(68, 150, 115, 0.1);
@@ -760,7 +927,7 @@ export default {
 
 .footer-brand:hover .logo-icon {
   transform: rotate(5deg) scale(1.1);
-  box-shadow: 
+  box-shadow:
     0 4px 16px rgba(61, 217, 201, 0.5),
     0 0 30px rgba(68, 150, 115, 0.4),
     inset 0 0 20px rgba(255, 255, 255, 0.1);
@@ -779,10 +946,13 @@ export default {
 }
 
 @keyframes logoShine {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 0.3;
     transform: translate(-50%, -50%) scale(1);
   }
+
   50% {
     opacity: 0.6;
     transform: translate(-50%, -50%) scale(1.2);
@@ -790,10 +960,13 @@ export default {
 }
 
 @keyframes logoGlow {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 0.6;
     filter: blur(5px);
   }
+
   50% {
     opacity: 1;
     filter: blur(8px);
@@ -817,7 +990,7 @@ export default {
 
 .footer-brand:hover .logo-main {
   color: #3DD9C9;
-  text-shadow: 
+  text-shadow:
     0 0 10px rgba(61, 217, 201, 0.5),
     0 0 20px rgba(68, 150, 115, 0.3);
   transform: translateX(2px);
@@ -980,4 +1153,3 @@ export default {
   }
 }
 </style>
-

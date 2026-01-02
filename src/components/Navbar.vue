@@ -352,7 +352,15 @@ export default {
 .dropdown {
   position: relative;
 }
-
+/* .dropdown::after{
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  height: 20px;
+  background: transparent;
+} */
 .dropdown-trigger {
   display: flex;
   align-items: center;
