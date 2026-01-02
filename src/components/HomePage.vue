@@ -97,7 +97,7 @@
 
     <!-- Cooperative Partnerships 合作伙伴 -->
     <section id="partners" class="partners-section" ref="partnersSection" @wheel="handleWheel">
-      <div class="container" id="Cooperative">
+      <div class="container" id="Cooperative" ref="cooperative">
         <h2 class="section-title">Cooperative Partnerships</h2>
         <p class="partners-description">MetaNovas closely collaborates with global academic and industrial leaders. We
           have established strong partnerships with numerous international brands and actively supported their R&D.</p>
@@ -169,7 +169,7 @@
 
     <!-- R&D Services 研发服务 -->
     <section id="research" class="research-section" ref="researchSection" @wheel="handleWheel">
-      <div class="container" id="RDservices">
+      <div class="container" id="RDservices" ref="rd">
         <h2 class="section-title">R&D Services</h2>
         <div class="research-services-list">
           <div class="research-service-item">
@@ -212,7 +212,7 @@
 
     <!-- Awards and Honors 奖项荣誉 -->
     <section class="awards-section" ref="awardsSection" @wheel="handleWheel">
-      <div class="container" id="AwardsHonours">
+      <div class="container" id="AwardsHonours" ref="awards">
         <h2 class="section-title">Awards and Honors</h2>
         <p class="awards-description">MetaNovas has not only received recognition in numerous international top-tier
           events for its professional knowledge and leading R&D capabilities, but also earned acclaim from various
@@ -252,7 +252,7 @@
 
     <!-- Products 产品 -->
     <section id="products" class="products-section" ref="productsSection" @wheel="handleWheel">
-      <div class="container" id="Products">
+      <div class="container" id="Products" ref="products">
         <h2 class="section-title">Products</h2>
         <div class="products-grid">
           <div class="product-card" v-for="(product, index) in products" :key="index">
@@ -451,6 +451,12 @@ export default {
     this.initScrollAnimations();
     this.initCursorTrail();
     this.startAwardsCarousel();
+    this.scrollToHash()
+  },
+  watch: {
+    '$route.hash'() {
+      this.scrollToHash()
+    }
   },
   beforeUnmount() {
     // 清理动画
@@ -462,6 +468,28 @@ export default {
     }
   },
   methods: {
+    scrollToHash() {
+      if (!this.$route.hash) return
+
+      this.$nextTick(() => {
+        // 再等一帧，确保布局稳定
+        requestAnimationFrame(() => {
+          const el = document.querySelector(this.$route.hash)
+          if (!el) return
+
+          const headerOffset = 0
+          const y =
+            el.getBoundingClientRect().top +
+            window.pageYOffset -
+            headerOffset
+
+          window.scrollTo({
+            top: y,
+            behavior: 'smooth'
+          })
+        })
+      })
+    },
     // 鼠标移动处理
     onMouseMove(e) {
       this.mouseX = e.clientX;
@@ -627,9 +655,7 @@ export default {
     },
     handleWheel(e) {
       // 如果是锚点跳转触发的滚动，跳过滚动捕捉
-      if (window.scrollToAnchor) {
-        return;
-      }
+      if (this.isScrollingToAnchor) return;
       // 只在向下滚动时触发
       if (e.deltaY > 0) {
         const currentSection = e.currentTarget;

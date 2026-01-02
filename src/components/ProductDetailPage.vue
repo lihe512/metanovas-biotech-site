@@ -52,7 +52,10 @@ export default {
     '$route.params.slug'(newSlug) {
       this.productSlug = newSlug;
       this.loadProductData();
-    }
+    },
+    slug(newVal) {
+    this.loadProduct(newVal)
+  }
   },
   methods: {
     getImageUrl(filename) {

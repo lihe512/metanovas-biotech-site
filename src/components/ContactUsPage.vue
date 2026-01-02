@@ -8,7 +8,7 @@
       <div class="hero-background">
         <img src="/图层 296.png" alt="Background" class="bg-image" />
       </div>
-      <div class="container" id="Contactus">
+      <div class="container" id="Contact-form" ref="contactForm">
         <div class="form-container">
           <div class="contact-form-card">
             <h1 class="form-title">How can we help?</h1>
@@ -61,19 +61,19 @@
 
     <!-- Contact Information Section -->
     <!-- <section class="contact-info-section"> -->
-      <!-- 背景装饰粒子 -->
-      <!-- <div class="section-particles">
+    <!-- 背景装饰粒子 -->
+    <!-- <div class="section-particles">
         <div class="particle" v-for="n in 20" :key="n" :style="getParticleStyle(n)"></div>
       </div> -->
-      <!-- 浮动光球 -->
-      <!-- <div class="section-orbs">
+    <!-- 浮动光球 -->
+    <!-- <div class="section-orbs">
         <div class="orb orb-1"></div>
         <div class="orb orb-2"></div>
         <div class="orb orb-3"></div>
       </div>
     </section> -->
     <FooterSection />
-    
+
   </div>
 </template>
 
@@ -107,10 +107,17 @@ export default {
       currentAwardIndex: 0,
     };
   },
+
   mounted() {
     this.initScrollAnimations();
     this.initCursorTrail();
     this.startAwardsCarousel();
+    this.scrollToHash()
+  },
+  watch: {
+    '$route.hash'() {
+      this.scrollToHash()
+    }
   },
   beforeUnmount() {
     // 清理动画
@@ -122,6 +129,16 @@ export default {
     }
   },
   methods: {
+    scrollToHash() {
+      if (this.$route.hash === '#Contact-form') {
+        this.$nextTick(() => {
+          const el = this.$refs.contactForm
+          if (el) {
+            el.scrollIntoView({ behavior: 'smooth' })
+          }
+        })
+      }
+    },
     handleSubmit() {
       // 这里可以添加表单提交逻辑
       console.log('Form submitted:', this.formData);
@@ -163,7 +180,7 @@ export default {
       this.mouseX = e.clientX;
       this.mouseY = e.clientY;
       this.isMouseInPage = true;
-      
+
       // 更新主光标位置
       if (this.$refs.cursorBall) {
         this.$refs.cursorBall.style.left = e.clientX + 'px';
@@ -171,7 +188,7 @@ export default {
         this.$refs.cursorBall.style.opacity = '1';
       }
     },
-    
+
     onMouseLeave() {
       this.isMouseInPage = false;
       if (this.$refs.cursorBall) {
@@ -180,28 +197,28 @@ export default {
       // 清空残影
       this.trails = [];
     },
-    
+
     // 初始化残影系统
     initCursorTrail() {
       // 存储历史位置
       this.positions = [];
-      
+
       const updateTrails = () => {
         if (this.isMouseInPage) {
           // 添加当前位置到历史
           this.positions.unshift({ x: this.mouseX, y: this.mouseY });
-          
+
           // 限制历史长度
           if (this.positions.length > this.trailCount) {
             this.positions.pop();
           }
-          
+
           // 更新残影
           this.trails = this.positions.map((pos, index) => {
             const opacity = 1 - (index / this.trailCount) * 0.8;
             const scale = 1 - (index / this.trailCount) * 0.4;
             const size = 36 * scale;
-            
+
             return {
               style: {
                 left: pos.x + 'px',
@@ -215,13 +232,13 @@ export default {
             };
           });
         }
-        
+
         this.trailAnimationFrame = requestAnimationFrame(updateTrails);
       };
-      
+
       updateTrails();
     },
-    
+
     initScrollAnimations() {
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -235,13 +252,13 @@ export default {
         observer.observe(el);
       });
     },
-    
+
   }
 };
 </script>
 
 <style scoped>
-  /* 自定义鼠标 - 蓝绿色小球 */
+/* 自定义鼠标 - 蓝绿色小球 */
 .cursor-ball {
   position: fixed;
   width: 22px;
@@ -251,7 +268,7 @@ export default {
   pointer-events: none;
   z-index: 10000;
   transform: translate(-50%, -50%);
-  box-shadow: 
+  box-shadow:
     0 0 10px rgba(68, 150, 115, 0.8),
     0 0 20px rgba(68, 150, 115, 0.5),
     0 0 40px rgba(68, 150, 115, 0.3);
@@ -280,6 +297,7 @@ export default {
 .home-page .service-card {
   cursor: none;
 }
+
 .contact-us-page {
   min-height: 100vh;
   background: #000000;
@@ -334,7 +352,7 @@ export default {
   background: rgba(240, 240, 240, 0.95);
   border-radius: 20px;
   padding: 50px 60px;
-  box-shadow: 
+  box-shadow:
     0 20px 60px rgba(0, 0, 0, 0.5),
     0 0 40px rgba(68, 150, 115, 0.2);
   backdrop-filter: blur(10px);
@@ -426,7 +444,7 @@ export default {
 
 .submit-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 
+  box-shadow:
     0 6px 20px rgba(68, 150, 115, 0.4),
     0 0 30px rgba(68, 150, 115, 0.2);
   background: linear-gradient(135deg, #3DD9C9 0%, #449673 100%);
@@ -451,7 +469,7 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
-  background: 
+  background:
     radial-gradient(circle at 20% 30%, rgba(68, 150, 115, 0.15) 0%, transparent 50%),
     radial-gradient(circle at 80% 70%, rgba(61, 217, 201, 0.15) 0%, transparent 50%);
   pointer-events: none;
@@ -465,7 +483,7 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: 
+  background-image:
     radial-gradient(circle at 15% 25%, rgba(68, 150, 115, 0.1) 0%, transparent 30%),
     radial-gradient(circle at 85% 75%, rgba(61, 217, 201, 0.1) 0%, transparent 30%),
     radial-gradient(circle at 50% 50%, rgba(68, 150, 115, 0.05) 0%, transparent 40%);
@@ -474,21 +492,28 @@ export default {
 }
 
 @keyframes backgroundPulse {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 0.6;
   }
+
   50% {
     opacity: 1;
   }
 }
 
 @keyframes backgroundFloat {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translate(0, 0);
   }
+
   33% {
     transform: translate(20px, -20px);
   }
+
   66% {
     transform: translate(-20px, 20px);
   }
@@ -514,18 +539,23 @@ export default {
 }
 
 @keyframes particleFloat {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translate(0, 0) scale(1);
     opacity: 0.4;
   }
+
   25% {
     transform: translate(30px, -40px) scale(1.3);
     opacity: 0.8;
   }
+
   50% {
     transform: translate(-20px, -60px) scale(0.7);
     opacity: 0.6;
   }
+
   75% {
     transform: translate(40px, -30px) scale(1.1);
     opacity: 0.7;
@@ -578,14 +608,18 @@ export default {
 }
 
 @keyframes orbFloat {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translate(0, 0) scale(1);
     opacity: 0.4;
   }
+
   33% {
     transform: translate(40px, -40px) scale(1.1);
     opacity: 0.6;
   }
+
   66% {
     transform: translate(-30px, 30px) scale(0.9);
     opacity: 0.5;
@@ -677,7 +711,7 @@ export default {
   background: rgba(30, 30, 30, 0.95);
   border-color: rgba(68, 150, 115, 0.6);
   transform: translateY(-8px) scale(1.02);
-  box-shadow: 
+  box-shadow:
     0 15px 40px rgba(68, 150, 115, 0.3),
     0 0 30px rgba(68, 150, 115, 0.2),
     inset 0 0 20px rgba(68, 150, 115, 0.1);
@@ -837,7 +871,7 @@ export default {
 
 .footer-brand:hover .logo-icon {
   transform: rotate(5deg) scale(1.1);
-  box-shadow: 
+  box-shadow:
     0 4px 16px rgba(61, 217, 201, 0.5),
     0 0 30px rgba(68, 150, 115, 0.4),
     inset 0 0 20px rgba(255, 255, 255, 0.1);
@@ -856,10 +890,13 @@ export default {
 }
 
 @keyframes logoShine {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 0.3;
     transform: translate(-50%, -50%) scale(1);
   }
+
   50% {
     opacity: 0.6;
     transform: translate(-50%, -50%) scale(1.2);
@@ -867,10 +904,13 @@ export default {
 }
 
 @keyframes logoGlow {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 0.6;
     filter: blur(5px);
   }
+
   50% {
     opacity: 1;
     filter: blur(8px);
@@ -894,7 +934,7 @@ export default {
 
 .footer-brand:hover .logo-main {
   color: #3DD9C9;
-  text-shadow: 
+  text-shadow:
     0 0 10px rgba(61, 217, 201, 0.5),
     0 0 20px rgba(68, 150, 115, 0.3);
   transform: translateX(2px);

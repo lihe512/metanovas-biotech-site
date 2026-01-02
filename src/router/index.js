@@ -42,7 +42,26 @@ const routes = [
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
-  routes
+  routes,
+  scrollBehavior(to, from, savedPosition) {
+    // 浏览器前进 / 后退
+    if (savedPosition) {
+      return savedPosition
+    }
+    // // 有锚点
+    // if (to.hash) {
+    //   return {
+    //     el: to.hash,
+    //     behavior: 'smooth'
+    //   }
+    // }
+    // 普通页面跳转：回到顶部
+    return {
+      top: 0,
+      behavior: 'smooth'
+    }
+  }
 })
+
 
 export default router

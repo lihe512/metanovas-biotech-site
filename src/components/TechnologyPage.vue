@@ -19,7 +19,9 @@
       <div class="glow-orb glow-orb-3"></div>
       <div class="hero-content">
         <h1 class="hero-title">Technical Platform</h1>
-        <p class="hero-subtitle">Our platform boasts four key advantages in transforming complex text into digestible data, shifting from experiment-driven to computation-driven approaches, transitioning simple components into system biology, and evolving from generic targeting to precision targeting.</p>
+        <p class="hero-subtitle">Our platform boasts four key advantages in transforming complex text into digestible
+          data, shifting from experiment-driven to computation-driven approaches, transitioning simple components into
+          system biology, and evolving from generic targeting to precision targeting.</p>
         <img src="/Technology_slices/Biotech 拷贝.png" alt="Platform" class="hero-cursive" />
         <!-- 滚动提示 -->
         <div class="scroll-indicator">
@@ -69,9 +71,10 @@
         <h2 class="section-title">Technical Platform</h2>
         <div class="tech-grid">
           <!-- MetaLLM® -->
-          <div class="tech-card" id="MetaLLM">
+          <div class="tech-card" id="MetaLLM" ref="MetaLLM">
             <h3 class="tech-card-title">MetaLLM<sup>&reg;</sup></h3>
-            <p class="tech-card-desc">Proprietary fine-grained large language model for scientific literature and patents—distilling human knowledge into structured data</p>
+            <p class="tech-card-desc">Proprietary fine-grained large language model for scientific literature and
+              patents—distilling human knowledge into structured data</p>
             <div class="tech-card-flow">
               <div class="flow-item">
                 <div class="flow-icon">
@@ -92,9 +95,10 @@
           </div>
 
           <!-- MetaPep® -->
-          <div class="tech-card" id="MetaRep">
+          <div class="tech-card" id="MetaPep" ref="MetaPep">
             <h3 class="tech-card-title">MetaPep<sup>&reg;</sup></h3>
-            <p class="tech-card-desc">Function-based and target-based peptide design with deep learning and molecular dynamics— Accelerate ingredient development with high success rate</p>
+            <p class="tech-card-desc">Function-based and target-based peptide design with deep learning and molecular
+              dynamics— Accelerate ingredient development with high success rate</p>
             <div class="tech-card-flow">
               <div class="flow-item">
                 <div class="flow-icon">
@@ -122,9 +126,10 @@
           </div>
 
           <!-- MetaKG® -->
-          <div class="tech-card" id="MetaKG">
+          <div class="tech-card" id="MetaKG" ref="MetaKG">
             <h3 class="tech-card-title">MetaKG<sup>&reg;</sup></h3>
-            <p class="tech-card-desc">Ultra-large biomedical knowledge graph with graph models to uncover hidden relations — Accelerate knowledge discovery and product development</p>
+            <p class="tech-card-desc">Ultra-large biomedical knowledge graph with graph models to uncover hidden
+              relations — Accelerate knowledge discovery and product development</p>
             <div class="tech-card-flow">
               <div class="flow-item">
                 <div class="flow-icon">
@@ -145,9 +150,10 @@
           </div>
 
           <!-- MetaOmics® -->
-          <div class="tech-card" id="MetaOmics">
+          <div class="tech-card" id="MetaOmics" ref="MetaOmics">
             <h3 class="tech-card-title">MetaOmics<sup>&reg;</sup></h3>
-            <p class="tech-card-desc">Huge multi-omics data with various advanced analytical methods— Enable precision product development through population segmentation</p>
+            <p class="tech-card-desc">Huge multi-omics data with various advanced analytical methods— Enable precision
+              product development through population segmentation</p>
             <div class="tech-card-flow">
               <div class="flow-item">
                 <div class="flow-icon">
@@ -206,13 +212,42 @@ export default {
   mounted() {
     this.initCursorTrail();
     this.initScrollSnap();
+    this.scrollToHash()
   },
+  watch: {
+    '$route.hash'() {
+      this.scrollToHash()
+    }
+  },
+
   beforeUnmount() {
     if (this.trailAnimationFrame) {
       cancelAnimationFrame(this.trailAnimationFrame);
     }
   },
   methods: {
+    scrollToHash() {
+      if (!this.$route.hash) return
+
+      this.$nextTick(() => {
+        // 再等一帧，确保布局稳定
+        requestAnimationFrame(() => {
+          const el = document.querySelector(this.$route.hash)
+          if (!el) return
+
+          const headerOffset = 76
+          const y =
+            el.getBoundingClientRect().top +
+            window.pageYOffset -
+            headerOffset
+
+          window.scrollTo({
+            top: y,
+            behavior: 'smooth'
+          })
+        })
+      })
+    },
     getSliceUrl(filename) {
       return '/Technology_slices/' + encodeURIComponent(filename);
     },
@@ -220,7 +255,7 @@ export default {
       this.mouseX = e.clientX;
       this.mouseY = e.clientY;
       this.isMouseInPage = true;
-      
+
       if (this.$refs.cursorBall) {
         this.$refs.cursorBall.style.left = e.clientX + 'px';
         this.$refs.cursorBall.style.top = e.clientY + 'px';
@@ -236,20 +271,20 @@ export default {
     },
     initCursorTrail() {
       this.positions = [];
-      
+
       const updateTrails = () => {
         if (this.isMouseInPage) {
           this.positions.unshift({ x: this.mouseX, y: this.mouseY });
-          
+
           if (this.positions.length > this.trailCount) {
             this.positions.pop();
           }
-          
+
           this.trails = this.positions.map((pos, index) => {
             const opacity = 1 - (index / this.trailCount);
             const scale = 1 - (index / this.trailCount) * 0.5;
             const size = 24 * scale;
-            
+
             return {
               style: {
                 left: pos.x + 'px',
@@ -262,10 +297,10 @@ export default {
             };
           });
         }
-        
+
         this.trailAnimationFrame = requestAnimationFrame(updateTrails);
       };
-      
+
       updateTrails();
     },
     handleWheel(e) {
@@ -293,7 +328,7 @@ export default {
           e.preventDefault();
           return;
         }
-        
+
         if (e.deltaY > 50 && this.$refs.heroSection) {
           const heroRect = this.$refs.heroSection.getBoundingClientRect();
           if (heroRect.top >= 0 && heroRect.bottom <= window.innerHeight) {
@@ -312,7 +347,7 @@ export default {
       const top = Math.random() * 100;
       const delay = Math.random() * 3;
       const duration = Math.random() * 3 + 2;
-      
+
       return {
         width: size + 'px',
         height: size + 'px',
@@ -511,7 +546,7 @@ export default {
   left: 0;
   right: 0;
   bottom: 0;
-  background: 
+  background:
     radial-gradient(circle at 30% 20%, rgba(68, 150, 115, 0.15) 0%, transparent 50%),
     radial-gradient(circle at 70% 80%, rgba(61, 217, 201, 0.1) 0%, transparent 50%);
   pointer-events: none;
@@ -534,10 +569,13 @@ export default {
 }
 
 @keyframes pulseGlow {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 0.5;
     transform: scale(1);
   }
+
   50% {
     opacity: 0.8;
     transform: scale(1.05);
@@ -548,9 +586,11 @@ export default {
   0% {
     transform: translate(0, 0) rotate(0deg);
   }
+
   50% {
     transform: translate(-50px, 50px) rotate(180deg);
   }
+
   100% {
     transform: translate(0, 0) rotate(360deg);
   }
@@ -577,18 +617,23 @@ export default {
 }
 
 @keyframes particleFloat {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0) translateX(0) scale(1);
     opacity: 0.3;
   }
+
   25% {
     transform: translateY(-20px) translateX(10px) scale(1.2);
     opacity: 0.6;
   }
+
   50% {
     transform: translateY(-40px) translateX(-10px) scale(0.8);
     opacity: 0.4;
   }
+
   75% {
     transform: translateY(-20px) translateX(5px) scale(1.1);
     opacity: 0.5;
@@ -632,27 +677,36 @@ export default {
 }
 
 @keyframes orbFloat1 {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translate(0, 0) scale(1);
   }
+
   50% {
     transform: translate(30px, -30px) scale(1.2);
   }
 }
 
 @keyframes orbFloat2 {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translate(0, 0) scale(1);
   }
+
   50% {
     transform: translate(-20px, 20px) scale(1.1);
   }
 }
 
 @keyframes orbFloat3 {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translate(0, 0) scale(1);
   }
+
   50% {
     transform: translate(15px, -15px) scale(1.15);
   }
@@ -671,6 +725,7 @@ export default {
     opacity: 0;
     transform: translateY(30px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -778,10 +833,13 @@ export default {
 }
 
 @keyframes bounceIndicator {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateX(-50%) translateY(0);
     opacity: 0.6;
   }
+
   50% {
     transform: translateX(-50%) translateY(10px);
     opacity: 1;
@@ -806,22 +864,25 @@ export default {
   left: 10%;
   right: 10%;
   height: 2px;
-  background: linear-gradient(90deg, 
-    transparent 0%,
-    rgba(68, 150, 115, 0.2) 20%,
-    rgba(68, 150, 115, 0.5) 50%,
-    rgba(68, 150, 115, 0.2) 80%,
-    transparent 100%);
+  background: linear-gradient(90deg,
+      transparent 0%,
+      rgba(68, 150, 115, 0.2) 20%,
+      rgba(68, 150, 115, 0.5) 50%,
+      rgba(68, 150, 115, 0.2) 80%,
+      transparent 100%);
   transform: translateY(-50%);
   z-index: 0;
   animation: lineFlow 3s ease-in-out infinite;
 }
 
 @keyframes lineFlow {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 0.3;
     transform: translateY(-50%) scaleX(1);
   }
+
   50% {
     opacity: 0.8;
     transform: translateY(-50%) scaleX(1.05);
@@ -836,21 +897,24 @@ export default {
   left: 10%;
   right: 10%;
   height: 2px;
-  background: linear-gradient(90deg, 
-    transparent 0%, 
-    rgba(68, 150, 115, 0.3) 20%, 
-    rgba(68, 150, 115, 0.5) 50%, 
-    rgba(68, 150, 115, 0.3) 80%, 
-    transparent 100%);
+  background: linear-gradient(90deg,
+      transparent 0%,
+      rgba(68, 150, 115, 0.3) 20%,
+      rgba(68, 150, 115, 0.5) 50%,
+      rgba(68, 150, 115, 0.3) 80%,
+      transparent 100%);
   z-index: 0;
   animation: linePulse 3s ease-in-out infinite;
 }
 
 @keyframes linePulse {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 0.3;
     transform: scaleX(1);
   }
+
   50% {
     opacity: 0.6;
     transform: scaleX(1.05);
@@ -890,6 +954,7 @@ export default {
     opacity: 0;
     transform: translateY(30px) scale(0.8);
   }
+
   to {
     opacity: 1;
     transform: translateY(0) scale(1);
@@ -916,7 +981,7 @@ export default {
   width: 140px;
   height: 140px;
   border-color: rgba(68, 150, 115, 0.5);
-  box-shadow: 
+  box-shadow:
     0 0 30px rgba(68, 150, 115, 0.3),
     inset 0 0 30px rgba(68, 150, 115, 0.1);
   animation: ripple 1.5s ease-out infinite;
@@ -927,6 +992,7 @@ export default {
     transform: translate(-50%, -50%) scale(1);
     opacity: 1;
   }
+
   100% {
     transform: translate(-50%, -50%) scale(1.3);
     opacity: 0;
@@ -995,7 +1061,7 @@ export default {
 .tech-icon-item:hover .tech-icon {
   border-color: rgba(68, 150, 115, 0.6);
   background: rgba(30, 30, 30, 0.6);
-  box-shadow: 
+  box-shadow:
     0 0 25px rgba(68, 150, 115, 0.5),
     0 0 50px rgba(68, 150, 115, 0.2),
     inset 0 0 15px rgba(68, 150, 115, 0.1);
@@ -1098,21 +1164,28 @@ export default {
 }
 
 @keyframes orbFloat1 {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translate(0, 0) scale(1);
   }
+
   33% {
     transform: translate(100px, 100px) scale(1.1);
   }
+
   66% {
     transform: translate(-50px, 150px) scale(0.9);
   }
 }
 
 @keyframes orbFloat2 {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translate(0, 0) scale(1);
   }
+
   50% {
     transform: translate(-100px, -100px) scale(1.15);
   }
@@ -1139,12 +1212,15 @@ export default {
     transform: translateY(100vh) translateX(0) scale(0);
     opacity: 0;
   }
+
   10% {
     opacity: 1;
   }
+
   90% {
     opacity: 1;
   }
+
   100% {
     transform: translateY(-100px) translateX(100px) scale(1);
     opacity: 0;
@@ -1174,6 +1250,7 @@ export default {
     opacity: 0;
     transform: translateX(-30px);
   }
+
   to {
     opacity: 1;
     transform: translateX(0);
@@ -1255,7 +1332,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 
+  box-shadow:
     0 4px 20px rgba(61, 217, 201, 0.4),
     0 0 40px rgba(68, 150, 115, 0.3);
   transition: all 0.3s ease;
@@ -1271,12 +1348,10 @@ export default {
   right: -5px;
   bottom: -5px;
   border-radius: 50%;
-  background: conic-gradient(
-    from 0deg,
-    rgba(68, 150, 115, 0.3),
-    rgba(61, 217, 201, 0.3),
-    rgba(68, 150, 115, 0.3)
-  );
+  background: conic-gradient(from 0deg,
+      rgba(68, 150, 115, 0.3),
+      rgba(61, 217, 201, 0.3),
+      rgba(68, 150, 115, 0.3));
   z-index: -1;
   animation: logoGlow 3s ease-in-out infinite;
   filter: blur(10px);
@@ -1286,16 +1361,20 @@ export default {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
 }
 
 @keyframes logoGlow {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 0.5;
     transform: scale(1);
   }
+
   50% {
     opacity: 1;
     transform: scale(1.1);
@@ -1304,7 +1383,7 @@ export default {
 
 .logo-circle:hover {
   transform: scale(1.15) rotate(180deg);
-  box-shadow: 
+  box-shadow:
     0 8px 40px rgba(61, 217, 201, 0.8),
     0 0 80px rgba(68, 150, 115, 0.6);
   animation-duration: 5s;
@@ -1352,6 +1431,7 @@ export default {
     opacity: 0;
     transform: translateY(50px) scale(0.95);
   }
+
   to {
     opacity: 1;
     transform: translateY(0) scale(1);
@@ -1379,10 +1459,10 @@ export default {
   left: -2px;
   right: -2px;
   bottom: -2px;
-  background: linear-gradient(45deg, 
-    rgba(68, 150, 115, 0.3),
-    rgba(61, 217, 201, 0.3),
-    rgba(68, 150, 115, 0.3));
+  background: linear-gradient(45deg,
+      rgba(68, 150, 115, 0.3),
+      rgba(61, 217, 201, 0.3),
+      rgba(68, 150, 115, 0.3));
   border-radius: 16px;
   opacity: 0;
   z-index: -1;
@@ -1392,9 +1472,12 @@ export default {
 }
 
 @keyframes borderGlow {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 0;
   }
+
   50% {
     opacity: 0.3;
   }
@@ -1406,10 +1489,13 @@ export default {
 }
 
 @keyframes borderGlowHover {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 0.4;
     transform: scale(1);
   }
+
   50% {
     opacity: 0.8;
     transform: scale(1.02);
@@ -1418,7 +1504,7 @@ export default {
 
 .tech-card:hover {
   border-color: rgba(68, 150, 115, 0.5);
-  box-shadow: 
+  box-shadow:
     0 15px 50px rgba(0, 0, 0, 0.5),
     0 0 40px rgba(68, 150, 115, 0.3),
     inset 0 0 20px rgba(68, 150, 115, 0.05);
@@ -1555,12 +1641,12 @@ export default {
 .arrow-shape {
   width: 100%;
   height: 8px;
-  background: linear-gradient(90deg, 
-    rgba(68, 150, 115, 0.05) 0%,
-    rgba(68, 150, 115, 0.15) 20%,
-    rgba(68, 150, 115, 0.4) 50%,
-    rgba(61, 217, 201, 0.7) 80%,
-    rgba(61, 217, 201, 0.9) 100%);
+  background: linear-gradient(90deg,
+      rgba(68, 150, 115, 0.05) 0%,
+      rgba(68, 150, 115, 0.15) 20%,
+      rgba(68, 150, 115, 0.4) 50%,
+      rgba(61, 217, 201, 0.7) 80%,
+      rgba(61, 217, 201, 0.9) 100%);
   position: relative;
   border-radius: 4px;
   animation: arrowPulse 2s ease-in-out infinite;
@@ -1584,12 +1670,12 @@ export default {
 }
 
 .tech-card:hover .arrow-shape {
-  background: linear-gradient(90deg, 
-    rgba(68, 150, 115, 0.1) 0%,
-    rgba(68, 150, 115, 0.25) 20%,
-    rgba(68, 150, 115, 0.5) 50%,
-    rgba(61, 217, 201, 0.85) 80%,
-    rgba(61, 217, 201, 1) 100%);
+  background: linear-gradient(90deg,
+      rgba(68, 150, 115, 0.1) 0%,
+      rgba(68, 150, 115, 0.25) 20%,
+      rgba(68, 150, 115, 0.5) 50%,
+      rgba(61, 217, 201, 0.85) 80%,
+      rgba(61, 217, 201, 1) 100%);
   box-shadow: 0 0 20px rgba(68, 150, 115, 0.6);
   transform: translateX(3px);
 }
@@ -1600,10 +1686,13 @@ export default {
 }
 
 @keyframes arrowPulse {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 0.6;
     transform: scaleX(1);
   }
+
   50% {
     opacity: 1;
     transform: scaleX(1.1);
@@ -1611,10 +1700,13 @@ export default {
 }
 
 @keyframes arrowHeadPulse {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 0.6;
     transform: translateY(-50%) scale(1);
   }
+
   50% {
     opacity: 1;
     transform: translateY(-50%) scale(1.15);

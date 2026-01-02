@@ -41,30 +41,33 @@
         <div class="footer-links-group">
           <div class="link-column">
             <h4>About us</h4>
-            <a @click.prevent="handleLinkClick('/','Cooperative')" href="javaScript:;">Cooperative Partnerships</a>
-            <a @click.prevent="handleLinkClick('/','RDservices')" href="javaScript:;">R&D services</a>
-            <a @click.prevent="handleLinkClick('/','AwardsHonours')" href="javaScript:;">Awards and Honours</a>
-            <a @click.prevent="handleLinkClick('/','Products')" href="javaScript:;">Products</a>
+            <a @click.prevent="handleLinkClick('/', 'Cooperative')" href="javaScript:;">Cooperative Partnerships</a>
+            <a @click.prevent="handleLinkClick('/', 'RDservices')" href="javaScript:;">R&D services</a>
+            <a @click.prevent="handleLinkClick('/', 'AwardsHonours')" href="javaScript:;">Awards and Honours</a>
+            <a @click.prevent="handleLinkClick('/', 'Products')" href="javaScript:;">Products</a>
           </div>
           <div class="link-column">
             <h4>Products</h4>
-            <a @click.prevent="handleProductClick('MetaTLR')" href="javaScript:;">MetaTLR</a>
-            <a @click.prevent="handleProductClick('ClearAcneMagic')" href="javaScript:;">ClearAcne Magic</a>
-            <a @click.prevent="handleProductClick('MetaCono')" href="javaScript:;">MetaCono</a>
-            <a @click.prevent="handleProductClick('OmniYouth')" href="javaScript:;">OmniYouth</a>
-            <a @click.prevent="handleProductClick('Metascalp')" href="javaScript:;">Metascalp</a>
+            <a @click.prevent="handleProductClick('MetaTlr')" href="javaScript:;">MetaTLR</a>
+            <a @click.prevent="handleProductClick('clearacne-magic')" href="javaScript:;">ClearAcne Magic</a>
+            <a @click.prevent="handleProductClick('metacono')" href="javaScript:;">MetaCono</a>
+            <a @click.prevent="handleProductClick('omniyouth')" href="javaScript:;">OmniYouth</a>
+            <a @click.prevent="handleProductClick('metascalp')" href="javaScript:;">Metascalp</a>
             <a @click.prevent="handleProductClick('PureSmile')" href="javaScript:;">PureSmile</a>
           </div>
           <div class="link-column">
             <h4>Technology</h4>
-            <a @click.prevent="handleLinkClick('/technology','MetaLLM')" href="javaScript:;">MetaLLM<sup>&reg;</sup></a>
-            <a @click.prevent="handleLinkClick('/technology','MetaKG')" href="javaScript:;">MetaKG<sup>&reg;</sup></a>
-            <a @click.prevent="handleLinkClick('/technology','MetaOmics')" href="javaScript:;">MetaOmics<sup>&reg;</sup></a>
-            <a @click.prevent="handleLinkClick('/technology','MetaPep')" href="javaScript:;">MetaPep<sup>&reg;</sup></a>
+            <a @click.prevent="handleLinkClick('/technology', 'MetaLLM')"
+              href="javaScript:;">MetaLLM<sup>&reg;</sup></a>
+            <a @click.prevent="handleLinkClick('/technology', 'MetaKG')" href="javaScript:;">MetaKG<sup>&reg;</sup></a>
+            <a @click.prevent="handleLinkClick('/technology', 'MetaOmics')"
+              href="javaScript:;">MetaOmics<sup>&reg;</sup></a>
+            <a @click.prevent="handleLinkClick('/technology', 'MetaPep')"
+              href="javaScript:;">MetaPep<sup>&reg;</sup></a>
           </div>
           <div class="link-column">
             <h4>Contact us</h4>
-            <a @click.prevent="handleLinkClick('/contact-us','Contactus')" href="javaScript:;">Contact us</a>
+            <a @click.prevent="handleLinkClick('/contact-us', 'Contact-form')" href="javaScript:;">Contact us</a>
           </div>
         </div>
       </div>
@@ -80,54 +83,46 @@ export default {
   name: 'FooterSection',
   computed: {
     contactIcon1() {
-      return '../home_slices/' + encodeURIComponent('工作.png');
+      return '../home_slices/' + encodeURIComponent('工作.png')
     },
     contactIcon2() {
-      return '../home_slices/' + encodeURIComponent('合作伙伴.png');
+      return '../home_slices/' + encodeURIComponent('合作伙伴.png')
     },
     contactIcon3() {
-      return '../home_slices/' + encodeURIComponent('新闻.png');
+      return '../home_slices/' + encodeURIComponent('新闻.png')
     }
   },
   methods: {
-    handleLinkClick(targetRoute, anchor) {
-      this.$router.push({
-        path: targetRoute,
-        hash: anchor ? `#${anchor}` : ''
-      }).then(() => {
-        this.scrollToSection(anchor);
-      }).catch(err => {
-        console.warn('Navigation error:', err);
-        window.scrollTo(0, 0);
-      })
-    },
-    handleProductClick(productSlug) {
-      this.$router.push({
-        path: `/products/${productSlug}`
-      }).catch(err => {
-        console.warn('Navigation error:', err);
-      })
-    },
-    scrollToAnchor(anchorName) {
-      if (!anchorName) return;
-      const anchorElement = document.getElementById(anchorName);
-      setTimeout(() => {
-        if (anchorElement) {
-          anchorElement.scrollIntoView({ behavior: 'smooth', block: 'top' });
-        }
-        else {
-          window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-          })
-           console.warn(`锚点 "${anchorName}" 不存在`);
-        }
-      },100)
+    handleLinkClick(path, anchor) {
+      const targetHash = anchor ? `#${anchor}` : ''
 
+      // ✅ 如果已经在同一个页面
+      if (this.$route.path === path) {
+        // 直接滚，不走 router
+        this.$nextTick(() => {
+          const el = document.querySelector(targetHash)
+          if (el) {
+            el.scrollIntoView({ behavior: 'smooth' })
+          }
+        })
+        return
+      }
+
+      // ✅ 不同页面才走 router
+      this.$router.push({
+        path,
+        hash: targetHash
+      })
+    },
+
+    // 产品详情页跳转
+    handleProductClick(slug) {
+      this.$router.push(`/products/${slug}`)
     }
   }
 }
 </script>
+
 <style scoped>
 .container {
   max-width: 1200px;
