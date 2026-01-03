@@ -1,5 +1,5 @@
 <template>
-  <div class="media-page"  @mousemove="onMouseMove" @mouseleave="onMouseLeave">
+  <div class="media-page" @mousemove="onMouseMove" @mouseleave="onMouseLeave">
     <!-- 自定义鼠标 -->
     <div class="cursor-ball" ref="cursorBall"></div>
     <div class="cursor-trail" v-for="(trail, index) in trails" :key="index" :style="trail.style"></div>
@@ -9,10 +9,15 @@
         <h1 class="page-title">Corporate News</h1>
         <div class="hero-content">
           <p class="hero-text">
-            MetaNovas CTO Dr. Yu Lun attended the IFSCC conference, the Nobel Prize in the cosmetics industry, and delivered a speech and released the latest research articles.
+            MetaNovas CTO Dr. Yu Lun attended the IFSCC conference, the Nobel Prize in the cosmetics industry, and
+            delivered a speech and released the latest research articles.
           </p>
           <p class="hero-description">
-            IFSCC is an international non-profit organization, whose full name is The International Federation of Societies of Cosmetic Chemists (International Federation of Cosmetic Chemists). It was established in 1946 and currently has more than 16,000 members from more than 50 countries and regions around the world. IFSCC is the highest authority and most influential organization in the global cosmetics industry, and its annual conference is known as the "Nobel Prize in the cosmetics industry".
+            IFSCC is an international non-profit organization, whose full name is The International Federation of
+            Societies of Cosmetic Chemists (International Federation of Cosmetic Chemists). It was established in 1946
+            and currently has more than 16,000 members from more than 50 countries and regions around the world. IFSCC
+            is the highest authority and most influential organization in the global cosmetics industry, and its annual
+            conference is known as the "Nobel Prize in the cosmetics industry".
           </p>
         </div>
         <div class="scroll-indicator" @click="scrollToNews">
@@ -28,73 +33,245 @@
         <div class="news-list">
           <!-- News Item 1 -->
           <div class="news-item">
-            <div class="news-date-badge">2025.01</div>
+            <div class="news-date-badge">2025.11.27</div>
             <div class="news-content-wrapper">
               <div class="news-text-content">
-                <h2 class="news-category">Competition</h2>
-                <p class="news-text">
-                  MetaNovas Biotech presented at the Future Food Asia 2024 awards ceremony held in Singapore, and successfully made it into the Top 10 Finalists.
+                <h2 class="news-category">MetaNovas' World's First AI-Designed Novel Molecule “AMP33” Completes Medical
+                  Device Raw Material Registration</h2>
+                <p class="news-description">
+                  MetaNovas Biotech's first AI-designed novel peptide molecule, AMP33, has successfully completed
+                  Medical Device Master File registration (No. M2025400-000). Designed using AI-driven molecular
+                  simulation, AMP33 supports skin microbiome balance and meets medical-grade safety standards, enabling
+                  its application in advanced wound-healing and post-procedure care solutions.
                 </p>
+                <button class="read-more-btn" @click="readArticle(0)">Read it</button>
               </div>
               <div class="news-image-placeholder">
                 <!-- 图片占位符 -->
+                <img src="../../public/media_images/1.png" alt="AMP33" class="news-image" />
               </div>
             </div>
           </div>
 
           <!-- News Item 2 -->
           <div class="news-item">
-            <div class="news-date-badge">2025.01</div>
+            <div class="news-date-badge">2025.11.5</div>
             <div class="news-content-wrapper">
               <div class="news-text-content">
-                <h2 class="news-category">Leading AI Skincare Company</h2>
-                <p class="news-text">
-                  MetaNovas was selected by the British authoritative medical and health magazine as the Leading AI Skincare Company 2024.
-                </p>
+                <h2 class="news-category">Beauty Connect LA 2025 | MetaNovas Successfully Hosted the “From Science to
+                  Market” Themed Workshop</h2>
+                <!-- <p class="news-text">
+                  MetaNovas was selected by the British authoritative medical and health magazine as the Leading AI
+                  Skincare Company 2024.
+                </p> -->
                 <p class="news-description">
-                  On April 10, 2024, the authoritative British medical and health magazine 'Global Health & Pharma' (hereinafter referred to as 'GHP'), a global information platform, released the list of winners of the 9th Biotechnology Awards, and MetaNovas Biotech was awarded the Leading AI Skincare Company 2024.
+                  MetaNovas Biotech successfully hosted the From Science to Market workshop at Beauty Connect LA 2025,
+                  bringing together investors, scientists, and brand leaders to explore how AI-driven scientific
+                  innovation accelerates the journey from laboratory research to market-ready beauty brands.
                 </p>
+                <button class="read-more-btn" @click="readArticle(1)">Read it</button>
               </div>
               <div class="news-image-placeholder">
                 <!-- 图片占位符 -->
+                <img src="../../public/media_images/2.png" alt="" class="news-image" />
               </div>
             </div>
           </div>
 
           <!-- News Item 3 -->
           <div class="news-item">
-            <div class="news-date-badge">2024.12</div>
+            <div class="news-date-badge">2025.10.21</div>
             <div class="news-content-wrapper">
               <div class="news-text-content">
-                <h2 class="news-category">L'Oréal Big Bang Championship</h2>
-                <p class="news-text">
-                  MetaNovas won the L'Oréal Big Bang "Foreseeing New Industry Research x Artificial Intelligence" cross-field track championship.
-                </p>
+                <h2 class="news-category">MetaNovas Invited to Speak at the FaB BeautyTech AI Founders Forum in San
+                  Francisco</h2>
+                <!-- <p class="news-text">
+                  MetaNovas won the L'Oréal Big Bang "Foreseeing New Industry Research x Artificial Intelligence"
+                  cross-field track championship.
+                </p> -->
                 <p class="news-description">
-                  L'Oréal announced 17 winning companies from different regional markets in the 2023 North Asia Big Bang Beauty Technology Creation Camp. MetaNovas Biotech won the championship in the "Foreseeing New Industry Research x Artificial Intelligence" cross-field track.
+                  MetaNovas Biotech was invited to the FaB BeautyTech AI Founders Forum in San Francisco, where founder
+                  Lun Yu joined global beauty and biotech innovators to discuss how AI accelerates efficacy skincare,
+                  personalized formulations, and the integration of biotechnology into next-generation consumer beauty.
                 </p>
+                <button class="read-more-btn" @click="readArticle(2)">Read it</button>
               </div>
               <div class="news-image-placeholder">
                 <!-- 图片占位符 -->
+                <img src="../../public/media_images/3.png" alt="" class="news-image" />
               </div>
             </div>
           </div>
 
           <!-- News Item 4 -->
           <div class="news-item">
-            <div class="news-date-badge">2024.12</div>
+            <div class="news-date-badge">2025.09.17</div>
             <div class="news-content-wrapper">
               <div class="news-text-content">
-                <h2 class="news-category">HealthTech 250</h2>
-                <p class="news-text">
-                  Metanovas Biotech has been selected as one of the top 250 most promising health technology companies in the world for two consecutive years, and has won the award again after being shortlisted in 2022.
-                </p>
+                <h2 class="news-category">MetaNovas Partners with L'Oréal at IFSCC 2025 to Present AI-Driven Collagen
+                  Research</h2>
+                <!-- <p class="news-text">
+                  Metanovas Biotech has been selected as one of the top 250 most promising health technology companies
+                  in the world for two consecutive years, and has won the award again after being shortlisted in 2022.
+                </p> -->
                 <p class="news-description">
-                  MetaNovas was shortlisted as one of HolonIQ 2023 East Asia's 200 Leading Innovators in Health Technology. This recognition highlights MetaNovas' innovative contributions to the health technology sector.
+                  MetaNovas Biotech partnered with L'Oréal at the 35th IFSCC Congress in Cannes to present an AI-driven
+                  research framework combining biological knowledge graphs and experimental validation, enabling
+                  accelerated collagen mechanism analysis and ingredient screening for next-generation skincare
+                  innovation.
                 </p>
+                <button class="read-more-btn" @click="readArticle(3)">Read it</button>
               </div>
               <div class="news-image-placeholder">
                 <!-- 图片占位符 -->
+                <img src="../../public/media_images/4.png" alt="" class="news-image" />
+              </div>
+            </div>
+          </div>
+
+          <!-- News Item 5 -->
+          <div class="news-item">
+            <div class="news-date-badge">2025.05.16</div>
+            <div class="news-content-wrapper">
+              <div class="news-text-content">
+                <h2 class="news-category">MetaNovas Partners with HCP Group at CBE 2025 to Showcase AI-Enabled Botanical
+                  Innovation</h2>
+                <!-- <p class="news-text">
+                  Metanovas Biotech has been selected as one of the top 250 most promising health technology companies
+                  in the world for two consecutive years, and has won the award again after being shortlisted in 2022.
+                </p> -->
+                <p class="news-description">
+                  MetaNovas Biotech partnered with HCP Group at CBE 2025 in Shanghai to present an AI-driven botanical
+                  research collaboration, demonstrating how artificial intelligence accelerates the discovery,
+                  optimization, and application of traditional Chinese plant actives for next-generation skincare
+                  innovation.
+                </p>
+                <button class="read-more-btn" @click="readArticle(4)">Read it</button>
+              </div>
+              <div class="news-image-placeholder">
+                <!-- 图片占位符 -->
+                <img src="../../public/media_images/5.png" alt="" class="news-image" />
+              </div>
+            </div>
+          </div>
+          <!-- News Item 6 -->
+          <div class="news-item">
+            <div class="news-date-badge">2025.04.10</div>
+            <div class="news-content-wrapper">
+              <div class="news-text-content">
+                <h2 class="news-category">MetaNovas Debuts at In-Cosmetics Global 2025, Showcasing AI-Driven Ingredient
+                  Innovation</h2>
+                <!-- <p class="news-text">
+                  Metanovas Biotech has been selected as one of the top 250 most promising health technology companies
+                  in the world for two consecutive years, and has won the award again after being shortlisted in 2022.
+                </p> -->
+                <p class="news-description">
+                  MetaNovas Biotech made its European debut at In-Cosmetics Global 2025 in Amsterdam, presenting its
+                  AI-powered ingredient R&D platform and sharing cutting-edge insights on AI-driven cosmetic innovation,
+                  attracting attention from global brands and industry experts.
+                </p>
+                <button class="read-more-btn" @click="readArticle(5)">Read it</button>
+              </div>
+              <div class="news-image-placeholder">
+                <!-- 图片占位符 -->
+                <img src="../../public/media_images/6.png" alt="" class="news-image" />
+              </div>
+            </div>
+          </div>
+
+          <!-- News Item 7 -->
+          <div class="news-item">
+            <div class="news-date-badge">2025.02.27</div>
+            <div class="news-content-wrapper">
+              <div class="news-text-content">
+                <h2 class="news-category">MetaNovas & PCHI Successfully Host AI-Driven Cosmetics Innovation Forum</h2>
+                <!-- <p class="news-text">
+                  Metanovas Biotech has been selected as one of the top 250 most promising health technology companies
+                  in the world for two consecutive years, and has won the award again after being shortlisted in 2022.
+                </p> -->
+                <p class="news-description">
+                  MetaNovas, in partnership with PCHI, successfully hosted an AI-focused forum on cosmetics innovation,
+                  attracting industry experts and brand leaders. The event showcased AI applications in skincare R&D,
+                  personalized beauty, and microbiome-based solutions, highlighting the transformative potential of AI
+                  in the beauty industry.
+                </p>
+                <button class="read-more-btn" @click="readArticle(6)">Read it</button>
+              </div>
+              <div class="news-image-placeholder">
+                <!-- 图片占位符 -->
+                <img src="../../public/media_images/7.png" alt="" class="news-image" />
+              </div>
+            </div>
+          </div>
+          <!-- News Item 8 -->
+          <div class="news-item">
+            <div class="news-date-badge">2025.02.05</div>
+            <div class="news-content-wrapper">
+              <div class="news-text-content">
+                <h2 class="news-category">MetaNovas CEO Named to Forbes China 100 Outstanding Young Returnees</h2>
+                <!-- <p class="news-text">
+                  Metanovas Biotech has been selected as one of the top 250 most promising health technology companies
+                  in the world for two consecutive years, and has won the award again after being shortlisted in 2022.
+                </p> -->
+                <p class="news-description">
+                  MetaNovas Biotech founder and CEO, Meijie Wang, has been selected for the Forbes China 100 Outstanding
+                  Young Returnees in the “Growth Potential” category. Recognized for her leadership in AI-driven
+                  biotechnology, Wang has steered MetaNovas to pioneer functional ingredient design platforms, secure
+                  multiple international patents, and collaborate with leading global brands, advancing AI-powered
+                  innovation in bioactive ingredient development.
+                </p>
+                <button class="read-more-btn" @click="readArticle(7)">Read it</button>
+              </div>
+              <div class="news-image-placeholder">
+                <!-- 图片占位符 -->
+                <img src="../../public/media_images/8.png" alt="" class="news-image" />
+              </div>
+            </div>
+          </div>
+          <!-- News Item 9 -->
+          <div class="news-item">
+            <div class="news-date-badge">2024.12.04</div>
+            <div class="news-content-wrapper">
+              <div class="news-text-content">
+                <h2 class="news-category">MetaNovas Secures Series A Funding to Accelerate AI-Driven Discovery of
+                  Consumer Health Materials</h2>
+                <!-- <p class="news-text">
+                  Metanovas Biotech has been selected as one of the top 250 most promising health technology companies
+                  in the world for two consecutive years, and has won the award again after being shortlisted in 2022.
+                </p> -->
+                <p class="news-description">
+                  MetaNovas Biotech has closed its Series A financing led by GL Ventures and Baoding Capital. Leveraging
+                  its AI platform and knowledge graph, MetaNovas accelerates the discovery of functional peptide
+                  ingredients, reducing R&D time and cost, while expanding international collaborations and commercial
+                  applications.
+                </p>
+                <button class="read-more-btn" @click="readArticle(8)">Read it</button>
+              </div>
+              <div class="news-image-placeholder">
+                <!-- 图片占位符 -->
+                <img src="../../public/media_images/9.png" alt="" class="news-image" />
+              </div>
+            </div>
+          </div>
+          <!-- News Item 10 -->
+          <div class="news-item">
+            <div class="news-date-badge">2024.11.25</div>
+            <div class="news-content-wrapper">
+              <div class="news-text-content">
+                <h2 class="news-category">MetaNovas to Showcase AI-Driven Cosmetic Innovation at SCC78 in Los Angeles</h2>
+                <!-- <p class="news-text">
+                  Metanovas Biotech has been selected as one of the top 250 most promising health technology companies
+                  in the world for two consecutive years, and has won the award again after being shortlisted in 2022.
+                </p> -->
+                <p class="news-description">
+                  MetaNovas Biotech, the only Chinese company selected for the 78th Annual SCC Meeting, will present in the “AI Beauty Revolution” session, demonstrating how its AI platform accelerates cosmetic ingredient and product development to global industry leaders.
+                </p>
+                <button class="read-more-btn" @click="readArticle(9)">Read it</button>
+              </div>
+              <div class="news-image-placeholder">
+                <!-- 图片占位符 -->
+                 <img src="../../public/media_images/10-3.png" alt="" class="news-image" />
+                 <!-- <img src="../../public/media_images/10-2.png" alt="" class="news-image" /> -->
               </div>
             </div>
           </div>
@@ -124,9 +301,22 @@ export default {
       isMouseInPage: false,
       isScrolling: false,
       currentAwardIndex: 0,
+      // 新闻链接数据
+      newsLinks: [
+        'https://mp.weixin.qq.com/s/NmpcDci4BM9PjL1hGM8yEQ', 
+        'https://mp.weixin.qq.com/s/TP9NIssei02DmWrDb1xSKQ',
+        'https://mp.weixin.qq.com/s/sqbkmmpD-UwIf1uXVLem5Q',
+        'https://mp.weixin.qq.com/s/edM9-_MjUoZe0Iqop_7b8Q',
+        'https://mp.weixin.qq.com/s/nYV-R7bBNRQK37dR3ji1IQ',
+        'https://mp.weixin.qq.com/s/IO7QlPoIMJ6nlqvWAsoBHg',
+        'https://mp.weixin.qq.com/s/QN9nJ81Cg4IqYznUK31N0g',
+        'https://mp.weixin.qq.com/s/aTgMfQr11cs8LCF8rrHA_w',
+        'https://mp.weixin.qq.com/s/nKpWa7lpT0jLBIbeBZ51xA',
+        'https://mp.weixin.qq.com/s/E5btHR_0qNNlHFszZfCPjg'
+      ]
     }
   },
-  
+
   mounted() {
     this.initScrollAnimations();
     this.initCursorTrail();
@@ -144,9 +334,9 @@ export default {
   methods: {
     scrollToNews() {
       if (this.$refs.newsSection) {
-        this.$refs.newsSection.scrollIntoView({ 
-          behavior: 'smooth', 
-          block: 'start' 
+        this.$refs.newsSection.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
         });
       }
     },
@@ -155,12 +345,15 @@ export default {
         this.currentAwardIndex = (this.currentAwardIndex + 1) % this.awardsData.length;
       }, 3000);
     },
+    readArticle(index) {
+      window.open(this.newsLinks[index], '_blank');
+    },
     // 鼠标移动处理
     onMouseMove(e) {
       this.mouseX = e.clientX;
       this.mouseY = e.clientY;
       this.isMouseInPage = true;
-      
+
       // 更新主光标位置
       if (this.$refs.cursorBall) {
         this.$refs.cursorBall.style.left = e.clientX + 'px';
@@ -168,7 +361,7 @@ export default {
         this.$refs.cursorBall.style.opacity = '1';
       }
     },
-    
+
     onMouseLeave() {
       this.isMouseInPage = false;
       if (this.$refs.cursorBall) {
@@ -177,28 +370,28 @@ export default {
       // 清空残影
       this.trails = [];
     },
-    
+
     // 初始化残影系统
     initCursorTrail() {
       // 存储历史位置
       this.positions = [];
-      
+
       const updateTrails = () => {
         if (this.isMouseInPage) {
           // 添加当前位置到历史
           this.positions.unshift({ x: this.mouseX, y: this.mouseY });
-          
+
           // 限制历史长度
           if (this.positions.length > this.trailCount) {
             this.positions.pop();
           }
-          
+
           // 更新残影
           this.trails = this.positions.map((pos, index) => {
             const opacity = 1 - (index / this.trailCount) * 0.8;
             const scale = 1 - (index / this.trailCount) * 0.4;
             const size = 36 * scale;
-            
+
             return {
               style: {
                 left: pos.x + 'px',
@@ -212,13 +405,13 @@ export default {
             };
           });
         }
-        
+
         this.trailAnimationFrame = requestAnimationFrame(updateTrails);
       };
-      
+
       updateTrails();
     },
-    
+
     initScrollAnimations() {
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -237,7 +430,7 @@ export default {
 </script>
 
 <style scoped>
-  /* 自定义鼠标 - 蓝绿色小球 */
+/* 自定义鼠标 - 蓝绿色小球 */
 .cursor-ball {
   position: fixed;
   width: 22px;
@@ -247,7 +440,7 @@ export default {
   pointer-events: none;
   z-index: 10000;
   transform: translate(-50%, -50%);
-  box-shadow: 
+  box-shadow:
     0 0 10px rgba(68, 150, 115, 0.8),
     0 0 20px rgba(68, 150, 115, 0.5),
     0 0 40px rgba(68, 150, 115, 0.3);
@@ -276,6 +469,7 @@ export default {
 .home-page .service-card {
   cursor: none;
 }
+
 .media-page {
   min-height: 100vh;
   background: linear-gradient(180deg, #0a2a1a 0%, #000000 100%);
@@ -312,6 +506,7 @@ export default {
     opacity: 0;
     transform: translateY(-20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -344,6 +539,7 @@ export default {
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -389,9 +585,12 @@ export default {
 }
 
 @keyframes bounceIndicator {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0);
   }
+
   50% {
     transform: translateY(10px);
   }
@@ -431,7 +630,7 @@ export default {
   font-weight: 600;
   color: #ffffff;
   background-image: linear-gradient(135deg, #23C28B 0%, #021E19 100%);
-  box-shadow: 
+  box-shadow:
     0 2px 8px rgba(35, 194, 139, 0.3),
     0 0 20px rgba(35, 194, 139, 0.2);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -440,7 +639,7 @@ export default {
 
 .news-item:hover .news-date-badge {
   transform: scale(1.05);
-  box-shadow: 
+  box-shadow:
     0 4px 16px rgba(35, 194, 139, 0.5),
     0 0 30px rgba(35, 194, 139, 0.3);
 }
@@ -459,10 +658,12 @@ export default {
   flex-direction: column;
   gap: 25px;
   min-width: 0;
+  min-height: 350px;
+  justify-content: space-between;
 }
 
 .news-category {
-  font-size: 32px;
+  font-size: 24px;
   font-weight: 700;
   color: #ffffff;
   margin: 0;
@@ -500,6 +701,27 @@ export default {
   color: rgba(255, 255, 255, 0.9);
 }
 
+.read-more-btn {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background: linear-gradient(135deg, #449673 0%, #3DD9C9 100%);
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.read-more-btn:hover {
+  background: linear-gradient(135deg, #3DD9C9 0%, #449673 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(61, 217, 201, 0.4);
+}
+
 .news-image-placeholder {
   flex: 0 0 auto;
   width: 500px;
@@ -510,22 +732,30 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
+
   position: relative;
   overflow: hidden;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   backdrop-filter: blur(10px);
 }
 
+.news-image-placeholder img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+}
+
 .news-item:hover .news-image-placeholder {
   border-color: rgba(68, 150, 115, 0.6);
-  box-shadow: 
+  box-shadow:
     0 8px 32px rgba(0, 0, 0, 0.4),
     0 0 40px rgba(68, 150, 115, 0.2);
   transform: translateY(-5px);
 }
 
 .news-image-placeholder::before {
-  content: 'Image Placeholder';
+  /* content: 'Image Placeholder'; */
   color: rgba(255, 255, 255, 0.3);
   font-size: 14px;
   text-transform: uppercase;
@@ -638,7 +868,7 @@ export default {
   background: rgba(30, 30, 30, 0.95);
   border-color: rgba(68, 150, 115, 0.6);
   transform: translateY(-8px) scale(1.02);
-  box-shadow: 
+  box-shadow:
     0 15px 40px rgba(68, 150, 115, 0.3),
     0 0 30px rgba(68, 150, 115, 0.2),
     inset 0 0 20px rgba(68, 150, 115, 0.1);
@@ -803,7 +1033,7 @@ export default {
 
 .footer-brand:hover .logo-icon {
   transform: rotate(5deg) scale(1.1);
-  box-shadow: 
+  box-shadow:
     0 4px 16px rgba(61, 217, 201, 0.5),
     0 0 30px rgba(68, 150, 115, 0.4),
     inset 0 0 20px rgba(255, 255, 255, 0.1);
@@ -822,10 +1052,13 @@ export default {
 }
 
 @keyframes logoShine {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 0.3;
     transform: translate(-50%, -50%) scale(1);
   }
+
   50% {
     opacity: 0.6;
     transform: translate(-50%, -50%) scale(1.2);
@@ -833,10 +1066,13 @@ export default {
 }
 
 @keyframes logoGlow {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 0.6;
     filter: blur(5px);
   }
+
   50% {
     opacity: 1;
     filter: blur(8px);
@@ -860,7 +1096,7 @@ export default {
 
 .footer-brand:hover .logo-main {
   color: #3DD9C9;
-  text-shadow: 
+  text-shadow:
     0 0 10px rgba(61, 217, 201, 0.5),
     0 0 20px rgba(68, 150, 115, 0.3);
   transform: translateX(2px);
@@ -1064,4 +1300,3 @@ export default {
   }
 }
 </style>
-

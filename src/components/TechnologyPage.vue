@@ -121,7 +121,9 @@
           <!-- 中心Logo -->
           <div class="center-logo">
             <div class="logo-circle">
-              <span class="logo-m">M</span>
+              <span class="logo-m">
+                 <img src="../../public/logo-no-word.png" alt="Logo"/>
+              </span>
             </div>
           </div>
 
@@ -1327,7 +1329,7 @@ export default {
 .logo-circle {
   width: 80px;
   height: 80px;
-  background: linear-gradient(135deg, #3DD9C9 0%, #449673 100%);
+  /* background: linear-gradient(135deg, #3DD9C9 0%, #449673 100%); */
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -1337,7 +1339,7 @@ export default {
     0 0 40px rgba(68, 150, 115, 0.3);
   transition: all 0.3s ease;
   position: relative;
-  animation: logoRotate 20s linear infinite;
+  /* animation: logoRotate 20s linear infinite; */
 }
 
 .logo-circle::before {
@@ -1390,9 +1392,18 @@ export default {
 }
 
 .logo-m {
-  font-size: 36px;
-  font-weight: 700;
-  color: #fff;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-m img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 50%;
 }
 
 /* 技术卡片 */

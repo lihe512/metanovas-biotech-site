@@ -857,7 +857,7 @@ export default {
 .logo-icon {
   width: 36px;
   height: 36px;
-  background: linear-gradient(135deg, #3DD9C9 0%, #1a8a7a 100%);
+  /* background: linear-gradient(135deg, #3DD9C9 0%, #1a8a7a 100%); */
   border-radius: 8px;
   display: flex;
   align-items: center;
@@ -879,7 +879,7 @@ export default {
   transform: translate(-50%, -50%);
   width: 0;
   height: 0;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+  /* background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%); */
   border-radius: 50%;
   transition: all 0.5s ease;
 }

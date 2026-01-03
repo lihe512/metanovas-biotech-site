@@ -4,7 +4,9 @@
       <div class="navbar-content">
         <router-link to="/" class="navbar-logo">
           <div class="logo-text-group">
-            <span class="logo-icon">M</span>
+            <span class="logo-icon">
+              <img src="../../public/logo-no-word.png" alt="Logo"/>
+            </span>
             <div class="logo-text-wrap">
               <span class="logo-main">MetaNovas</span>
               <span class="logo-sub">Biotech</span>
@@ -157,20 +159,24 @@ export default {
 }
 
 .logo-icon {
-  width: 36px;
-  height: 36px;
-  background: linear-gradient(135deg, #3DD9C9 0%, #1a8a7a 100%);
+  width: 42px;
+  height: 42px;
   border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 18px;
-  font-weight: 700;
-  color: #fff;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
   box-shadow: 0 2px 8px rgba(61, 217, 201, 0.3);
+}
+
+.logo-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .logo-icon::before {
@@ -181,7 +187,7 @@ export default {
   transform: translate(-50%, -50%);
   width: 0;
   height: 0;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+  /* background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%); */
   border-radius: 50%;
   transition: all 0.5s ease;
 }
@@ -193,7 +199,7 @@ export default {
   left: -2px;
   right: -2px;
   bottom: -2px;
-  background: linear-gradient(135deg, rgba(68, 150, 115, 0.6), rgba(61, 217, 201, 0.6));
+  /* background: linear-gradient(135deg, rgba(68, 150, 115, 0.6), rgba(61, 217, 201, 0.6)); */
   border-radius: 8px;
   opacity: 0;
   transition: opacity 0.4s ease;
@@ -204,9 +210,11 @@ export default {
   transform: rotate(5deg) scale(1.1);
   box-shadow: 
     0 4px 16px rgba(61, 217, 201, 0.5),
-    0 0 30px rgba(68, 150, 115, 0.4),
-    inset 0 0 20px rgba(255, 255, 255, 0.1);
-  background: linear-gradient(135deg, #3DD9C9 0%, #449673 50%, #1a8a7a 100%);
+    0 0 30px rgba(68, 150, 115, 0.4);
+}
+
+.navbar-logo:hover .logo-icon img {
+  filter: brightness(1.2) saturate(1.2);
 }
 
 .navbar-logo:hover .logo-icon::before {
@@ -250,7 +258,7 @@ export default {
 .logo-main {
   font-size: 18px;
   font-weight: 600;
-  color: #fff;
+  color: #6ac89b;
   line-height: 1.2;
   letter-spacing: 0.3px;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -283,7 +291,8 @@ export default {
 
 .logo-sub {
   font-size: 11px;
-  color: rgba(255, 255, 255, 0.6);
+  /* color: rgba(255, 255, 255, 0.6); */
+  color: #6ac89b;
   text-transform: uppercase;
   letter-spacing: 1px;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);

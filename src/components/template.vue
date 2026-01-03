@@ -13,7 +13,7 @@
       <div class="container">
         <div class="logo">
           <span class="logo-text">MetaNova</span>
-          <span class="logo-tagline">BIOTECH</span>
+          <span class="logo-tagline">Biotech</span>
         </div>
         <div class="nav-links">
           <a href="#about">About Us</a>
@@ -235,7 +235,7 @@
       <div class="container">
         <div class="footer-logo">
           <span class="logo-text">MetaNova</span>
-          <span class="logo-tagline">BIOTECH</span>
+          <span class="logo-tagline">Biotech</span>
         </div>
         <div class="footer-nav">
           <a href="#about">About</a>
