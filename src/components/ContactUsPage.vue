@@ -46,7 +46,16 @@
               </div>
               <div class="form-group">
                 <label for="interest">I'm interested in... <span class="required">*</span></label>
-                <input type="text" id="interest" v-model="formData.interest" required />
+                <!-- 改成下拉框 -->
+                <!-- <input type="text" id="interest" v-model="formData.interest" required /> -->
+                <select id="interest" v-model="formData.interest" required>
+                  <option value="">Select an option</option>
+                  <option value="Ingredient Purchases or Samples">Ingredient Purchases or Samples</option>
+                  <option value="Ingredient Discovery Partnerships">Ingredient Discovery Partnerships</option>
+                  <option value="Press Inquiries">Press Inquiries</option>
+                  <option value="Career Inquiries">Career Inquiries</option>
+                  <option value="General inquiries">General inquiries</option>
+                </select>
               </div>
               <div class="form-group">
                 <label for="message">Message <span class="required">*</span></label>
@@ -79,7 +88,7 @@
 
 <script>
 import FooterSection from './parts/FooterSection.vue';
-
+import emailjs from '@emailjs/browser'
 export default {
   name: 'ContactUsPage',
   components: {
@@ -140,21 +149,41 @@ export default {
       }
     },
     handleSubmit() {
-      // 这里可以添加表单提交逻辑
-      console.log('Form submitted:', this.formData);
-      alert('Thank you for your message. We will get back to you soon!');
-      // 重置表单
-      this.formData = {
-        firstName: '',
-        lastName: '',
-        email: '',
-        phone: '',
-        company: '',
-        jobTitle: '',
-        interest: '',
-        message: ''
-      };
+      emailjs.send(
+        'SERVICE_ID',
+        'TEMPLATE_ID',
+        {
+          first_name: this.formData.firstName,
+          last_name: this.formData.lastName,
+          email: this.formData.email,
+          phone: this.formData.phone,
+          company: this.formData.company,
+          job_title: this.formData.jobTitle,
+          interest: this.formData.interest,
+          message: this.formData.message,
+        },
+        'PUBLIC_KEY'
+      )
+        .then(() => {
+          alert('Thank you! Your message has been sent.');
+          // 重置表单
+          this.formData = {
+            firstName: '',
+            lastName: '',
+            email: '',
+            phone: '',
+            company: '',
+            jobTitle: '',
+            interest: '',
+            message: ''
+          };
+        })
+        .catch((error) => {
+          console.error('EmailJS error:', error);
+          alert('Failed to send message. Please try again later.');
+        });
     },
+
     getParticleStyle(index) {
       const size = Math.random() * 6 + 3;
       const delay = Math.random() * 5;
