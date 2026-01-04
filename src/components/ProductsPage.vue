@@ -69,9 +69,10 @@
           <h2 class="product-title">Anti-acne Peptide</h2>
           <p class="product-desc">Reduces the level of pro-inflammatory cytokines and attenuates the inflammatory response</p>
           <div class="product-image">
-            <div class="image-placeholder green">
+            <!-- <div class="image-placeholder green">
               <span>Product Image</span>
-            </div>
+            </div> -->
+            <img :src="getImageUrl('产品 上传_slices/a175caef3866d383bd63c48efe6016c40a84042316ee1e-lthRuO_fw1200.png')" alt="Gingival Protection Peptide" class="product-img" />
           </div>
           <div class="product-tags">
             <div class="tag">
@@ -101,9 +102,10 @@
           <h2 class="product-title">Anti-wrinkle peptide</h2>
           <p class="product-desc">Instant wrinkle removal. Relax facial muscles and instantly erase facial wrinkles.</p>
           <div class="product-image">
-            <div class="image-placeholder cyan">
+            <!-- <div class="image-placeholder cyan">
               <span>Product Image</span>
-            </div>
+            </div> -->
+            <img :src="getImageUrl('产品 上传_slices/8ee403a6bb5608f7a91f36fb4b8f592e27ae8554260b58-GtoNvz.png')" alt="Vaginal Care Antimicrobial Peptide" class="product-img" />
           </div>
           <div class="product-tags">
             <div class="tag">
