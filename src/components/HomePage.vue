@@ -695,7 +695,7 @@ export default {
         section.scrollIntoView({ behavior: 'smooth', block: 'start' });
         setTimeout(() => {
           this.isScrolling = false;
-        }, 1000);
+        }, 500);
       }
     },
     initScrollSnap() {
@@ -2047,10 +2047,10 @@ export default {
   background-repeat: no-repeat;
   /* border: 2px dashed rgba(255, 105, 180, 0.6); */
   border-radius: 8px;
-  padding: 50px;
+  /* padding: 50px; */
   position: relative;
   min-height: 580px;
-  width: 93%;
+  /* width: 100%; */
   display: flex;
   align-items: center;
   transition: all 0.4s ease;
