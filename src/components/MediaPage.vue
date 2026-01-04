@@ -39,10 +39,7 @@
                 <h2 class="news-category">MetaNovas' World's First AI-Designed Novel Molecule “AMP33” Completes Medical
                   Device Raw Material Registration</h2>
                 <p class="news-description">
-                  MetaNovas Biotech's first AI-designed novel peptide molecule, AMP33, has successfully completed
-                  Medical Device Master File registration (No. M2025400-000). Designed using AI-driven molecular
-                  simulation, AMP33 supports skin microbiome balance and meets medical-grade safety standards, enabling
-                  its application in advanced wound-healing and post-procedure care solutions.
+                 MetaNovas Biotech’s first AI-designed peptide, AMP33, has completed Medical Device Master File registration (No. M2025400-000). Developed via AI-driven simulation, AMP33 supports skin microbiome balance, meets medical-grade safety standards, and enables wound-healing and post-procedure care.
                 </p>
                 <button class="read-more-btn" @click="readArticle(0)">Read it</button>
               </div>
@@ -214,11 +211,7 @@
                   in the world for two consecutive years, and has won the award again after being shortlisted in 2022.
                 </p> -->
                 <p class="news-description">
-                  MetaNovas Biotech founder and CEO, Meijie Wang, has been selected for the Forbes China 100 Outstanding
-                  Young Returnees in the “Growth Potential” category. Recognized for her leadership in AI-driven
-                  biotechnology, Wang has steered MetaNovas to pioneer functional ingredient design platforms, secure
-                  multiple international patents, and collaborate with leading global brands, advancing AI-powered
-                  innovation in bioactive ingredient development.
+                  MetaNovas Biotech founder and CEO Meijie Wang was selected for the Forbes China 100 Outstanding Young Returnees in the “Growth Potential” category. Recognized for leadership in AI-driven biotechnology, she has led MetaNovas to pioneer functional ingredient platforms, secure international patents, and collaborate with global brands, advancing AI-powered bioactive innovation.
                 </p>
                 <button class="read-more-btn" @click="readArticle(7)">Read it</button>
               </div>
@@ -240,10 +233,7 @@
                   in the world for two consecutive years, and has won the award again after being shortlisted in 2022.
                 </p> -->
                 <p class="news-description">
-                  MetaNovas Biotech has closed its Series A financing led by GL Ventures and Baoding Capital. Leveraging
-                  its AI platform and knowledge graph, MetaNovas accelerates the discovery of functional peptide
-                  ingredients, reducing R&D time and cost, while expanding international collaborations and commercial
-                  applications.
+                  MetaNovas Biotech has closed its Series A financing led by GL Ventures and Baoding Capital. Powered by its AI platform and knowledge graph, the company accelerates functional peptide discovery, reducing R&D time and cost while expanding global collaborations and commercialization.
                 </p>
                 <button class="read-more-btn" @click="readArticle(8)">Read it</button>
               </div>
