@@ -787,7 +787,7 @@ export default {
   left: -2px;
   right: -2px;
   bottom: -2px;
-  background: linear-gradient(135deg, rgba(68, 150, 115, 0.4), rgba(61, 217, 201, 0.4));
+  /* background: linear-gradient(135deg, rgba(68, 150, 115, 0.4), rgba(61, 217, 201, 0.4)); */
   border-radius: 16px;
   opacity: 0;
   transition: opacity 0.5s ease;

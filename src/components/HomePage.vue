@@ -2045,12 +2045,12 @@ export default {
   background-size: 95%;
   background-position: center;
   background-repeat: no-repeat;
-  border: 2px dashed rgba(255, 105, 180, 0.6);
+  /* border: 2px dashed rgba(255, 105, 180, 0.6); */
   border-radius: 8px;
   padding: 50px;
   position: relative;
   min-height: 580px;
-  width: 100%;
+  width: 93%;
   display: flex;
   align-items: center;
   transition: all 0.4s ease;
@@ -2215,10 +2215,10 @@ export default {
 
 .awards-content-wrapper {
   background-image: url('/home_slices/图层 289.png');
-  background-size: cover;
+  background-size: 100% 100%;
   background-position: center;
   background-repeat: no-repeat;
-  border: 2px dashed rgba(255, 105, 180, 0.6);
+  /* border: 2px dashed rgba(255, 105, 180, 0.6); */
   border-radius: 8px;
   padding: 35px 40px;
   position: relative;
