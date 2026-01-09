@@ -150,8 +150,8 @@ export default {
     },
     handleSubmit() {
       emailjs.send(
-        'service_mummd9l',
-        'template_i5rse7i',
+        'service_a65l92d',
+        'template_g0nnehj',
         {
           first_name: this.formData.firstName,
           last_name: this.formData.lastName,
@@ -162,7 +162,7 @@ export default {
           interest: this.formData.interest,
           message: this.formData.message,
         },
-        'ojXWs3rLA7G4hCXhw'
+        'v2Sss4qszgp0Y6QTo'
       )
         .then(() => {
           alert('Thank you! Your message has been sent.');
