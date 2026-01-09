@@ -2,7 +2,12 @@
   <div class="home-page" @mousemove="onMouseMove" @mouseleave="onMouseLeave">
     <!-- 自定义鼠标 -->
     <div class="cursor-ball" ref="cursorBall"></div>
-    <div class="cursor-trail" v-for="(trail, index) in trails" :key="index" :style="trail.style"></div>
+    <div
+      class="cursor-trail"
+      v-for="(trail, index) in trails"
+      :key="index"
+      :style="trail.style"
+    ></div>
 
     <!-- 背景层 -->
     <div class="page-background"></div>
@@ -11,12 +16,20 @@
     <section class="hero-section" ref="heroSection" @wheel="handleWheel">
       <div class="hero-content">
         <h1 class="hero-title">
-          <span class="hero-title-main">MetaNovas</span> <span class="hero-title-accent">Biotech</span>
+          <span class="hero-title-main">MetaNovas</span>
+          <span class="hero-title-accent">&nbsp;Biotech</span>
         </h1>
-        <p class="hero-subtitle">We look forward to your next breakthrough<br>starting with MetaNovas.</p>
+        <p class="hero-subtitle">
+          We look forward to your next breakthrough<br />starting with
+          MetaNovas.
+        </p>
         <!--  Biotech -->
         <div class="hero-cursive-wrapper">
-          <img src="/home_slices/Biotech.png" alt="Biotech" class="hero-cursive-img" />
+          <img
+            src="/home_slices/Biotech.png"
+            alt="Biotech"
+            class="hero-cursive-img"
+          />
         </div>
       </div>
       <div class="hero-visual">
@@ -45,36 +58,75 @@
     </section>
 
     <!-- Featured on 媒体展示 -->
-    <section class="featured-section" ref="featuredSection" @wheel="handleWheel">
+    <section
+      class="featured-section"
+      ref="featuredSection"
+      @wheel="handleWheel"
+    >
       <div class="container">
         <p class="featured-title">Featured on</p>
         <div class="featured-logos">
           <div class="logo-item">
-            <img :src="logo1" alt="Digital Journal" class="featured-logo-img" @error="handleImageError($event, 1)" />
+            <img
+              :src="logo1"
+              alt="Digital Journal"
+              class="featured-logo-img"
+              @error="handleImageError($event, 1)"
+            />
           </div>
           <div class="logo-item">
-            <img :src="logo2" alt="Business Insider" class="featured-logo-img" @error="handleImageError($event, 2)" />
+            <img
+              :src="logo2"
+              alt="Business Insider"
+              class="featured-logo-img"
+              @error="handleImageError($event, 2)"
+            />
           </div>
           <div class="logo-item">
-            <img :src="logo3" alt="Bloomberg" class="featured-logo-img" @error="handleImageError($event, 3)" />
+            <img
+              :src="logo3"
+              alt="Bloomberg"
+              class="featured-logo-img"
+              @error="handleImageError($event, 3)"
+            />
           </div>
           <div class="logo-item">
-            <img :src="logo4" alt="Benzinga" class="featured-logo-img" @error="handleImageError($event, 4)" />
+            <img
+              :src="logo4"
+              alt="Benzinga"
+              class="featured-logo-img"
+              @error="handleImageError($event, 4)"
+            />
           </div>
           <div class="logo-item">
-            <img :src="logo5" alt="Yahoo Finance" class="featured-logo-img" @error="handleImageError($event, 5)" />
+            <img
+              :src="logo5"
+              alt="Yahoo Finance"
+              class="featured-logo-img"
+              @error="handleImageError($event, 5)"
+            />
           </div>
           <div class="logo-item">
-            <img :src="logo6" alt="MarketWatch" class="featured-logo-img" @error="handleImageError($event, 6)" />
+            <img
+              :src="logo6"
+              alt="MarketWatch"
+              class="featured-logo-img"
+              @error="handleImageError($event, 6)"
+            />
           </div>
         </div>
       </div>
     </section>
 
     <!-- About Us 关于我们 -->
-    <section id="about" class="about-section" ref="aboutSection" @wheel="handleWheel">
+    <section
+      id="about"
+      class="about-section"
+      ref="aboutSection"
+      @wheel="handleWheel"
+    >
       <div class="container">
-        <div class="about-content">
+        <!-- <div class="about-content">
           <div class="about-text">
             <h2 class="section-title">About Us</h2>
             <p>MetaNovas Biotech is an innovative biotechnology company established in early 2021 in San Jose, USA and
@@ -88,19 +140,61 @@
             </button>
           </div>
           <div class="about-images">
-            <!-- About 图片网格 - 展会照片拼图 -->
             <img :src="aboutGridImage" alt="About MetaNovas" class="about-grid-img" />
+          </div>
+        </div> -->
+        <div class="container">
+          <div class="about-carousel-wrapper">
+            <button class="carousel-nav-btn prev-btn" @click="prevAboutSlide">
+              <span class="nav-arrow">←</span>
+            </button>
+            <button class="carousel-nav-btn next-btn" @click="nextAboutSlide">
+              <span class="nav-arrow">→</span>
+            </button>
+
+            <div
+              class="about-carousel-track"
+              :style="{ transform: `translateX(-${currentAboutIndex * 100}%)` }"
+            >
+              <div
+                class="about-slide"
+                v-for="(item, index) in aboutSlides"
+                :key="index"
+              >
+                <div class="about-content">
+                  <div class="about-text">
+                    <h2 class="section-title">{{ item.title }}</h2>
+                    <p>{{ item.text }}</p>
+                  </div>
+                  <div class="about-images">
+                    <img
+                      :src="item.image"
+                      :alt="item.title"
+                      class="about-grid-img"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Cooperative Partnerships 合作伙伴 -->
-    <section id="partners" class="partners-section" ref="partnersSection" @wheel="handleWheel">
+    <section
+      id="partners"
+      class="partners-section"
+      ref="partnersSection"
+      @wheel="handleWheel"
+    >
       <div class="container" id="Cooperative" ref="cooperative">
         <h2 class="section-title">Cooperative Partnerships</h2>
-        <p class="partners-description">MetaNovas closely collaborates with global academic and industrial leaders. We
-          have established strong partnerships with numerous international brands and actively supported their R&D.</p>
+        <p class="partners-description">
+          MetaNovas closely collaborates with global academic and industrial
+          leaders. We have established strong partnerships with numerous
+          international brands and actively supported their R&D.
+        </p>
         <div class="partners-logos">
           <div class="partner-logo">
             <img :src="partnerLogo1" alt="Partner" class="partner-logo-img" />
@@ -131,7 +225,12 @@
     </section>
 
     <!-- Technical Platform 技术平台 -->
-    <section id="technology" class="technology-section" ref="technologySection" @wheel="handleWheel">
+    <section
+      id="technology"
+      class="technology-section"
+      ref="technologySection"
+      @wheel="handleWheel"
+    >
       <div class="container">
         <h2 class="section-title">Technical Platform</h2>
         <div class="tech-cards">
@@ -168,7 +267,12 @@
     </section>
 
     <!-- R&D Services 研发服务 -->
-    <section id="research" class="research-section" ref="researchSection" @wheel="handleWheel">
+    <section
+      id="research"
+      class="research-section"
+      ref="researchSection"
+      @wheel="handleWheel"
+    >
       <div class="container" id="RDservices" ref="rd">
         <h2 class="section-title">R&D Services</h2>
         <div class="research-services-list">
@@ -192,16 +296,23 @@
         <div class="research-content-wrapper">
           <div class="research-content">
             <div class="research-text">
-              <p>Through the fusion of artificial intelligence and science, MetaNovas provides end-to-end R&D services
-                in the health sectors of cosmetics, nutritions, pharmaceuticals and others.</p>
+              <p>
+                Through the fusion of artificial intelligence and science,
+                MetaNovas provides end-to-end R&D services in the health sectors
+                of cosmetics, nutritions, pharmaceuticals and others.
+              </p>
               <div class="research-stats">
                 <div class="stat-item">
                   <img :src="stat45Image" alt="45%" class="stat-img" />
-                  <span class="stat-label">R&D success Increase<br>over 45%</span>
+                  <span class="stat-label"
+                    >R&D success Increase<br />over 45%</span
+                  >
                 </div>
                 <div class="stat-item">
                   <img :src="timeImage" alt="Time" class="stat-time-img" />
-                  <span class="stat-label">Reduce R&D cycle<br>from months to weeks</span>
+                  <span class="stat-label"
+                    >Reduce R&D cycle<br />from months to weeks</span
+                  >
                 </div>
               </div>
             </div>
@@ -211,7 +322,7 @@
     </section>
 
     <!-- Awards and Honors 奖项荣誉 -->
-    <section class="awards-section" ref="awardsSection" @wheel="handleWheel">
+    <!-- <section class="awards-section" ref="awardsSection" @wheel="handleWheel">
       <div class="container" id="AwardsHonours" ref="awards">
         <h2 class="section-title">Awards and Honors</h2>
         <p class="awards-description">MetaNovas has not only received recognition in numerous international top-tier
@@ -248,19 +359,81 @@
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
+    <section class="awards-section" ref="awardsSection" @wheel="handleWheel">
+      <div class="container" id="AwardsHonours" ref="awards">
+        <h2 class="section-title">Awards and Honors</h2>
+        <p class="awards-description">
+          MetaNovas has not only received recognition in numerous international
+          top-tier events for its professional knowledge and leading R&D
+          capabilities, but also earned acclaim from various mainstream
+          international media.
+        </p>
 
+        <div class="awards-content-wrapper">
+          <div class="awards-content">
+            <div class="awards-timeline">
+              <div
+                v-for="(award, index) in awardsData"
+                :key="index"
+                class="timeline-item"
+                :class="{ active: currentAwardIndex === index }"
+                @click="handleAwardClick(index)"
+              >
+                <span class="timeline-year">{{ award.year }}</span>
+                <p class="timeline-text">{{ award.text }}</p>
+              </div>
+            </div>
+
+            <div class="awards-display-area">
+              <div class="display-bg-effects">
+                <div class="bg-gradient-orb"></div>
+              </div>
+
+              <div class="awards-wheel-container">
+                <div
+                  v-for="(award, index) in awardsData"
+                  :key="index"
+                  class="wheel-card"
+                  :class="getWheelClass(index)"
+                >
+                  <img :src="award.image" :alt="award.text" />
+                  <div class="wheel-overlay"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
     <!-- Products 产品 -->
-    <section id="products" class="products-section" ref="productsSection" @wheel="handleWheel">
+    <section
+      id="products"
+      class="products-section"
+      ref="productsSection"
+      @wheel="handleWheel"
+    >
       <div class="container" id="Products" ref="products">
         <h2 class="section-title">Products</h2>
         <div class="products-grid">
-          <div class="product-card" v-for="(product, index) in products" :key="index">
+          <div
+            class="product-card"
+            v-for="(product, index) in products"
+            :key="index"
+          >
             <div class="product-image">
-              <img :src="getProductBgImage(index)" :alt="product.name" class="product-bg-img" />
+              <img
+                :src="getProductBgImage(index)"
+                :alt="product.name"
+                class="product-bg-img"
+              />
             </div>
             <div class="product-content">
-              <img :src="getProductIcon(index)" :alt="product.name" class="product-icon" />
+              <img
+                :src="getProductIcon(index)"
+                :alt="product.name"
+                class="product-icon"
+              />
               <h3 class="product-title">{{ product.name }}</h3>
               <p class="product-desc" v-if="product.desc">{{ product.desc }}</p>
             </div>
@@ -270,16 +443,32 @@
     </section>
 
     <!-- Services 服务 -->
-    <section id="services" class="services-section" ref="servicesSection" @wheel="handleWheel">
+    <section
+      id="services"
+      class="services-section"
+      ref="servicesSection"
+      @wheel="handleWheel"
+    >
       <div class="container">
         <h2 class="section-title">Services</h2>
-        <p class="services-description">MetaNovas is also innovative service that we offer to all our start-ups is our
-          R&D service platform. Our team of innovators, data scientists and cosmetic chemists specialize in: AI-driven
-          product development for R&D teams.</p>
+        <p class="services-description">
+          MetaNovas is also innovative service that we offer to all our
+          start-ups is our R&D service platform. Our team of innovators, data
+          scientists and cosmetic chemists specialize in: AI-driven product
+          development for R&D teams.
+        </p>
         <div class="services-grid">
-          <div class="service-card" v-for="(service, index) in services" :key="index">
+          <div
+            class="service-card"
+            v-for="(service, index) in services"
+            :key="index"
+          >
             <div class="service-image">
-              <img :src="getServiceImage(index)" :alt="service.name" class="service-bg-img" />
+              <img
+                :src="getServiceImage(index)"
+                :alt="service.name"
+                class="service-bg-img"
+              />
             </div>
             <h3 class="service-title">{{ service.name }}</h3>
             <p class="service-desc">{{ service.desc }}</p>
@@ -288,21 +477,20 @@
       </div>
     </section>
     <FooterSection />
-
   </div>
 </template>
 
 <script>
-import FooterSection from './parts/FooterSection.vue';
+import FooterSection from "./parts/FooterSection.vue";
 
 export default {
-  name: 'HomePage',
+  name: "HomePage",
   components: {
-    FooterSection
+    FooterSection,
   },
   data() {
     return {
-      activeTab: 'drugable',
+      activeTab: "drugable",
       // 鼠标残影数据
       trails: [],
       trailCount: 40,
@@ -312,151 +500,220 @@ export default {
       isScrolling: false,
       currentAwardIndex: 0,
       isScrollingToAnchor: false, // 是否正在滚动到锚点
+      // 新增：About 轮播索引
+      currentAboutIndex: 0,
+      currentAwardIndex: 0,
+      slideDirection: "up", // 'up' or 'down'
       awardsImages: [
-        '/轮播图_slices/awards-card-02@2x.png',
-        '/轮播图_slices/awards-card-03@2x.png',
-        '/轮播图_slices/awards-card-04@2x.png',
-        '/轮播图_slices/awards-card-05@2x.png',
-        '/轮播图_slices/awards-card-06@2x.png'
+        "/轮播图_slices/awards-card-02@2x.png",
+        "/轮播图_slices/awards-card-03@2x.png",
+        "/轮播图_slices/awards-card-04@2x.png",
+        "/轮播图_slices/awards-card-05@2x.png",
+        "/轮播图_slices/awards-card-06@2x.png",
       ],
       awardsData: [
+        // {
+        //   year: "2023",
+        //   text: "Top Industrial Presentation at the 2023 IFSCC International Cosmetic Conference",
+        //   image: "/轮播图_slices/awards-card-02@2x.png",
+        // },
         {
-          year: '2023',
-          text: 'Top Industrial Presentation at the 2023 IFSCC International Cosmetic Conference',
-          image: '/轮播图_slices/awards-card-02@2x.png'
+          year: "2023",
+          text: "Top Industrial Presentation at the 2023 IFSCC International Cosmetic Conference",
+          image: "/轮播图_slices/awards-card-03@2x.png",
         },
         {
-          year: '2023',
-          text: 'Top Industrial Presentation at the 2023 IFSCC International Cosmetic Conference',
-          image: '/轮播图_slices/awards-card-03@2x.png'
+          year: "2023",
+          text: "Published Top-tier Papers",
+          image: "/轮播图_slices/awards-card-04@2x.png",
         },
         {
-          year: '2023',
-          text: 'Published Top-tier Papers',
-          image: '/轮播图_slices/awards-card-04@2x.png'
+          year: "2023",
+          text: "Received the 'Top 250 Most Promising Global Health Tech Companies' honors in both 2022 and 2023",
+          image: "/轮播图_slices/awards-card-05@2x.png",
         },
         {
-          year: '2022-2023',
-          text: 'Received the \'Top 250 Most Promising Global Health Tech Companies\' honors in both 2022 and 2023',
-          image: '/轮播图_slices/awards-card-05@2x.png'
+          year: "2023",
+          text: "Featured in Leading Mainstream Media",
+          image: "/轮播图_slices/awards-card-06@2x.png",
         },
-        {
-          year: '2023',
-          text: 'Featured in Leading Mainstream Media',
-          image: '/轮播图_slices/awards-card-06@2x.png'
-        }
       ],
       products: [
-        { name: 'Anti-inflammatory peptide', desc: 'Reduces the level of pro-inflammatory cytokines and attenuates the inflammatory response' },
-        { name: 'Anti-acne Peptide', desc: 'Reduces the level of pro-inflammatory cytokines and attenuates the inflammatory response' },
-        { name: 'Anti-wrinkle peptide', desc: 'Instant wrinkle removal. Relax facial muscles and instantly erase facial wrinkles.' },
-        { name: 'Gingival Protection Peptide', desc: 'Oral microbiome balancer Antibacterial, anti-inflammatory and enhancing oral protection' },
-        { name: 'Vaginal Care Antimicrobial Peptide', desc: 'Vaginal health promoter. Effectively inhibits various pathogenic bacteria and reduces inflammation' }
+        {
+          name: "Anti-inflammatory peptide",
+          desc: "Reduces the level of pro-inflammatory cytokines and attenuates the inflammatory response",
+        },
+        {
+          name: "Anti-acne Peptide",
+          desc: "Reduces the level of pro-inflammatory cytokines and attenuates the inflammatory response",
+        },
+        {
+          name: "Anti-wrinkle peptide",
+          desc: "Instant wrinkle removal. Relax facial muscles and instantly erase facial wrinkles.",
+        },
+        {
+          name: "Gingival Protection Peptide",
+          desc: "Oral microbiome balancer Antibacterial, anti-inflammatory and enhancing oral protection",
+        },
+        {
+          name: "Vaginal Care Antimicrobial Peptide",
+          desc: "Vaginal health promoter. Effectively inhibits various pathogenic bacteria and reduces inflammation",
+        },
       ],
       services: [
-        { name: 'AI-driven new formulation', desc: 'Our team has expertise in developing highly innovative artificial intelligence-assisted formulations for cosmetics.' },
-        { name: 'AI-driven raw formulation', desc: 'Develop highly innovative and proprietary active ingredients for the treatment.' },
-        { name: 'AI-driven new formulation', desc: 'Develop highly innovative and proprietary active ingredients for the treatment.' }
-      ]
+        {
+          name: "AI-driven new formulation",
+          desc: "Our team has expertise in developing highly innovative artificial intelligence-assisted formulations for cosmetics.",
+        },
+        {
+          name: "AI-driven raw formulation",
+          desc: "Develop highly innovative and proprietary active ingredients for the treatment.",
+        },
+        {
+          name: "AI-driven new formulation",
+          desc: "Develop highly innovative and proprietary active ingredients for the treatment.",
+        },
+      ],
     };
   },
   computed: {
+    // 新增：About 轮播数据
+    aboutSlides() {
+      return [
+        {
+          title: "About Us",
+          text: "MetaNovas Biotech is an innovative biotechnology company established in early 2021 in San Jose, USA and Shanghai, China. Our mission is to integrate artificial intelligence with life sciences and delve into complex biological networks through deep learning knowledge graphs, natural language processing and multi-omicsanalysis, MetaNovas is dedicated to becoming a global leader in AI-driven efficient ingredient and product design and development platforms.",
+          image: this.aboutGridImage,
+        },
+        // 为了演示轮播效果，这里复制了第二份数据，您可以修改成不同的内容
+        {
+          title: "Our Mission",
+          text: "We are committed to revolutionizing the biotech industry by leveraging cutting-edge AI technologies. Our platform accelerates discovery and development, ensuring safer and more effective solutions for global health and beauty.",
+          image: this.aboutGridImage, // 您可以换成另一张图
+        },
+      ];
+    },
     // 使用 computed 属性处理中文文件名的 URL 编码
     aboutGridImage() {
-      return '/home_slices/' + encodeURIComponent('1748958330280 (1).png');
+      return "/home_slices/" + encodeURIComponent("1748958330280 (1).png");
     },
     cellImage() {
-      return '/home_slices/' + encodeURIComponent('图层 92.png');
+      return "/home_slices/" + encodeURIComponent("图层 92.png");
     },
     gradientCardImage() {
-      return '/home_slices/' + encodeURIComponent('图层 289.png');
+      return "/home_slices/" + encodeURIComponent("图层 289.png");
     },
     awardWinnerImage() {
-      return '/home_slices/' + encodeURIComponent('图层 95.png');
+      return "/home_slices/" + encodeURIComponent("图层 95.png");
     },
     stat45Image() {
-      return '/home_slices/' + encodeURIComponent('45%.png');
+      return "/home_slices/" + encodeURIComponent("45%.png");
     },
     timeImage() {
-      return '/home_slices/' + encodeURIComponent('时间 (5).png');
+      return "/home_slices/" + encodeURIComponent("时间 (5).png");
     },
     researchBgImage() {
-      return '/home_slices/' + encodeURIComponent('05a10759634d0439b6aaaa9bc72c93deffae35002aaca-HM2GeK_fw1200.png');
+      return (
+        "/home_slices/" +
+        encodeURIComponent(
+          "05a10759634d0439b6aaaa9bc72c93deffae35002aaca-HM2GeK_fw1200.png"
+        )
+      );
     },
     aboutBtnImage() {
-      return '/home_slices/' + encodeURIComponent('圆角矩形 3.png');
+      return "/home_slices/" + encodeURIComponent("圆角矩形 3.png");
     },
     partnerLogo1() {
-      return '/home_slices/' + encodeURIComponent('图层 294.png');
+      return "/home_slices/" + encodeURIComponent("图层 294.png");
     },
     partnerLogo2() {
-      return '/home_slices/' + encodeURIComponent('图层 295.png');
+      return "/home_slices/" + encodeURIComponent("图层 295.png");
     },
     partnerLogo3() {
-      return '/home_slices/' + encodeURIComponent('图层 296.png');
+      return "/home_slices/" + encodeURIComponent("图层 296.png");
     },
     partnerLogo4() {
-      return '/home_slices/' + encodeURIComponent('图层 297(1).png');
+      return "/home_slices/" + encodeURIComponent("图层 297(1).png");
     },
     partnerLogo5() {
-      return '/home_slices/' + encodeURIComponent('图层 298.png');
+      return "/home_slices/" + encodeURIComponent("图层 298.png");
     },
     partnerLogo6() {
-      return '/home_slices/' + encodeURIComponent('图层 299.png');
+      return "/home_slices/" + encodeURIComponent("图层 299.png");
     },
     partnerLogo7() {
-      return '/home_slices/' + encodeURIComponent('图层 300.png');
+      return "/home_slices/" + encodeURIComponent("图层 300.png");
     },
     partnerLogo8() {
-      return '/home_slices/' + encodeURIComponent('图层 301.png');
+      return "/home_slices/" + encodeURIComponent("图层 301.png");
     },
     techImage1() {
-      return '/home_slices/' + encodeURIComponent('434d9fab26ee00d0399ff9f83dfe14004655bbff1d48f7-dBacl2_fw1200.png');
+      return (
+        "/home_slices/" +
+        encodeURIComponent(
+          "434d9fab26ee00d0399ff9f83dfe14004655bbff1d48f7-dBacl2_fw1200.png"
+        )
+      );
     },
     techImage2() {
-      return '/home_slices/' + encodeURIComponent('c423f4bbad99da9f156712d4d5453f91d70481cd8df58-iuDR9W.png');
+      return (
+        "/home_slices/" +
+        encodeURIComponent(
+          "c423f4bbad99da9f156712d4d5453f91d70481cd8df58-iuDR9W.png"
+        )
+      );
     },
     techImage3() {
-      return '/home_slices/' + encodeURIComponent('花瓣素材_美妆系列清透感绿色液体分子元素_194820674.png');
+      return (
+        "/home_slices/" +
+        encodeURIComponent(
+          "花瓣素材_美妆系列清透感绿色液体分子元素_194820674.png"
+        )
+      );
     },
     techImage4() {
-      return '/home_slices/' + encodeURIComponent('6547de3fbb09dec7c65aa49d79b303714e27a1826e610-puB5YZ.png');
+      return (
+        "/home_slices/" +
+        encodeURIComponent(
+          "6547de3fbb09dec7c65aa49d79b303714e27a1826e610-puB5YZ.png"
+        )
+      );
     },
     logo1() {
-      const filename = '形状 5 拷贝.png';
-      return '/home_slices/' + encodeURIComponent(filename);
+      const filename = "形状 5 拷贝.png";
+      return "/home_slices/" + encodeURIComponent(filename);
     },
     logo2() {
-      const filename = '形状 5 拷贝 2.png';
-      return '/home_slices/' + encodeURIComponent(filename);
+      const filename = "形状 5 拷贝 2.png";
+      return "/home_slices/" + encodeURIComponent(filename);
     },
     logo3() {
-      const filename = '形状 5 拷贝 3.png';
-      return '/home_slices/' + encodeURIComponent(filename);
+      const filename = "形状 5 拷贝 3.png";
+      return "/home_slices/" + encodeURIComponent(filename);
     },
     logo4() {
-      const filename = '形状 5 拷贝 4.png';
-      return '/home_slices/' + encodeURIComponent(filename);
+      const filename = "形状 5 拷贝 4.png";
+      return "/home_slices/" + encodeURIComponent(filename);
     },
     logo5() {
-      const filename = '形状 5 拷贝 5.png';
-      return '/home_slices/' + encodeURIComponent(filename);
+      const filename = "形状 5 拷贝 5.png";
+      return "/home_slices/" + encodeURIComponent(filename);
     },
     logo6() {
-      const filename = '形状 5 拷贝 6.png';
-      return '/home_slices/' + encodeURIComponent(filename);
+      const filename = "形状 5 拷贝 6.png";
+      return "/home_slices/" + encodeURIComponent(filename);
     },
   },
   mounted() {
     this.initScrollAnimations();
     this.initCursorTrail();
     this.startAwardsCarousel();
-    this.scrollToHash()
+    this.scrollToHash();
   },
   watch: {
-    '$route.hash'() {
-      this.scrollToHash()
-    }
+    "$route.hash"() {
+      this.scrollToHash();
+    },
   },
   beforeUnmount() {
     // 清理动画
@@ -468,27 +725,70 @@ export default {
     }
   },
   methods: {
+    // 计算每个卡片的样式类：active, prev, next, 或 hidden
+    getWheelClass(index) {
+      const current = this.currentAwardIndex;
+      const total = this.awardsData.length;
+      
+      // 计算相对距离 (考虑循环，比如总共5个，当前是0，那么4应该是prev)
+      // 这里的逻辑确保 prev 是 -1, active 是 0, next 是 1
+      let diff = (index - current + total) % total;
+      
+      // 调整 diff，使其变成 -1, 0, 1 的形式，方便判断
+      // 例如 total=5:
+      // 如果 diff 是 0 -> active
+      // 如果 diff 是 1 -> next
+      // 如果 diff 是 4 (即 total-1) -> prev (视为 -1)
+      
+      if (diff === 0) {
+        return 'active';
+      } else if (diff === 1) {
+        return 'next';
+      } else if (diff === total - 1) {
+        return 'prev';
+      } else {
+        return 'hidden'; // 其他图片隐藏
+      }
+    },
+    
+    // 点击切换（保持不变）
+    handleAwardClick(index) {
+      this.currentAwardIndex = index;
+    },
+    // 新增：About 轮播控制方法
+    nextAboutSlide() {
+      if (this.currentAboutIndex < this.aboutSlides.length - 1) {
+        this.currentAboutIndex++;
+      } else {
+        this.currentAboutIndex = 0; // 循环播放
+      }
+    },
+    prevAboutSlide() {
+      if (this.currentAboutIndex > 0) {
+        this.currentAboutIndex--;
+      } else {
+        this.currentAboutIndex = this.aboutSlides.length - 1; // 循环播放
+      }
+    },
     scrollToHash() {
-      if (!this.$route.hash) return
+      if (!this.$route.hash) return;
 
       this.$nextTick(() => {
         // 再等一帧，确保布局稳定
         requestAnimationFrame(() => {
-          const el = document.querySelector(this.$route.hash)
-          if (!el) return
+          const el = document.querySelector(this.$route.hash);
+          if (!el) return;
 
-          const headerOffset = 0
+          const headerOffset = 0;
           const y =
-            el.getBoundingClientRect().top +
-            window.pageYOffset -
-            headerOffset
+            el.getBoundingClientRect().top + window.pageYOffset - headerOffset;
 
           window.scrollTo({
             top: y,
-            behavior: 'smooth'
-          })
-        })
-      })
+            behavior: "smooth",
+          });
+        });
+      });
     },
     // 鼠标移动处理
     onMouseMove(e) {
@@ -498,16 +798,16 @@ export default {
 
       // 更新主光标位置
       if (this.$refs.cursorBall) {
-        this.$refs.cursorBall.style.left = e.clientX + 'px';
-        this.$refs.cursorBall.style.top = e.clientY + 'px';
-        this.$refs.cursorBall.style.opacity = '1';
+        this.$refs.cursorBall.style.left = e.clientX + "px";
+        this.$refs.cursorBall.style.top = e.clientY + "px";
+        this.$refs.cursorBall.style.opacity = "1";
       }
     },
 
     onMouseLeave() {
       this.isMouseInPage = false;
       if (this.$refs.cursorBall) {
-        this.$refs.cursorBall.style.opacity = '0';
+        this.$refs.cursorBall.style.opacity = "0";
       }
       // 清空残影
       this.trails = [];
@@ -536,14 +836,14 @@ export default {
 
             return {
               style: {
-                left: pos.x + 'px',
-                top: pos.y + 'px',
-                width: size + 'px',
-                height: size + 'px',
+                left: pos.x + "px",
+                top: pos.y + "px",
+                width: size + "px",
+                height: size + "px",
                 opacity: opacity * 0.8,
                 transform: `translate(-50%, -50%) scale(${scale})`,
-                transition: 'opacity 0.3s ease-out'
-              }
+                transition: "opacity 0.3s ease-out",
+              },
             };
           });
         }
@@ -555,73 +855,81 @@ export default {
     },
 
     initScrollAnimations() {
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('animate-in');
-          }
-        });
-      }, { threshold: 0.1 });
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("animate-in");
+            }
+          });
+        },
+        { threshold: 0.1 }
+      );
 
-      document.querySelectorAll('.section-title, .featured-title, .tech-card, .product-card, .service-card').forEach(el => {
-        observer.observe(el);
-      });
+      document
+        .querySelectorAll(
+          ".section-title, .featured-title, .tech-card, .product-card, .service-card"
+        )
+        .forEach((el) => {
+          observer.observe(el);
+        });
     },
 
     getImageUrl(filename) {
       // 分离路径和文件名，只编码文件名部分
-      const parts = filename.split('/');
+      const parts = filename.split("/");
       const encodedParts = parts.map((part, index) => {
         // 路径部分保持原样，文件名部分编码
         return index === parts.length - 1 ? encodeURIComponent(part) : part;
       });
-      return '/' + encodedParts.join('/');
+      return "/" + encodedParts.join("/");
     },
 
     getProductBgImage(index) {
       const images = [
-        '矩形 10.png',
-        '矩形 10(1).png',
-        '图层 297.png',
-        '矩形 10(2).png',
-        '形状 4.png'
+        "矩形 10.png",
+        "矩形 10(1).png",
+        "图层 297.png",
+        "矩形 10(2).png",
+        "形状 4.png",
       ];
-      return '/home_slices/' + encodeURIComponent(images[index] || '矩形 10.png');
+      return (
+        "/home_slices/" + encodeURIComponent(images[index] || "矩形 10.png")
+      );
     },
 
     getProductIcon(index) {
       const icons = [
-        '形状 7.png',
-        '形状 8.png',
-        '皱纹.png',
-        '形状 3.png',
-        '形状 4(1).png'
+        "形状 7.png",
+        "形状 8.png",
+        "皱纹.png",
+        "形状 3.png",
+        "形状 4(1).png",
       ];
-      return '/home_slices/' + encodeURIComponent(icons[index] || '形状 7.png');
+      return "/home_slices/" + encodeURIComponent(icons[index] || "形状 7.png");
     },
 
     getServiceImage(index) {
-      const images = [
-        '图层 92.png',
-        '图层 290.png',
-        '图层 291.png'
-      ];
-      return '/home_slices/' + encodeURIComponent(images[index] || '图层 92.png');
+      const images = ["图层 92.png", "图层 290.png", "图层 291.png"];
+      return (
+        "/home_slices/" + encodeURIComponent(images[index] || "图层 92.png")
+      );
     },
 
     handleImageError(event, logoNum) {
       console.error(`Logo ${logoNum} failed to load:`, event.target.src);
       // 尝试使用普通版本
       const filenames = [
-        '形状 5 拷贝.png',
-        '形状 5 拷贝 2.png',
-        '形状 5 拷贝 3.png',
-        '形状 5 拷贝 4.png',
-        '形状 5 拷贝 5.png',
-        '形状 5 拷贝 6.png'
+        "形状 5 拷贝.png",
+        "形状 5 拷贝 2.png",
+        "形状 5 拷贝 3.png",
+        "形状 5 拷贝 4.png",
+        "形状 5 拷贝 5.png",
+        "形状 5 拷贝 6.png",
       ];
       if (logoNum <= filenames.length) {
-        event.target.src = '/home_slices/' + encodeURIComponent(filenames[logoNum - 1]);
+        event.target.src =
+          "/home_slices/" + encodeURIComponent(filenames[logoNum - 1]);
       }
     },
 
@@ -630,27 +938,28 @@ export default {
       const current = this.currentAwardIndex;
 
       if (index === current) {
-        return 'active';
+        return "active";
       }
 
       // 计算前一个索引（已展示过的）
       const prevIndex = (current - 1 + total) % total;
       if (index === prevIndex) {
-        return 'prev';
+        return "prev";
       }
 
       // 计算后一个索引（即将展示的）
       const nextIndex = (current + 1) % total;
       if (index === nextIndex) {
-        return 'next';
+        return "next";
       }
 
-      return '';
+      return "";
     },
 
     startAwardsCarousel() {
       this.awardsCarouselInterval = setInterval(() => {
-        this.currentAwardIndex = (this.currentAwardIndex + 1) % this.awardsData.length;
+        this.currentAwardIndex =
+          (this.currentAwardIndex + 1) % this.awardsData.length;
       }, 3000);
     },
     handleWheel(e) {
@@ -680,7 +989,7 @@ export default {
         this.$refs.researchSection,
         this.$refs.awardsSection,
         this.$refs.productsSection,
-        this.$refs.servicesSection
+        this.$refs.servicesSection,
       ];
 
       const currentIndex = sections.indexOf(currentSection);
@@ -692,7 +1001,7 @@ export default {
     scrollToSection(section) {
       if (section && !this.isScrolling) {
         this.isScrolling = true;
-        section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        section.scrollIntoView({ behavior: "smooth", block: "start" });
         setTimeout(() => {
           this.isScrolling = false;
         }, 500);
@@ -701,7 +1010,7 @@ export default {
     initScrollSnap() {
       // 防止滚动过快
       this.isScrolling = false;
-    }
+    },
   },
   beforeUnmount() {
     // 清理动画
@@ -711,14 +1020,14 @@ export default {
     if (this.awardsCarouselInterval) {
       clearInterval(this.awardsCarouselInterval);
     }
-  }
+  },
 };
 </script>
 
 <style scoped>
 /* 基础样式 */
 .home-page {
-  font-family: 'Segoe UI', 'SF Pro Display', -apple-system, sans-serif;
+  font-family: "Segoe UI", "SF Pro Display", -apple-system, sans-serif;
   color: #ffffff;
   overflow-x: hidden;
   position: relative;
@@ -734,14 +1043,17 @@ export default {
   position: fixed;
   width: 22px;
   height: 22px;
-  background: radial-gradient(circle, #449673 0%, #3a7a5f 50%, rgba(68, 150, 115, 0.3) 100%);
+  background: radial-gradient(
+    circle,
+    #449673 0%,
+    #3a7a5f 50%,
+    rgba(68, 150, 115, 0.3) 100%
+  );
   border-radius: 50%;
   pointer-events: none;
   z-index: 10000;
   transform: translate(-50%, -50%);
-  box-shadow:
-    0 0 10px rgba(68, 150, 115, 0.8),
-    0 0 20px rgba(68, 150, 115, 0.5),
+  box-shadow: 0 0 10px rgba(68, 150, 115, 0.8), 0 0 20px rgba(68, 150, 115, 0.5),
     0 0 40px rgba(68, 150, 115, 0.3);
   transition: opacity 0.3s ease;
   opacity: 0;
@@ -750,7 +1062,12 @@ export default {
 /* 鼠标残影 */
 .cursor-trail {
   position: fixed;
-  background: radial-gradient(circle, #449673 0%, rgba(68, 150, 115, 0.5) 50%, transparent 100%);
+  background: radial-gradient(
+    circle,
+    #449673 0%,
+    rgba(68, 150, 115, 0.5) 50%,
+    transparent 100%
+  );
   border-radius: 50%;
   pointer-events: none;
   z-index: 9999;
@@ -776,7 +1093,7 @@ export default {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-image: url('/homebg.png');
+  background-image: url("/homebg.png");
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -835,7 +1152,7 @@ export default {
 }
 
 .navbar-links a.active::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: -5px;
   left: 0;
@@ -870,10 +1187,8 @@ export default {
 }
 
 .hero-content:hover .hero-title {
-  text-shadow:
-    0 0 30px rgba(64, 253, 179, 0.6),
-    0 0 60px rgba(61, 217, 201, 0.4),
-    0 10px 30px rgba(0, 0, 0, 0.5);
+  text-shadow: 0 0 30px rgba(64, 253, 179, 0.6),
+    0 0 60px rgba(61, 217, 201, 0.4), 0 10px 30px rgba(0, 0, 0, 0.5);
   transform: scale(1.02);
 }
 
@@ -906,7 +1221,7 @@ export default {
 }
 
 .hero-title-accent {
-  color: #40FDB3;
+  color: #40fdb3;
   font-weight: 400;
   display: inline;
   margin-left: -5px;
@@ -950,7 +1265,9 @@ export default {
 
 .hero-visual:hover .hero-sphere-img {
   transform: scale(1.1) rotate(10deg);
-  filter: drop-shadow(0 0 100px rgba(61, 217, 201, 0.9)) drop-shadow(0 0 180px rgba(61, 217, 201, 0.6)) drop-shadow(0 0 250px rgba(64, 253, 179, 0.4));
+  filter: drop-shadow(0 0 100px rgba(61, 217, 201, 0.9))
+    drop-shadow(0 0 180px rgba(61, 217, 201, 0.6))
+    drop-shadow(0 0 250px rgba(64, 253, 179, 0.4));
 }
 
 .hero-visual:hover .sphere-glow-ring {
@@ -994,7 +1311,8 @@ export default {
   height: 860px;
   right: -75px;
   border-color: rgba(61, 217, 201, 0.2);
-  animation: ringPulse 4s ease-in-out infinite 1s, ringRotate 25s linear infinite reverse;
+  animation: ringPulse 4s ease-in-out infinite 1s,
+    ringRotate 25s linear infinite reverse;
 }
 
 .ring-3 {
@@ -1002,11 +1320,11 @@ export default {
   height: 960px;
   right: -120px;
   border-color: rgba(61, 217, 201, 0.1);
-  animation: ringPulse 4s ease-in-out infinite 2s, ringRotate 30s linear infinite;
+  animation: ringPulse 4s ease-in-out infinite 2s,
+    ringRotate 30s linear infinite;
 }
 
 @keyframes ringPulse {
-
   0%,
   100% {
     opacity: 0.3;
@@ -1034,7 +1352,7 @@ export default {
   position: absolute;
   width: 8px;
   height: 8px;
-  background: radial-gradient(circle, #3DD9C9 0%, transparent 70%);
+  background: radial-gradient(circle, #3dd9c9 0%, transparent 70%);
   border-radius: 50%;
   pointer-events: none;
   animation: particleFloat 8s ease-in-out infinite;
@@ -1085,7 +1403,6 @@ export default {
 }
 
 @keyframes particleFloat {
-
   0%,
   100% {
     transform: translateY(0) translateX(0);
@@ -1119,14 +1436,29 @@ export default {
   height: 550px;
   object-fit: cover;
   border-radius: 50%;
-  animation: floatSphere 6s ease-in-out infinite, sphereGlow 3s ease-in-out infinite alternate;
-  filter: drop-shadow(0 0 45px rgba(61, 217, 201, 0.6)) drop-shadow(0 0 90px rgba(61, 217, 201, 0.4)) drop-shadow(0 0 130px rgba(64, 253, 179, 0.2));
+  animation: floatSphere 6s ease-in-out infinite,
+    sphereGlow 3s ease-in-out infinite alternate;
+  filter: drop-shadow(0 0 45px rgba(61, 217, 201, 0.6))
+    drop-shadow(0 0 90px rgba(61, 217, 201, 0.4))
+    drop-shadow(0 0 130px rgba(64, 253, 179, 0.2));
   transition: all 0.5s ease;
   position: relative;
   z-index: 1;
   /* 边缘模糊渐变 */
-  mask-image: radial-gradient(circle, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0.8) 65%, rgba(0, 0, 0, 0.4) 80%, rgba(0, 0, 0, 0) 100%);
-  -webkit-mask-image: radial-gradient(circle, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0.8) 65%, rgba(0, 0, 0, 0.4) 80%, rgba(0, 0, 0, 0) 100%);
+  mask-image: radial-gradient(
+    circle,
+    rgba(0, 0, 0, 1) 50%,
+    rgba(0, 0, 0, 0.8) 65%,
+    rgba(0, 0, 0, 0.4) 80%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  -webkit-mask-image: radial-gradient(
+    circle,
+    rgba(0, 0, 0, 1) 50%,
+    rgba(0, 0, 0, 0.8) 65%,
+    rgba(0, 0, 0, 0.4) 80%,
+    rgba(0, 0, 0, 0) 100%
+  );
 }
 
 /* 球体闪烁光效 */
@@ -1138,10 +1470,12 @@ export default {
   width: 550px;
   height: 550px;
   border-radius: 50%;
-  background: radial-gradient(circle at 30% 30%,
-      rgba(64, 253, 179, 0.3) 0%,
-      rgba(61, 217, 201, 0.2) 20%,
-      transparent 50%);
+  background: radial-gradient(
+    circle at 30% 30%,
+    rgba(64, 253, 179, 0.3) 0%,
+    rgba(61, 217, 201, 0.2) 20%,
+    transparent 50%
+  );
   animation: shimmerRotate 8s linear infinite;
   pointer-events: none;
   z-index: 2;
@@ -1155,11 +1489,13 @@ export default {
   width: 620px;
   height: 620px;
   border-radius: 50%;
-  background: radial-gradient(circle,
-      rgba(61, 217, 201, 0.2) 0%,
-      rgba(64, 253, 179, 0.15) 30%,
-      rgba(61, 217, 201, 0.1) 50%,
-      transparent 70%);
+  background: radial-gradient(
+    circle,
+    rgba(61, 217, 201, 0.2) 0%,
+    rgba(64, 253, 179, 0.15) 30%,
+    rgba(61, 217, 201, 0.1) 50%,
+    transparent 70%
+  );
   animation: auraPulse 4s ease-in-out infinite;
   pointer-events: none;
   z-index: 0;
@@ -1203,12 +1539,17 @@ export default {
 
 /* 球体底部光晕 */
 .hero-visual::before {
-  content: '';
+  content: "";
   position: absolute;
   width: 640px;
   height: 640px;
   right: -20px;
-  background: radial-gradient(circle, rgba(61, 217, 201, 0.15) 0%, rgba(61, 217, 201, 0.05) 40%, transparent 70%);
+  background: radial-gradient(
+    circle,
+    rgba(61, 217, 201, 0.15) 0%,
+    rgba(61, 217, 201, 0.05) 40%,
+    transparent 70%
+  );
   border-radius: 50%;
   z-index: -1;
   animation: glowPulse 4s ease-in-out infinite;
@@ -1216,7 +1557,6 @@ export default {
 
 /* 悬浮动画 */
 @keyframes floatSphere {
-
   0%,
   100% {
     transform: translateY(0px) rotate(0deg);
@@ -1238,11 +1578,15 @@ export default {
 /* 球体发光动画 */
 @keyframes sphereGlow {
   0% {
-    filter: drop-shadow(0 0 50px rgba(61, 217, 201, 0.6)) drop-shadow(0 0 100px rgba(61, 217, 201, 0.4)) drop-shadow(0 0 150px rgba(64, 253, 179, 0.2));
+    filter: drop-shadow(0 0 50px rgba(61, 217, 201, 0.6))
+      drop-shadow(0 0 100px rgba(61, 217, 201, 0.4))
+      drop-shadow(0 0 150px rgba(64, 253, 179, 0.2));
   }
 
   100% {
-    filter: drop-shadow(0 0 70px rgba(61, 217, 201, 0.8)) drop-shadow(0 0 130px rgba(61, 217, 201, 0.6)) drop-shadow(0 0 180px rgba(64, 253, 179, 0.4));
+    filter: drop-shadow(0 0 70px rgba(61, 217, 201, 0.8))
+      drop-shadow(0 0 130px rgba(61, 217, 201, 0.6))
+      drop-shadow(0 0 180px rgba(64, 253, 179, 0.4));
   }
 }
 
@@ -1265,7 +1609,6 @@ export default {
 
 /* 光晕脉冲动画 */
 @keyframes auraPulse {
-
   0%,
   100% {
     transform: translate(-50%, -50%) scale(1);
@@ -1291,14 +1634,15 @@ export default {
 
 /* 发光脉冲动画 */
 @keyframes glowPulse {
-
   0%,
   100% {
-    filter: drop-shadow(0 0 40px rgba(61, 217, 201, 0.4)) drop-shadow(0 0 80px rgba(61, 217, 201, 0.2));
+    filter: drop-shadow(0 0 40px rgba(61, 217, 201, 0.4))
+      drop-shadow(0 0 80px rgba(61, 217, 201, 0.2));
   }
 
   50% {
-    filter: drop-shadow(0 0 60px rgba(61, 217, 201, 0.6)) drop-shadow(0 0 100px rgba(61, 217, 201, 0.4));
+    filter: drop-shadow(0 0 60px rgba(61, 217, 201, 0.6))
+      drop-shadow(0 0 100px rgba(61, 217, 201, 0.4));
   }
 }
 
@@ -1313,7 +1657,7 @@ export default {
 }
 
 .featured-section::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 50%;
@@ -1348,14 +1692,14 @@ export default {
 }
 
 .featured-title::before {
-  content: '';
+  content: "";
   position: absolute;
   left: -20px;
   top: 50%;
   transform: translateY(-50%);
   width: 4px;
   height: 0;
-  background: linear-gradient(180deg, #449673, #3DD9C9);
+  background: linear-gradient(180deg, #449673, #3dd9c9);
   transition: height 0.4s ease;
   border-radius: 2px;
 }
@@ -1365,13 +1709,13 @@ export default {
 }
 
 .featured-title::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: -5px;
   left: 0;
   width: 0;
   height: 2px;
-  background: linear-gradient(90deg, #449673, #3DD9C9);
+  background: linear-gradient(90deg, #449673, #3dd9c9);
   transition: width 0.4s ease;
 }
 
@@ -1422,7 +1766,7 @@ export default {
 }
 
 .logo-item::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -1438,7 +1782,8 @@ export default {
 .logo-item:hover::before {
   opacity: 1;
   border-color: #449673;
-  box-shadow: 0 0 15px rgba(68, 150, 115, 0.4), inset 0 0 15px rgba(68, 150, 115, 0.2);
+  box-shadow: 0 0 15px rgba(68, 150, 115, 0.4),
+    inset 0 0 15px rgba(68, 150, 115, 0.2);
 }
 
 .logo-item:hover .featured-logo-img {
@@ -1457,7 +1802,7 @@ export default {
 }
 
 .about-section::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 50%;
@@ -1487,14 +1832,14 @@ export default {
 }
 
 .section-title::before {
-  content: '';
+  content: "";
   position: absolute;
   left: -20px;
   top: 50%;
   transform: translateY(-50%);
   width: 4px;
   height: 0;
-  background: linear-gradient(180deg, #449673, #3DD9C9);
+  background: linear-gradient(180deg, #449673, #3dd9c9);
   transition: height 0.4s ease;
   border-radius: 2px;
 }
@@ -1504,13 +1849,13 @@ export default {
 }
 
 .section-title::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: -5px;
   left: 0;
   width: 0;
   height: 2px;
-  background: linear-gradient(90deg, #449673, #3DD9C9);
+  background: linear-gradient(90deg, #449673, #3dd9c9);
   transition: width 0.4s ease;
 }
 
@@ -1525,21 +1870,20 @@ export default {
 }
 
 @keyframes titleGlow {
-
   0%,
   100% {
     text-shadow: 0 0 20px rgba(68, 150, 115, 0.5);
   }
 
   50% {
-    text-shadow: 0 0 30px rgba(68, 150, 115, 0.8), 0 0 40px rgba(68, 150, 115, 0.4);
+    text-shadow: 0 0 30px rgba(68, 150, 115, 0.8),
+      0 0 40px rgba(68, 150, 115, 0.4);
   }
 }
 
 .section-title.animate {
   animation: titleGlow 3s ease-in-out infinite;
 }
-
 
 .section-title.center {
   text-align: center;
@@ -1621,6 +1965,115 @@ export default {
   border-radius: 16px;
 }
 
+/* 新增 */
+/* 新增/修改：About 轮播样式 */
+.about-carousel-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  /* 隐藏超出的 Slide */
+  padding-bottom: 20px;
+}
+
+.about-carousel-track {
+  display: flex;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  /* 平滑过渡动画 */
+  width: 100%;
+}
+
+.about-slide {
+  min-width: 100%;
+  /* 让每个 slide 占满容器宽度 */
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+
+/* 确保 slide 内部布局和以前一致 */
+.about-content {
+  display: flex;
+  gap: 80px;
+  align-items: flex-start;
+  padding: 0 10px;
+  /* 防止左右边缘溢出 */
+}
+
+/* 调整按钮样式，使其像原来的 More 按钮 */
+.carousel-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  /* 圆形 */
+  background: transparent;
+  border: 2px solid #449673;
+  /* 使用主题色边框 */
+  color: #ffffff;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(5px);
+}
+
+.carousel-nav-btn:hover {
+  background: #449673;
+  /* 悬停时填充主题色 */
+  box-shadow: 0 0 15px rgba(68, 150, 115, 0.6);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.nav-arrow {
+  line-height: 1;
+  margin-top: -2px;
+  /* 微调箭头垂直居中 */
+}
+
+.prev-btn {
+  left: -20px;
+  /* 放在容器左侧 */
+}
+
+.next-btn {
+  right: -20px;
+  /* 放在容器右侧 */
+}
+
+/* 响应式调整 */
+@media (max-width: 1024px) {
+  .about-content {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .carousel-nav-btn {
+    top: auto;
+    bottom: -60px;
+    /* 移动端将箭头移到底部，避免遮挡内容 */
+    transform: none;
+  }
+
+  .prev-btn {
+    left: 30%;
+  }
+
+  .next-btn {
+    right: 30%;
+  }
+
+  .about-carousel-wrapper {
+    overflow: visible;
+    /* 移动端允许按钮显示在下方 */
+    margin-bottom: 60px;
+  }
+}
+
+/* end: About 轮播样式 */
 /* Partners Section */
 .partners-section {
   padding: 80px 0;
@@ -1632,20 +2085,22 @@ export default {
 }
 
 .partners-section::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 50%;
   transform: translateX(-50%);
   width: 100vw;
   height: 100%;
-  background: linear-gradient(to bottom,
-      #000000 0%,
-      #000000 80%,
-      rgba(0, 0, 0, 0.9) 90%,
-      rgba(0, 0, 0, 0.7) 95%,
-      rgba(0, 0, 0, 0.4) 98%,
-      rgba(0, 0, 0, 0) 100%);
+  background: linear-gradient(
+    to bottom,
+    #000000 0%,
+    #000000 80%,
+    rgba(0, 0, 0, 0.9) 90%,
+    rgba(0, 0, 0, 0.7) 95%,
+    rgba(0, 0, 0, 0.4) 98%,
+    rgba(0, 0, 0, 0) 100%
+  );
   z-index: 0;
 }
 
@@ -1702,13 +2157,13 @@ export default {
 
 .partner-name.firmenich {
   font-style: italic;
-  color: #E31C5F;
+  color: #e31c5f;
   font-weight: 600;
 }
 
 .partner-name.loreal {
   /* font-family: 'Times New Roman', serif; */
-  font-family: 'Segoe UI', 'SF Pro Display', -apple-system, sans-serif;
+  font-family: "Segoe UI", "SF Pro Display", -apple-system, sans-serif;
   letter-spacing: 3px;
   font-weight: 400;
 }
@@ -1726,17 +2181,17 @@ export default {
 
 .partner-name.beiersdorf {
   font-weight: 500;
-  color: #0066B3;
+  color: #0066b3;
 }
 
 .partner-name.haleon {
-  color: #00A19A;
+  color: #00a19a;
   font-weight: 600;
 }
 
 .partner-name.galderma {
   font-style: italic;
-  color: #E4002B;
+  color: #e4002b;
   font-weight: 500;
 }
 
@@ -1803,21 +2258,31 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: radial-gradient(circle, rgba(68, 150, 115, 0.15) 0%, rgba(68, 150, 115, 0.05) 50%, transparent 80%);
+  background: radial-gradient(
+    circle,
+    rgba(68, 150, 115, 0.15) 0%,
+    rgba(68, 150, 115, 0.05) 50%,
+    transparent 80%
+  );
   border: 2px solid rgba(68, 150, 115, 0.4);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
 }
 
 .tech-icon::before {
-  content: '';
+  content: "";
   position: absolute;
   top: -2px;
   left: -2px;
   right: -2px;
   bottom: -2px;
   border-radius: 50%;
-  background: linear-gradient(45deg, rgba(68, 150, 115, 0.3), rgba(61, 217, 201, 0.3), rgba(68, 150, 115, 0.3));
+  background: linear-gradient(
+    45deg,
+    rgba(68, 150, 115, 0.3),
+    rgba(61, 217, 201, 0.3),
+    rgba(68, 150, 115, 0.3)
+  );
   background-size: 200% 200%;
   opacity: 0;
   transition: opacity 0.4s ease;
@@ -1826,7 +2291,7 @@ export default {
 }
 
 .tech-icon::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 50%;
   left: 50%;
@@ -1834,17 +2299,19 @@ export default {
   width: 0;
   height: 0;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(68, 150, 115, 0.2) 0%, transparent 70%);
+  background: radial-gradient(
+    circle,
+    rgba(68, 150, 115, 0.2) 0%,
+    transparent 70%
+  );
   transition: all 0.4s ease;
   z-index: -1;
 }
 
 .tech-icon:hover {
   border-color: #449673;
-  box-shadow:
-    0 0 60px rgba(68, 150, 115, 0.5),
-    0 0 100px rgba(68, 150, 115, 0.3),
-    inset 0 0 40px rgba(68, 150, 115, 0.1);
+  box-shadow: 0 0 60px rgba(68, 150, 115, 0.5),
+    0 0 100px rgba(68, 150, 115, 0.3), inset 0 0 40px rgba(68, 150, 115, 0.1);
   transform: scale(1.05);
 }
 
@@ -1910,13 +2377,17 @@ export default {
 }
 
 .research-service-item::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: radial-gradient(circle, rgba(68, 150, 115, 0.1) 0%, transparent 70%);
+  background: radial-gradient(
+    circle,
+    rgba(68, 150, 115, 0.1) 0%,
+    transparent 70%
+  );
   border-radius: 8px;
   opacity: 0;
   transition: opacity 0.4s ease;
@@ -1944,33 +2415,35 @@ export default {
 }
 
 @keyframes iconPulse {
-
   0%,
   100% {
     text-shadow: 0 0 8px rgba(68, 150, 115, 0.3);
   }
 
   50% {
-    text-shadow: 0 0 15px rgba(68, 150, 115, 0.6), 0 0 25px rgba(61, 217, 201, 0.3);
+    text-shadow: 0 0 15px rgba(68, 150, 115, 0.6),
+      0 0 25px rgba(61, 217, 201, 0.3);
   }
 }
 
 .research-service-item:hover .service-icon {
-  color: #3DD9C9;
+  color: #3dd9c9;
   transform: scale(1.2);
-  text-shadow: 0 0 20px rgba(68, 150, 115, 0.8), 0 0 30px rgba(61, 217, 201, 0.5);
+  text-shadow: 0 0 20px rgba(68, 150, 115, 0.8),
+    0 0 30px rgba(61, 217, 201, 0.5);
   animation: iconGlow 1.5s ease-in-out infinite;
 }
 
 @keyframes iconGlow {
-
   0%,
   100% {
-    text-shadow: 0 0 20px rgba(68, 150, 115, 0.8), 0 0 30px rgba(61, 217, 201, 0.5);
+    text-shadow: 0 0 20px rgba(68, 150, 115, 0.8),
+      0 0 30px rgba(61, 217, 201, 0.5);
   }
 
   50% {
-    text-shadow: 0 0 30px rgba(68, 150, 115, 1), 0 0 50px rgba(61, 217, 201, 0.8);
+    text-shadow: 0 0 30px rgba(68, 150, 115, 1),
+      0 0 50px rgba(61, 217, 201, 0.8);
   }
 }
 
@@ -1982,7 +2455,11 @@ export default {
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   z-index: 1;
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0.85) 100%);
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.85) 0%,
+    rgba(255, 255, 255, 0.85) 100%
+  );
   -webkit-background-clip: text;
   background-clip: text;
   white-space: nowrap;
@@ -1990,21 +2467,22 @@ export default {
 
 .research-service-item:hover .service-text {
   color: #ffffff;
-  text-shadow: 0 0 20px rgba(68, 150, 115, 0.5), 0 0 30px rgba(61, 217, 201, 0.3);
-  background: linear-gradient(90deg, #ffffff 0%, #3DD9C9 100%);
+  text-shadow: 0 0 20px rgba(68, 150, 115, 0.5),
+    0 0 30px rgba(61, 217, 201, 0.3);
+  background: linear-gradient(90deg, #ffffff 0%, #3dd9c9 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .service-text::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: -5px;
   left: 0;
   width: 0;
   height: 2px;
-  background: linear-gradient(90deg, #449673, #3DD9C9, #449673);
+  background: linear-gradient(90deg, #449673, #3dd9c9, #449673);
   background-size: 200% 100%;
   transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   border-radius: 2px;
@@ -2013,7 +2491,6 @@ export default {
 }
 
 @keyframes gradientShift {
-
   0%,
   100% {
     background-position: 0% 50%;
@@ -2030,19 +2507,19 @@ export default {
 }
 
 @keyframes lineGlow {
-
   0%,
   100% {
     box-shadow: 0 0 10px rgba(68, 150, 115, 0.6);
   }
 
   50% {
-    box-shadow: 0 0 20px rgba(68, 150, 115, 0.9), 0 0 30px rgba(61, 217, 201, 0.5);
+    box-shadow: 0 0 20px rgba(68, 150, 115, 0.9),
+      0 0 30px rgba(61, 217, 201, 0.5);
   }
 }
 
 .research-content-wrapper {
-  background-image: url('/home_slices/05a10759634d0439b6aaaa9bc72c93deffae35002aaca-HM2GeK_fw1200.png');
+  background-image: url("/home_slices/05a10759634d0439b6aaaa9bc72c93deffae35002aaca-HM2GeK_fw1200.png");
   background-size: 95%;
   background-position: center;
   background-repeat: no-repeat;
@@ -2059,13 +2536,17 @@ export default {
 }
 
 .research-content-wrapper::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, rgba(68, 150, 115, 0.1) 0%, rgba(61, 217, 201, 0.05) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(68, 150, 115, 0.1) 0%,
+    rgba(61, 217, 201, 0.05) 100%
+  );
   opacity: 0;
   transition: opacity 0.4s ease;
   z-index: 0;
@@ -2078,7 +2559,8 @@ export default {
 
 .research-content-wrapper:hover {
   border-color: rgba(68, 150, 115, 0.8);
-  box-shadow: 0 0 40px rgba(68, 150, 115, 0.3), inset 0 0 60px rgba(68, 150, 115, 0.1);
+  box-shadow: 0 0 40px rgba(68, 150, 115, 0.3),
+    inset 0 0 60px rgba(68, 150, 115, 0.1);
   transform: translateY(-2px);
 }
 
@@ -2112,13 +2594,13 @@ export default {
 }
 
 .research-text p::after {
-  content: '';
+  content: "";
   position: absolute;
   left: 0;
   bottom: -5px;
   width: 0;
   height: 2px;
-  background: linear-gradient(90deg, #449673, #3DD9C9);
+  background: linear-gradient(90deg, #449673, #3dd9c9);
   transition: width 0.3s ease;
 }
 
@@ -2143,13 +2625,17 @@ export default {
 }
 
 .stat-item::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: radial-gradient(circle, rgba(68, 150, 115, 0.1) 0%, transparent 70%);
+  background: radial-gradient(
+    circle,
+    rgba(68, 150, 115, 0.1) 0%,
+    transparent 70%
+  );
   opacity: 0;
   transition: opacity 0.3s ease;
   border-radius: 8px;
@@ -2216,7 +2702,7 @@ export default {
 }
 
 .awards-content-wrapper {
-  background-image: url('/home_slices/图层 289.png');
+  background-image: url("/home_slices/图层 289.png");
   background-size: 100% 100%;
   background-position: center;
   background-repeat: no-repeat;
@@ -2233,13 +2719,17 @@ export default {
 }
 
 .awards-content-wrapper::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, rgba(68, 150, 115, 0.1) 0%, rgba(61, 217, 201, 0.05) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(68, 150, 115, 0.1) 0%,
+    rgba(61, 217, 201, 0.05) 100%
+  );
   opacity: 0;
   transition: opacity 0.4s ease;
   z-index: 0;
@@ -2247,13 +2737,17 @@ export default {
 }
 
 .awards-content-wrapper::after {
-  content: '';
+  content: "";
   position: absolute;
   top: -50%;
   left: -50%;
   width: 200%;
   height: 200%;
-  background: radial-gradient(circle, rgba(68, 150, 115, 0.15) 0%, transparent 70%);
+  background: radial-gradient(
+    circle,
+    rgba(68, 150, 115, 0.15) 0%,
+    transparent 70%
+  );
   opacity: 0;
   transition: opacity 0.4s ease;
   z-index: 0;
@@ -2263,10 +2757,8 @@ export default {
 
 .awards-content-wrapper:hover {
   border-color: rgba(68, 150, 115, 0.8);
-  box-shadow:
-    0 0 60px rgba(68, 150, 115, 0.3),
-    0 0 100px rgba(68, 150, 115, 0.2),
-    inset 0 0 80px rgba(68, 150, 115, 0.1);
+  box-shadow: 0 0 60px rgba(68, 150, 115, 0.3),
+    0 0 100px rgba(68, 150, 115, 0.2), inset 0 0 80px rgba(68, 150, 115, 0.1);
   transform: translateY(-3px);
 }
 
@@ -2279,7 +2771,6 @@ export default {
 }
 
 @keyframes pulseGlow {
-
   0%,
   100% {
     transform: scale(1);
@@ -2323,13 +2814,17 @@ export default {
 }
 
 .timeline-item::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, rgba(68, 150, 115, 0.1) 0%, rgba(61, 217, 201, 0.05) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(68, 150, 115, 0.1) 0%,
+    rgba(61, 217, 201, 0.05) 100%
+  );
   border-radius: 12px;
   opacity: 0;
   transition: opacity 0.5s ease;
@@ -2339,9 +2834,7 @@ export default {
 .timeline-item:hover {
   transform: translateX(10px) translateY(-2px);
   border-color: rgba(68, 150, 115, 0.3);
-  box-shadow:
-    0 10px 40px rgba(0, 0, 0, 0.3),
-    0 0 30px rgba(68, 150, 115, 0.2),
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3), 0 0 30px rgba(68, 150, 115, 0.2),
     inset 0 0 20px rgba(68, 150, 115, 0.05);
 }
 
@@ -2364,19 +2857,19 @@ export default {
 
 .timeline-item:hover .timeline-dot {
   background: #449673;
-  border-color: #3DD9C9;
-  box-shadow:
-    0 0 15px rgba(68, 150, 115, 0.6),
-    0 0 30px rgba(68, 150, 115, 0.3);
+  border-color: #3dd9c9;
+  box-shadow: 0 0 15px rgba(68, 150, 115, 0.6), 0 0 30px rgba(68, 150, 115, 0.3);
   transform: scale(1.3);
 }
 
 .timeline-item.active {
   border-color: rgba(68, 150, 115, 0.5);
-  background: linear-gradient(135deg, rgba(68, 150, 115, 0.15) 0%, rgba(61, 217, 201, 0.1) 100%);
-  box-shadow:
-    0 15px 50px rgba(0, 0, 0, 0.4),
-    0 0 40px rgba(68, 150, 115, 0.3),
+  background: linear-gradient(
+    135deg,
+    rgba(68, 150, 115, 0.15) 0%,
+    rgba(61, 217, 201, 0.1) 100%
+  );
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4), 0 0 40px rgba(68, 150, 115, 0.3),
     inset 0 0 30px rgba(68, 150, 115, 0.1);
   transform: translateX(8px);
 }
@@ -2386,30 +2879,23 @@ export default {
 }
 
 .timeline-item.active .timeline-dot {
-  background: linear-gradient(135deg, #449673, #3DD9C9);
-  border-color: #3DD9C9;
-  box-shadow:
-    0 0 20px rgba(68, 150, 115, 0.8),
-    0 0 40px rgba(68, 150, 115, 0.5),
+  background: linear-gradient(135deg, #449673, #3dd9c9);
+  border-color: #3dd9c9;
+  box-shadow: 0 0 20px rgba(68, 150, 115, 0.8), 0 0 40px rgba(68, 150, 115, 0.5),
     0 0 60px rgba(61, 217, 201, 0.3);
   transform: scale(1.4);
   animation: dotPulse 2s ease-in-out infinite;
 }
 
 @keyframes dotPulse {
-
   0%,
   100% {
-    box-shadow:
-      0 0 20px rgba(68, 150, 115, 0.8),
-      0 0 40px rgba(68, 150, 115, 0.5),
-      0 0 60px rgba(61, 217, 201, 0.3);
+    box-shadow: 0 0 20px rgba(68, 150, 115, 0.8),
+      0 0 40px rgba(68, 150, 115, 0.5), 0 0 60px rgba(61, 217, 201, 0.3);
   }
 
   50% {
-    box-shadow:
-      0 0 30px rgba(68, 150, 115, 1),
-      0 0 60px rgba(68, 150, 115, 0.7),
+    box-shadow: 0 0 30px rgba(68, 150, 115, 1), 0 0 60px rgba(68, 150, 115, 0.7),
       0 0 90px rgba(61, 217, 201, 0.5);
   }
 }
@@ -2433,9 +2919,10 @@ export default {
 
 .timeline-item.active .timeline-text {
   color: #ffffff;
-  text-shadow: 0 0 20px rgba(68, 150, 115, 0.5), 0 0 30px rgba(61, 217, 201, 0.3);
+  text-shadow: 0 0 20px rgba(68, 150, 115, 0.5),
+    0 0 30px rgba(61, 217, 201, 0.3);
   font-weight: 500;
-  background: linear-gradient(90deg, #ffffff 0%, #3DD9C9 100%);
+  background: linear-gradient(90deg, #ffffff 0%, #3dd9c9 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -2443,7 +2930,6 @@ export default {
 }
 
 @keyframes textGlow {
-
   0%,
   100% {
     filter: brightness(1);
@@ -2461,10 +2947,11 @@ export default {
   transform: translateY(-50%);
   width: 50px;
   height: 2px;
-  background: linear-gradient(90deg, #449673, #3DD9C9, transparent);
+  background: linear-gradient(90deg, #449673, #3dd9c9, transparent);
   border-radius: 2px;
   box-shadow: 0 0 15px rgba(68, 150, 115, 0.8), 0 0 30px rgba(61, 217, 201, 0.5);
-  animation: glowExtend 0.8s ease-out forwards, glowPulse 2s ease-in-out infinite 0.8s;
+  animation: glowExtend 0.8s ease-out forwards,
+    glowPulse 2s ease-in-out infinite 0.8s;
   z-index: 2;
 }
 
@@ -2481,10 +2968,10 @@ export default {
 }
 
 @keyframes glowPulse {
-
   0%,
   100% {
-    box-shadow: 0 0 15px rgba(68, 150, 115, 0.8), 0 0 30px rgba(61, 217, 201, 0.5);
+    box-shadow: 0 0 15px rgba(68, 150, 115, 0.8),
+      0 0 30px rgba(61, 217, 201, 0.5);
   }
 
   50% {
@@ -2520,7 +3007,11 @@ export default {
 .bg-circle {
   position: absolute;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(68, 150, 115, 0.3) 0%, transparent 70%);
+  background: radial-gradient(
+    circle,
+    rgba(68, 150, 115, 0.3) 0%,
+    transparent 70%
+  );
   filter: blur(50px);
   animation: circleFloat 6s ease-in-out infinite;
 }
@@ -2538,7 +3029,11 @@ export default {
   height: 300px;
   bottom: -30px;
   left: -30px;
-  background: radial-gradient(circle, rgba(61, 217, 201, 0.35) 0%, transparent 70%);
+  background: radial-gradient(
+    circle,
+    rgba(61, 217, 201, 0.35) 0%,
+    transparent 70%
+  );
   animation-delay: 2s;
 }
 
@@ -2548,12 +3043,15 @@ export default {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: radial-gradient(circle, rgba(68, 150, 115, 0.25) 0%, transparent 70%);
+  background: radial-gradient(
+    circle,
+    rgba(68, 150, 115, 0.25) 0%,
+    transparent 70%
+  );
   animation-delay: 4s;
 }
 
 @keyframes circleFloat {
-
   0%,
   100% {
     transform: translate(0, 0) scale(1);
@@ -2578,12 +3076,14 @@ export default {
   transform: translate(-50%, -50%);
   width: 500px;
   height: 500px;
-  background: conic-gradient(from 0deg,
-      rgba(68, 150, 115, 0.2) 0deg,
-      rgba(61, 217, 201, 0.25) 90deg,
-      rgba(68, 150, 115, 0.2) 180deg,
-      rgba(61, 217, 201, 0.25) 270deg,
-      rgba(68, 150, 115, 0.2) 360deg);
+  background: conic-gradient(
+    from 0deg,
+    rgba(68, 150, 115, 0.2) 0deg,
+    rgba(61, 217, 201, 0.25) 90deg,
+    rgba(68, 150, 115, 0.2) 180deg,
+    rgba(61, 217, 201, 0.25) 270deg,
+    rgba(68, 150, 115, 0.2) 360deg
+  );
   border-radius: 50%;
   filter: blur(70px);
   animation: orbRotate 15s linear infinite;
@@ -2612,11 +3112,14 @@ export default {
   position: absolute;
   width: 5px;
   height: 5px;
-  background: radial-gradient(circle, rgba(68, 150, 115, 1) 0%, rgba(61, 217, 201, 0.8) 50%, transparent 100%);
+  background: radial-gradient(
+    circle,
+    rgba(68, 150, 115, 1) 0%,
+    rgba(61, 217, 201, 0.8) 50%,
+    transparent 100%
+  );
   border-radius: 50%;
-  box-shadow:
-    0 0 15px rgba(68, 150, 115, 0.8),
-    0 0 30px rgba(68, 150, 115, 0.4),
+  box-shadow: 0 0 15px rgba(68, 150, 115, 0.8), 0 0 30px rgba(68, 150, 115, 0.4),
     0 0 45px rgba(61, 217, 201, 0.3);
   animation: particleFloat 5s ease-in-out infinite;
   animation-delay: var(--delay);
@@ -2683,7 +3186,6 @@ export default {
 }
 
 @keyframes particleFloat {
-
   0%,
   100% {
     transform: translate(0, 0) scale(1);
@@ -2739,29 +3241,33 @@ export default {
 }
 
 @keyframes cardFloat {
-
   0%,
   100% {
-    transform: translate(-50%, -50%) scale(1) rotateY(0deg) translateY(0) rotateZ(0deg);
+    transform: translate(-50%, -50%) scale(1) rotateY(0deg) translateY(0)
+      rotateZ(0deg);
   }
 
   25% {
-    transform: translate(-50%, -50%) scale(1.02) rotateY(2deg) translateY(-8px) rotateZ(0.5deg);
+    transform: translate(-50%, -50%) scale(1.02) rotateY(2deg) translateY(-8px)
+      rotateZ(0.5deg);
   }
 
   50% {
-    transform: translate(-50%, -50%) scale(1) rotateY(0deg) translateY(-12px) rotateZ(0deg);
+    transform: translate(-50%, -50%) scale(1) rotateY(0deg) translateY(-12px)
+      rotateZ(0deg);
   }
 
   75% {
-    transform: translate(-50%, -50%) scale(1.02) rotateY(-2deg) translateY(-8px) rotateZ(-0.5deg);
+    transform: translate(-50%, -50%) scale(1.02) rotateY(-2deg) translateY(-8px)
+      rotateZ(-0.5deg);
   }
 }
 
 /* 已展示过的图片 - 在左后方 */
 .carousel-item.prev {
   opacity: 0.4;
-  transform: translate(-50%, -50%) translateX(-200px) translateZ(-150px) scale(0.65) rotateY(35deg);
+  transform: translate(-50%, -50%) translateX(-200px) translateZ(-150px)
+    scale(0.65) rotateY(35deg);
   z-index: 2;
   filter: blur(3px);
 }
@@ -2769,7 +3275,8 @@ export default {
 /* 即将展示的图片 - 在右后方 */
 .carousel-item.next {
   opacity: 0.4;
-  transform: translate(-50%, -50%) translateX(200px) translateZ(-150px) scale(0.65) rotateY(-35deg);
+  transform: translate(-50%, -50%) translateX(200px) translateZ(-150px)
+    scale(0.65) rotateY(-35deg);
   z-index: 2;
   filter: blur(3px);
 }
@@ -2777,18 +3284,24 @@ export default {
 /* 其他隐藏的图片 */
 .carousel-item:not(.active):not(.prev):not(.next) {
   opacity: 0;
-  transform: translate(-50%, -50%) translateX(0) translateZ(-200px) scale(0.3) rotateY(0deg);
+  transform: translate(-50%, -50%) translateX(0) translateZ(-200px) scale(0.3)
+    rotateY(0deg);
   z-index: 1;
 }
 
 .carousel-item::before {
-  content: '';
+  content: "";
   position: absolute;
   top: -4px;
   left: -4px;
   right: -4px;
   bottom: -4px;
-  background: linear-gradient(135deg, rgba(68, 150, 115, 0.6), rgba(61, 217, 201, 0.6), rgba(68, 150, 115, 0.6));
+  background: linear-gradient(
+    135deg,
+    rgba(68, 150, 115, 0.6),
+    rgba(61, 217, 201, 0.6),
+    rgba(68, 150, 115, 0.6)
+  );
   background-size: 200% 200%;
   border-radius: 16px;
   opacity: 0;
@@ -2804,7 +3317,6 @@ export default {
 }
 
 @keyframes borderGlow {
-
   0%,
   100% {
     opacity: 0.6;
@@ -2832,7 +3344,7 @@ export default {
 }
 
 .carousel-item::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -2840,8 +3352,14 @@ export default {
   bottom: 0;
   border: 2px solid transparent;
   border-radius: 14px;
-  background: linear-gradient(135deg, rgba(68, 150, 115, 0.3), rgba(61, 217, 201, 0.3)) padding-box,
-    linear-gradient(135deg, rgba(68, 150, 115, 0.8), rgba(61, 217, 201, 0.8)) border-box;
+  background: linear-gradient(
+        135deg,
+        rgba(68, 150, 115, 0.3),
+        rgba(61, 217, 201, 0.3)
+      )
+      padding-box,
+    linear-gradient(135deg, rgba(68, 150, 115, 0.8), rgba(61, 217, 201, 0.8))
+      border-box;
   opacity: 0;
   z-index: -1;
   transition: opacity 0.6s ease;
@@ -2854,19 +3372,15 @@ export default {
 }
 
 @keyframes borderPulse {
-
   0%,
   100% {
-    box-shadow:
-      0 0 20px rgba(68, 150, 115, 0.5),
+    box-shadow: 0 0 20px rgba(68, 150, 115, 0.5),
       inset 0 0 20px rgba(68, 150, 115, 0.1);
   }
 
   50% {
-    box-shadow:
-      0 0 40px rgba(68, 150, 115, 0.8),
-      0 0 60px rgba(61, 217, 201, 0.5),
-      inset 0 0 30px rgba(68, 150, 115, 0.2);
+    box-shadow: 0 0 40px rgba(68, 150, 115, 0.8),
+      0 0 60px rgba(61, 217, 201, 0.5), inset 0 0 30px rgba(68, 150, 115, 0.2);
   }
 }
 
@@ -2876,7 +3390,8 @@ export default {
   object-fit: contain;
   object-position: center center;
   border-radius: 14px;
-  filter: drop-shadow(0 20px 60px rgba(0, 0, 0, 0.6)) drop-shadow(0 0 40px rgba(68, 150, 115, 0.3));
+  filter: drop-shadow(0 20px 60px rgba(0, 0, 0, 0.6))
+    drop-shadow(0 0 40px rgba(68, 150, 115, 0.3));
   backface-visibility: hidden;
   transform-style: preserve-3d;
   transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
@@ -2887,19 +3402,24 @@ export default {
 }
 
 .carousel-item.active img {
-  filter: drop-shadow(0 25px 80px rgba(0, 0, 0, 0.7)) drop-shadow(0 0 60px rgba(68, 150, 115, 0.5)) drop-shadow(0 0 100px rgba(61, 217, 201, 0.3));
+  filter: drop-shadow(0 25px 80px rgba(0, 0, 0, 0.7))
+    drop-shadow(0 0 60px rgba(68, 150, 115, 0.5))
+    drop-shadow(0 0 100px rgba(61, 217, 201, 0.3));
   animation: imgGlow 3s ease-in-out infinite;
 }
 
 @keyframes imgGlow {
-
   0%,
   100% {
-    filter: drop-shadow(0 25px 80px rgba(0, 0, 0, 0.7)) drop-shadow(0 0 60px rgba(68, 150, 115, 0.5)) drop-shadow(0 0 100px rgba(61, 217, 201, 0.3));
+    filter: drop-shadow(0 25px 80px rgba(0, 0, 0, 0.7))
+      drop-shadow(0 0 60px rgba(68, 150, 115, 0.5))
+      drop-shadow(0 0 100px rgba(61, 217, 201, 0.3));
   }
 
   50% {
-    filter: drop-shadow(0 30px 100px rgba(0, 0, 0, 0.8)) drop-shadow(0 0 80px rgba(68, 150, 115, 0.7)) drop-shadow(0 0 120px rgba(61, 217, 201, 0.5));
+    filter: drop-shadow(0 30px 100px rgba(0, 0, 0, 0.8))
+      drop-shadow(0 0 80px rgba(68, 150, 115, 0.7))
+      drop-shadow(0 0 120px rgba(61, 217, 201, 0.5));
   }
 }
 
@@ -2941,13 +3461,17 @@ export default {
 }
 
 .product-card::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, rgba(68, 150, 115, 0.1) 0%, rgba(61, 217, 201, 0.05) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(68, 150, 115, 0.1) 0%,
+    rgba(61, 217, 201, 0.05) 100%
+  );
   opacity: 0;
   transition: opacity 0.4s ease;
   z-index: 1;
@@ -2956,13 +3480,17 @@ export default {
 }
 
 .product-card::after {
-  content: '';
+  content: "";
   position: absolute;
   top: -2px;
   left: -2px;
   right: -2px;
   bottom: -2px;
-  background: linear-gradient(135deg, rgba(68, 150, 115, 0.3), rgba(61, 217, 201, 0.3));
+  background: linear-gradient(
+    135deg,
+    rgba(68, 150, 115, 0.3),
+    rgba(61, 217, 201, 0.3)
+  );
   border-radius: 16px;
   opacity: 0;
   transition: opacity 0.4s ease;
@@ -2972,9 +3500,7 @@ export default {
 
 .product-card:hover {
   transform: translateY(-8px) scale(1.02);
-  box-shadow:
-    0 20px 60px rgba(0, 0, 0, 0.4),
-    0 0 40px rgba(68, 150, 115, 0.2),
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 40px rgba(68, 150, 115, 0.2),
     inset 0 0 30px rgba(68, 150, 115, 0.1);
   border-color: rgba(68, 150, 115, 0.3);
 }
@@ -3052,11 +3578,11 @@ export default {
 
 .product-card:hover .product-icon {
   transform: scale(1.15) rotate(5deg);
-  filter: drop-shadow(0 0 30px rgba(68, 150, 115, 0.9)) drop-shadow(0 0 15px rgba(68, 150, 115, 0.6));
+  filter: drop-shadow(0 0 30px rgba(68, 150, 115, 0.9))
+    drop-shadow(0 0 15px rgba(68, 150, 115, 0.6));
 }
 
 @keyframes iconFloat {
-
   0%,
   100% {
     transform: translateY(0);
@@ -3070,7 +3596,7 @@ export default {
 .product-title {
   font-size: 18px;
   font-weight: 600;
-  color: #3DD9C9;
+  color: #3dd9c9;
   margin-top: 10px;
   margin-left: 70px;
   transition: all 0.3s ease;
@@ -3084,13 +3610,13 @@ export default {
 }
 
 .product-title::after {
-  content: '';
+  content: "";
   position: absolute;
   left: -10px;
   bottom: -3px;
   width: 0;
   height: 2px;
-  background: linear-gradient(90deg, #449673, #3DD9C9);
+  background: linear-gradient(90deg, #449673, #3dd9c9);
   transition: width 0.3s ease;
 }
 
@@ -3120,13 +3646,17 @@ export default {
 }
 
 .services-section::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: radial-gradient(circle at 50% 50%, rgba(68, 150, 115, 0.05) 0%, transparent 70%);
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(68, 150, 115, 0.05) 0%,
+    transparent 70%
+  );
   pointer-events: none;
   z-index: 0;
 }
@@ -3164,13 +3694,17 @@ export default {
 }
 
 .service-card::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, rgba(68, 150, 115, 0.1) 0%, rgba(61, 217, 201, 0.05) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(68, 150, 115, 0.1) 0%,
+    rgba(61, 217, 201, 0.05) 100%
+  );
   opacity: 0;
   transition: opacity 0.4s ease;
   z-index: 1;
@@ -3179,13 +3713,17 @@ export default {
 }
 
 .service-card::after {
-  content: '';
+  content: "";
   position: absolute;
   top: -2px;
   left: -2px;
   right: -2px;
   bottom: -2px;
-  background: linear-gradient(135deg, rgba(68, 150, 115, 0.3), rgba(61, 217, 201, 0.3));
+  background: linear-gradient(
+    135deg,
+    rgba(68, 150, 115, 0.3),
+    rgba(61, 217, 201, 0.3)
+  );
   border-radius: 16px;
   opacity: 0;
   transition: opacity 0.4s ease;
@@ -3195,9 +3733,7 @@ export default {
 
 .service-card:hover {
   transform: translateY(-8px) scale(1.02);
-  box-shadow:
-    0 20px 60px rgba(0, 0, 0, 0.4),
-    0 0 40px rgba(68, 150, 115, 0.2),
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 40px rgba(68, 150, 115, 0.2),
     inset 0 0 30px rgba(68, 150, 115, 0.1);
   border-color: rgba(68, 150, 115, 0.3);
 }
@@ -3233,7 +3769,7 @@ export default {
 .service-title {
   font-size: 18px;
   font-weight: 600;
-  color: #3DD9C9;
+  color: #3dd9c9;
   padding: 20px 20px 10px;
   transition: all 0.3s ease;
   position: relative;
@@ -3247,13 +3783,13 @@ export default {
 }
 
 .service-title::after {
-  content: '';
+  content: "";
   position: absolute;
   left: 20px;
   bottom: 5px;
   width: 0;
   height: 2px;
-  background: linear-gradient(90deg, #449673, #3DD9C9);
+  background: linear-gradient(90deg, #449673, #3dd9c9);
   transition: width 0.3s ease;
 }
 
@@ -3274,5 +3810,286 @@ export default {
 .service-card:hover .service-desc {
   color: rgba(255, 255, 255, 0.9);
   transform: translateX(3px);
+}
+/* 右侧展示区域容器 */
+.awards-display-area {
+  flex: 0 1 50%; /* 稍微加宽一点图片区域 */
+  max-width: 500px;
+  position: relative;
+  height: 380px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 背景光效 */
+.display-bg-effects {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 20px;
+  z-index: 0;
+}
+
+.bg-gradient-orb {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(
+    circle,
+    rgba(68, 150, 115, 0.15) 0%,
+    transparent 70%
+  );
+  border-radius: 50%;
+  filter: blur(50px);
+}
+
+/* 图片容器 */
+.awards-image-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  overflow: hidden; /* 关键：隐藏超出部分，实现遮罩效果 */
+  border-radius: 16px;
+}
+
+.image-track {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+/* 单张图片卡片 */
+.award-image-card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.award-image-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* 保持比例 */
+  /* filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.5)); */
+  transition: transform 0.3s ease;
+}
+
+/* === 垂直切换动画 (核心) === */
+
+/* 激活状态：位于中间 */
+.slide-vertical-enter-active,
+.slide-vertical-leave-active {
+  transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1); /* 这种曲线更有高级感 */
+}
+
+/* 刚开始进入：在下方 (稍微带点缩放，更有层次感) */
+.slide-vertical-enter-from {
+  opacity: 0;
+  transform: translateY(30px) scale(0.95);
+}
+
+/* 离开时：往上方飘走 */
+.slide-vertical-leave-to {
+  opacity: 0;
+  transform: translateY(-30px) scale(0.95);
+}
+
+/* 确保 active 状态是归位的 */
+.slide-vertical-enter-to,
+.slide-vertical-leave-from {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* 左侧 Timeline 样式微调 (确保点击感更好) */
+.timeline-item {
+  cursor: pointer;
+  /* 增加点击区域 */
+  padding: 16px 20px;
+}
+
+/* 选中项高亮增强 */
+.timeline-item.active {
+  background: linear-gradient(90deg, rgba(68, 150, 115, 0.15), transparent);
+  border-left: 3px solid #449673;
+}
+/* 左侧列表调整 */
+/* 左侧列表调整 */
+.awards-timeline {
+  flex: 0 0 55%; /* 增加宽度占比，让盒子“拉长” */
+  max-width: 650px; /* 放宽最大宽度限制 */
+  margin-right: 40px;
+  z-index: 2;
+}
+
+.timeline-item {
+  display: flex;
+  flex-direction: row; /* 改为水平排列 */
+  align-items: center; /* 关键：垂直居中 */
+  justify-content: flex-start;
+  margin-left: 40px;
+  margin-bottom: 15px; /* 稍微减小间距 */
+  padding: 15px 25px; /* 调整内边距 */
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  cursor: pointer;
+  border-radius: 12px;
+  border-left: 3px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.2); /* 给个淡淡的背景，更有“框”的感觉 */
+}
+
+.timeline-year {
+  flex-shrink: 0; /* 防止年份被压缩 */
+  width: 80px; /* 固定宽度，保证对齐 */
+  font-size: 26px; /* 稍微加大年份字体 */
+  font-weight: 700;
+  color: #449673;
+  font-family: 'Segoe UI', sans-serif;
+  opacity: 0.7;
+  transition: all 0.3s ease;
+  margin-bottom: 0; /* 去掉之前的底部边距 */
+  margin-right: 20px; /* 给文字留出间距 */
+  text-align: left;
+}
+
+.timeline-text {
+  flex: 1; /* 占满剩余空间 */
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+  line-height: 1.5;
+  transition: all 0.3s ease;
+  
+  /* 核心：限制最多两行，超出省略 */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 激活状态 */
+.timeline-item.active {
+  background: linear-gradient(90deg, rgba(68, 150, 115, 0.2), transparent);
+  border-left-color: #449673;
+  transform: translateX(10px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2); /* 激活时加点阴影 */
+}
+
+.timeline-item.active .timeline-year {
+  opacity: 1;
+  transform: scale(1.1);
+  text-shadow: 0 0 20px rgba(68, 150, 115, 0.4);
+}
+
+.timeline-item.active .timeline-text {
+  color: #ffffff;
+}
+
+/* --- 右侧轮播核心样式 --- */
+
+.awards-display-area {
+  flex: 1;
+  position: relative;
+  height: 480px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.awards-wheel-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.wheel-card {
+  position: absolute;
+  left: 50%;
+  width: 100%;
+  max-width: 420px;
+  aspect-ratio: 16/10; /* 保持容器比例 */
+  
+  transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px;
+  /* overflow: hidden; */ /* 去掉 overflow hidden，防止投影被切 */
+  background: transparent; /* 背景透明，避免比例不一致时漏出背景色 */
+  
+  /* 默认隐藏状态 */
+  top: 150%; 
+  transform: translate(-50%, -50%) scale(0.5);
+  opacity: 0;
+  z-index: 1;
+}
+
+.wheel-card img {
+  width: 100%;
+  height: 100%;
+  /* 核心修改：改为 contain，确保展示完整原图比例 */
+  object-fit: contain; 
+  display: block;
+  scale: 1.50;
+  /* 加上一点投影让图片更立体 */
+  /* filter: drop-shadow(0 10px 20px rgba(0,0,0,0.4)); */
+}
+
+.wheel-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* background: rgba(0,0,0,0.6); 加深一点遮罩 */
+  transition: background 0.6s ease;
+  pointer-events: none;
+  border-radius: 16px; /* 匹配圆角 */
+}
+
+/* 1. Active (中间主图) */
+.wheel-card.active {
+  top: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+  z-index: 10;
+}
+.wheel-card.active .wheel-overlay {
+  background: rgba(0,0,0,0);
+}
+
+/* 2. Prev (上方备用图) */
+.wheel-card.prev {
+  top: 55%;
+  transform: translate(-50%, -90%) scale(0.75) perspective(1000px) rotateX(10deg);
+  opacity: 0.3;
+  z-index: 5;
+  filter: blur(2px) grayscale(50%); /* 加点灰度，区分更明显 */
+}
+
+/* 3. Next (下方备用图) */
+.wheel-card.next {
+  top: 83%;
+  transform: translate(-50%, -80%) scale(0.75) perspective(1000px) rotateX(-10deg);
+  opacity: 0.3;
+  z-index: 5;
+  filter: blur(2px) grayscale(50%);
 }
 </style>
