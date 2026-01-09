@@ -1707,7 +1707,8 @@ export default {
 }
 
 .partner-name.loreal {
-  font-family: 'Times New Roman', serif;
+  /* font-family: 'Times New Roman', serif; */
+  font-family: 'Segoe UI', 'SF Pro Display', -apple-system, sans-serif;
   letter-spacing: 3px;
   font-weight: 400;
 }
@@ -2091,6 +2092,7 @@ export default {
 
 .research-text {
   flex: 1;
+  margin-left: 104px;
 }
 
 .research-text p {

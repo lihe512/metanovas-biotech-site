@@ -41,7 +41,7 @@
           <div class="product-image">
             <img :src="getImageUrl('产品 上传_slices/5f32efefce24ecab5d982c2f71bceb481d42106550780a-j6abzI.png')" alt="Anti-inflammatory peptide" class="product-img" />
           </div>
-          <div class="product-tags">
+          <!-- <div class="product-tags">
             <div class="tag">
               <span class="tag-icon">🧬</span>
               <span>Anti-inflammatory<br>peptide</span>
@@ -58,7 +58,7 @@
               <span class="tag-icon">🧬</span>
               <span>Anti-inflammatory<br>peptide</span>
             </div>
-          </div>
+          </div> -->
         </div>
 
         <!-- 产品2: Anti-acne Peptide -->
@@ -74,7 +74,7 @@
             </div> -->
             <img :src="getImageUrl('产品 上传_slices/a175caef3866d383bd63c48efe6016c40a84042316ee1e-lthRuO_fw1200.png')" alt="Gingival Protection Peptide" class="product-img" />
           </div>
-          <div class="product-tags">
+          <!-- <div class="product-tags">
             <div class="tag">
               <span class="tag-icon">🧬</span>
               <span>Anti-inflammatory<br>peptide</span>
@@ -91,7 +91,7 @@
               <span class="tag-icon">🧬</span>
               <span>Anti-inflammatory<br>peptide</span>
             </div>
-          </div>
+          </div> -->
         </div>
 
         <!-- 产品3: Anti-wrinkle peptide -->
@@ -107,7 +107,7 @@
             </div> -->
             <img :src="getImageUrl('产品 上传_slices/8ee403a6bb5608f7a91f36fb4b8f592e27ae8554260b58-GtoNvz.png')" alt="Vaginal Care Antimicrobial Peptide" class="product-img" />
           </div>
-          <div class="product-tags">
+          <!-- <div class="product-tags">
             <div class="tag">
               <span class="tag-icon">🧬</span>
               <span>Anti-inflammatory<br>peptide</span>
@@ -124,7 +124,7 @@
               <span class="tag-icon">🧬</span>
               <span>Anti-inflammatory<br>peptide</span>
             </div>
-          </div>
+          </div> -->
         </div>
 
         <!-- 产品4: Gingival Protection Peptide -->
@@ -137,7 +137,7 @@
           <div class="product-image">
             <img :src="getImageUrl('产品 上传_slices/a175caef3866d383bd63c48efe6016c40a84042316ee1e-lthRuO_fw1200.png')" alt="Gingival Protection Peptide" class="product-img" />
           </div>
-          <div class="product-tags">
+          <!-- <div class="product-tags">
             <div class="tag">
               <span class="tag-icon">🧬</span>
               <span>Anti-inflammatory<br>peptide</span>
@@ -154,7 +154,7 @@
               <span class="tag-icon">🧬</span>
               <span>Anti-inflammatory<br>peptide</span>
             </div>
-          </div>
+          </div> -->
         </div>
 
         <!-- 产品5: Vaginal Care Antimicrobial Peptide -->
@@ -167,7 +167,7 @@
           <div class="product-image">
             <img :src="getImageUrl('产品 上传_slices/8ee403a6bb5608f7a91f36fb4b8f592e27ae8554260b58-GtoNvz.png')" alt="Vaginal Care Antimicrobial Peptide" class="product-img" />
           </div>
-          <div class="product-tags">
+          <!-- <div class="product-tags">
             <div class="tag">
               <span class="tag-icon">🧬</span>
               <span>Anti-inflammatory<br>peptide</span>
@@ -184,7 +184,7 @@
               <span class="tag-icon">🧬</span>
               <span>Anti-inflammatory<br>peptide</span>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
     </section>
