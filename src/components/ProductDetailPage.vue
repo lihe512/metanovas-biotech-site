@@ -1,9 +1,5 @@
 <template>
-  <div class="product-detail-page" @mousemove="onMouseMove" @mouseleave="onMouseLeave">
-    <!-- Hero Section -->
-    <!-- 自定义鼠标 -->
-    <div class="cursor-ball" ref="cursorBall"></div>
-    <div class="cursor-trail" v-for="(trail, index) in trails" :key="index" :style="trail.style"></div>
+  <div class="product-detail-page" >
     <section class="hero-section" :class="productSlug">
       <!-- 背景装饰效果 -->
       <div class="hero-bg-effects">
@@ -183,11 +179,11 @@ export default {
       // 根据不同的产品slug加载不同的数据
       const productMap = {
         'MetaTlr': {
-          title: 'MetaTlr',
+          title: 'MetaTLR',
         },
         'clearacne-magic': {
           title: 'ClearAcne Magic',
-          mainImage: '产品二级_slices/ClearAcneMagi.png',
+          mainImage: '产品二级_slices/output1.png',
           efficacyData: [
             { title: 'Inhibits P. acnes & S. aureus', description: 'Bacterial viability reduction' },
             { title: 'Inhibits acne-related inflammation & sebum secretion', description: 'Reduction of inflammatory cytokines' },
@@ -264,34 +260,7 @@ export default {
 </script>
 
 <style scoped>
-/* 自定义鼠标 - 蓝绿色小球 */
-.cursor-ball {
-  position: fixed;
-  width: 22px;
-  height: 22px;
-  background: radial-gradient(circle, #449673 0%, #3a7a5f 50%, rgba(68, 150, 115, 0.3) 100%);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 10000;
-  transform: translate(-50%, -50%);
-  box-shadow:
-    0 0 10px rgba(68, 150, 115, 0.8),
-    0 0 20px rgba(68, 150, 115, 0.5),
-    0 0 40px rgba(68, 150, 115, 0.3);
-  transition: opacity 0.3s ease;
-  opacity: 0;
-}
 
-/* 鼠标残影 */
-.cursor-trail {
-  position: fixed;
-  background: radial-gradient(circle, #449673 0%, rgba(68, 150, 115, 0.5) 50%, transparent 100%);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 9999;
-  transition: opacity 0.3s ease-out;
-  box-shadow: 0 0 12px rgba(61, 217, 201, 0.5);
-}
 
 /* 让链接和按钮显示正常指针 */
 .home-page a,

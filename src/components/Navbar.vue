@@ -23,7 +23,7 @@
             </router-link>
             <transition name="dropdown">
               <div v-if="showDropdown" class="dropdown-menu">
-                <router-link to="/products/MetaTlr" class="dropdown-item">MetaTlr</router-link>
+                <router-link to="/products/MetaTlr" class="dropdown-item">MetaTLR</router-link>
                 <router-link to="/products/clearacne-magic" class="dropdown-item">ClearAcne Magic</router-link>
                 <router-link to="/products/metacono" class="dropdown-item">MetaCono</router-link>
                 <router-link to="/products/omniyouth" class="dropdown-item">OmniYouth</router-link>

@@ -3,7 +3,7 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 import './styles/global.css'
-
+import cursorPlugin from './plugins/cursorPlugin' // 引入插件
 // // 添加平滑滚动
 // document.addEventListener('DOMContentLoaded', () => {
 //   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -42,4 +42,5 @@ import './styles/global.css'
 
 createApp(App)
   .use(router)
+  .use(cursorPlugin)
   .mount('#app')

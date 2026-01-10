@@ -1,9 +1,5 @@
 <template>
-  <div class="technology-page" @mousemove="onMouseMove" @mouseleave="onMouseLeave">
-    <!-- 自定义鼠标 -->
-    <div class="cursor-ball" ref="cursorBall"></div>
-    <div class="cursor-trail" v-for="(trail, index) in trails" :key="index" :style="trail.style"></div>
-
+  <div class="technology-page">
     <!-- Hero区域 - Technical Platform介绍 -->
     <section class="hero-section" ref="heroSection" @wheel="handleWheel">
       <div class="hero-bg">
@@ -382,29 +378,7 @@ export default {
   padding: 0 40px;
 }
 
-/* 自定义鼠标 */
-.cursor-ball {
-  position: fixed;
-  width: 22px;
-  height: 22px;
-  background: radial-gradient(circle, #3DD9C9 0%, #2DBDA8 50%, rgba(61, 217, 201, 0.3) 100%);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 10000;
-  transform: translate(-50%, -50%);
-  box-shadow: 0 0 10px rgba(61, 217, 201, 0.8), 0 0 20px rgba(61, 217, 201, 0.5);
-  transition: opacity 0.3s ease;
-  opacity: 0;
-}
 
-.cursor-trail {
-  position: fixed;
-  background: radial-gradient(circle, #3DD9C9 0%, rgba(61, 217, 201, 0.5) 50%, transparent 100%);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 9999;
-  box-shadow: 0 0 12px rgba(61, 217, 201, 0.5);
-}
 
 /* 导航栏 - 和主页一致 */
 .navbar {

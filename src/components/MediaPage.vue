@@ -1,8 +1,5 @@
 <template>
-  <div class="media-page" @mousemove="onMouseMove" @mouseleave="onMouseLeave">
-    <!-- 自定义鼠标 -->
-    <div class="cursor-ball" ref="cursorBall"></div>
-    <div class="cursor-trail" v-for="(trail, index) in trails" :key="index" :style="trail.style"></div>
+  <div class="media-page">
     <!-- Hero Section -->
     <section class="hero-section" ref="heroSection">
       <div class="container">

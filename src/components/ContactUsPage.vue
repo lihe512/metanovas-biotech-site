@@ -1,8 +1,5 @@
 <template>
-  <div class="contact-us-page" @mousemove="onMouseMove" @mouseleave="onMouseLeave">
-    <!-- 自定义鼠标 -->
-    <div class="cursor-ball" ref="cursorBall"></div>
-    <div class="cursor-trail" v-for="(trail, index) in trails" :key="index" :style="trail.style"></div>
+  <div class="contact-us-page" >
     <!-- Hero Section with Contact Form -->
     <section class="hero-section">
       <div class="hero-background">
@@ -287,34 +284,6 @@ export default {
 </script>
 
 <style scoped>
-/* 自定义鼠标 - 蓝绿色小球 */
-.cursor-ball {
-  position: fixed;
-  width: 22px;
-  height: 22px;
-  background: radial-gradient(circle, #449673 0%, #3a7a5f 50%, rgba(68, 150, 115, 0.3) 100%);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 10000;
-  transform: translate(-50%, -50%);
-  box-shadow:
-    0 0 10px rgba(68, 150, 115, 0.8),
-    0 0 20px rgba(68, 150, 115, 0.5),
-    0 0 40px rgba(68, 150, 115, 0.3);
-  transition: opacity 0.3s ease;
-  opacity: 0;
-}
-
-/* 鼠标残影 */
-.cursor-trail {
-  position: fixed;
-  background: radial-gradient(circle, #449673 0%, rgba(68, 150, 115, 0.5) 50%, transparent 100%);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 9999;
-  transition: opacity 0.3s ease-out;
-  box-shadow: 0 0 12px rgba(61, 217, 201, 0.5);
-}
 
 /* 让链接和按钮显示正常指针 */
 .home-page a,
