@@ -9,6 +9,9 @@
 
     <!--  Hero Section -->
     <section class="hero-section" ref="heroSection" @wheel="handleWheel">
+      <div class="hero-full-bg">
+        <img src="../../public/home.png" alt="Hero Background" />
+      </div>
       <div class="hero-content">
         <h1 class="hero-title">
           <span class="hero-title-main">MetaNovas</span>
@@ -22,30 +25,6 @@
         <div class="hero-cursive-wrapper">
           <img src="/home_slices/Biotech.png" alt="Biotech" class="hero-cursive-img" />
         </div>
-      </div>
-      <div class="hero-visual">
-        <!-- 光环特效 -->
-        <!-- <div class="sphere-glow-ring ring-1"></div>
-        <div class="sphere-glow-ring ring-2"></div>
-        <div class="sphere-glow-ring ring-3"></div> -->
-        <!-- 球体周围旋转光环 -->
-        <!-- <div class="sphere-orbiting-ring ring-orb-1"></div>
-        <div class="sphere-orbiting-ring ring-orb-2"></div> -->
-        <!-- 球体光晕层 -->
-        <!-- <div class="sphere-aura"></div> -->
-        <!-- 浮动粒子 -->
-        <!-- <div class="particle particle-1"></div>
-        <div class="particle particle-2"></div>
-        <div class="particle particle-3"></div>
-        <div class="particle particle-4"></div>
-        <div class="particle particle-5"></div>
-        <div class="particle particle-6"></div> -->
-        <!-- Hero 大球体 - 数据云球 -->
-        <!-- <div class="sphere-wrapper">
-          <video src="/public/ball.mp4" class="hero-sphere-img" autoplay loop muted playsinline>
-            Your browser does not support the video tag.
-          </video>
-        </div> -->
       </div>
     </section>
 
@@ -1023,14 +1002,37 @@ export default {
   gap: 200px;
   padding: 100px 60px 0;
   position: relative;
+  /* background-image: url("/home.png");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  z-index: 0; */
+}
+.hero-full-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1; 
+  overflow: hidden;
 }
 
+.hero-full-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures the image fills the area without stretching */
+  object-position: center;
+  display: block;
+}
 .hero-content {
   flex: 0 0 auto;
   max-width: 480px;
   text-align: left;
   transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
+  left: -320px;
+  top: -20px;
   z-index: 2;
 }
 
@@ -1109,6 +1111,7 @@ export default {
   position: relative;
   transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: none;
+  z-index: 2;
 }
 
 .hero-visual:hover {
