@@ -398,7 +398,7 @@ export default {
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
-  box-shadow: 0 2px 8px rgba(61, 217, 201, 0.3);
+  /* box-shadow: 0 2px 8px rgba(61, 217, 201, 0.3); */
 }
 
 .logo-icon img {
@@ -438,13 +438,13 @@ export default {
 
 .footer-brand:hover .logo-icon {
   transform: rotate(5deg) scale(1.1);
-  box-shadow:
+  /* box-shadow:
     0 4px 16px rgba(61, 217, 201, 0.5),
-    0 0 30px rgba(68, 150, 115, 0.4);
+    0 0 30px rgba(68, 150, 115, 0.4); */
 }
 
 .footer-brand:hover .logo-icon img {
-  filter: brightness(1.2) saturate(1.2);
+  /* filter: brightness(1.2) saturate(1.2); */
 }
 
 .footer-brand:hover .logo-icon::before {

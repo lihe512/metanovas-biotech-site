@@ -560,21 +560,11 @@ export default {
     }
   },
   methods: {
-    // 计算每个卡片的样式类：active, prev, next, 或 hidden
     getWheelClass(index) {
       const current = this.currentAwardIndex;
       const total = this.awardsData.length;
 
-      // 计算相对距离 (考虑循环，比如总共5个，当前是0，那么4应该是prev)
-      // 这里的逻辑确保 prev 是 -1, active 是 0, next 是 1
       let diff = (index - current + total) % total;
-
-      // 调整 diff，使其变成 -1, 0, 1 的形式，方便判断
-      // 例如 total=5:
-      // 如果 diff 是 0 -> active
-      // 如果 diff 是 1 -> next
-      // 如果 diff 是 4 (即 total-1) -> prev (视为 -1)
-
       if (diff === 0) {
         return 'active';
       } else if (diff === 1) {
@@ -582,34 +572,31 @@ export default {
       } else if (diff === total - 1) {
         return 'prev';
       } else {
-        return 'hidden'; // 其他图片隐藏
+        return 'hidden'; 
       }
     },
-
-    // 点击切换（保持不变）
     handleAwardClick(index) {
       this.currentAwardIndex = index;
+      this.startAwardsCarousel()
     },
-    // 新增：About 轮播控制方法
     nextAboutSlide() {
       if (this.currentAboutIndex < this.aboutSlides.length - 1) {
         this.currentAboutIndex++;
       } else {
-        this.currentAboutIndex = 0; // 循环播放
+        this.currentAboutIndex = 0;
       }
     },
     prevAboutSlide() {
       if (this.currentAboutIndex > 0) {
         this.currentAboutIndex--;
       } else {
-        this.currentAboutIndex = this.aboutSlides.length - 1; // 循环播放
+        this.currentAboutIndex = this.aboutSlides.length - 1;
       }
     },
     scrollToHash() {
       if (!this.$route.hash) return;
 
       this.$nextTick(() => {
-        // 再等一帧，确保布局稳定
         requestAnimationFrame(() => {
           const el = document.querySelector(this.$route.hash);
           if (!el) return;
@@ -765,7 +752,7 @@ export default {
       if (logoNum <= filenames.length) {
         event.target.src =
           "/home_slices/" + encodeURIComponent(filenames[logoNum - 1]);
-      }
+      }handleAwardClick
     },
 
     getCarouselItemClass(index) {
@@ -792,6 +779,9 @@ export default {
     },
 
     startAwardsCarousel() {
+      if(this.awardsCarouselInterval){
+        clearInterval(this.awardsCarouselInterval)
+      }
       this.awardsCarouselInterval = setInterval(() => {
         this.currentAwardIndex =
           (this.currentAwardIndex + 1) % this.awardsData.length;
@@ -1021,7 +1011,7 @@ export default {
 .hero-full-bg img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Ensures the image fills the area without stretching */
+  object-fit: contain;
   object-position: center;
   display: block;
 }
