@@ -2,12 +2,7 @@
   <div class="home-page" @mousemove="onMouseMove" @mouseleave="onMouseLeave">
     <!-- 自定义鼠标 -->
     <div class="cursor-ball" ref="cursorBall"></div>
-    <div
-      class="cursor-trail"
-      v-for="(trail, index) in trails"
-      :key="index"
-      :style="trail.style"
-    ></div>
+    <div class="cursor-trail" v-for="(trail, index) in trails" :key="index" :style="trail.style"></div>
 
     <!-- 背景层 -->
     <div class="page-background"></div>
@@ -25,108 +20,66 @@
         </p>
         <!--  Biotech -->
         <div class="hero-cursive-wrapper">
-          <img
-            src="/home_slices/Biotech.png"
-            alt="Biotech"
-            class="hero-cursive-img"
-          />
+          <img src="/home_slices/Biotech.png" alt="Biotech" class="hero-cursive-img" />
         </div>
       </div>
       <div class="hero-visual">
         <!-- 光环特效 -->
-        <div class="sphere-glow-ring ring-1"></div>
+        <!-- <div class="sphere-glow-ring ring-1"></div>
         <div class="sphere-glow-ring ring-2"></div>
-        <div class="sphere-glow-ring ring-3"></div>
+        <div class="sphere-glow-ring ring-3"></div> -->
         <!-- 球体周围旋转光环 -->
-        <div class="sphere-orbiting-ring ring-orb-1"></div>
-        <div class="sphere-orbiting-ring ring-orb-2"></div>
+        <!-- <div class="sphere-orbiting-ring ring-orb-1"></div>
+        <div class="sphere-orbiting-ring ring-orb-2"></div> -->
         <!-- 球体光晕层 -->
-        <div class="sphere-aura"></div>
+        <!-- <div class="sphere-aura"></div> -->
         <!-- 浮动粒子 -->
-        <div class="particle particle-1"></div>
+        <!-- <div class="particle particle-1"></div>
         <div class="particle particle-2"></div>
         <div class="particle particle-3"></div>
         <div class="particle particle-4"></div>
         <div class="particle particle-5"></div>
-        <div class="particle particle-6"></div>
+        <div class="particle particle-6"></div> -->
         <!-- Hero 大球体 - 数据云球 -->
-        <div class="sphere-wrapper">
-          <img src="/ball.png" alt="Biotech Sphere" class="hero-sphere-img" />
-          <div class="sphere-shimmer"></div>
-        </div>
+        <!-- <div class="sphere-wrapper">
+          <video src="/public/ball.mp4" class="hero-sphere-img" autoplay loop muted playsinline>
+            Your browser does not support the video tag.
+          </video>
+        </div> -->
       </div>
     </section>
 
     <!-- Featured on 媒体展示 -->
-    <section
-      class="featured-section"
-      ref="featuredSection"
-      @wheel="handleWheel"
-    >
+    <section class="featured-section" ref="featuredSection" @wheel="handleWheel">
       <div class="container">
         <p class="featured-title">Featured on</p>
         <div class="featured-logos">
           <div class="logo-item">
-            <img
-              :src="logo1"
-              alt="Digital Journal"
-              class="featured-logo-img"
-              @error="handleImageError($event, 1)"
-            />
+            <img :src="logo1" alt="Digital Journal" class="featured-logo-img" @error="handleImageError($event, 1)" />
           </div>
           <div class="logo-item">
-            <img
-              :src="logo2"
-              alt="Business Insider"
-              class="featured-logo-img"
-              @error="handleImageError($event, 2)"
-            />
+            <img :src="logo2" alt="Business Insider" class="featured-logo-img" @error="handleImageError($event, 2)" />
           </div>
           <div class="logo-item">
-            <img
-              :src="logo3"
-              alt="Bloomberg"
-              class="featured-logo-img"
-              @error="handleImageError($event, 3)"
-            />
+            <img :src="logo3" alt="Bloomberg" class="featured-logo-img" @error="handleImageError($event, 3)" />
           </div>
           <div class="logo-item">
-            <img
-              :src="logo4"
-              alt="Benzinga"
-              class="featured-logo-img"
-              @error="handleImageError($event, 4)"
-            />
+            <img :src="logo4" alt="Benzinga" class="featured-logo-img" @error="handleImageError($event, 4)" />
           </div>
           <div class="logo-item">
-            <img
-              :src="logo5"
-              alt="Yahoo Finance"
-              class="featured-logo-img"
-              @error="handleImageError($event, 5)"
-            />
+            <img :src="logo5" alt="Yahoo Finance" class="featured-logo-img" @error="handleImageError($event, 5)" />
           </div>
           <div class="logo-item">
-            <img
-              :src="logo6"
-              alt="MarketWatch"
-              class="featured-logo-img"
-              @error="handleImageError($event, 6)"
-            />
+            <img :src="logo6" alt="MarketWatch" class="featured-logo-img" @error="handleImageError($event, 6)" />
           </div>
         </div>
       </div>
     </section>
 
     <!-- About Us 关于我们 -->
-    <section
-      id="about"
-      class="about-section"
-      ref="aboutSection"
-      @wheel="handleWheel"
-    >
-      <div class="container">
-        <!-- <div class="about-content">
+    <section id="about" class="about-section" ref="aboutSection" @wheel="handleWheel">
+      <!-- <div class="container"> -->
+      <!-- <div class="about-content">
           <div class="about-text">
             <h2 class="section-title">About Us</h2>
             <p>MetaNovas Biotech is an innovative biotechnology company established in early 2021 in San Jose, USA and
@@ -143,51 +96,44 @@
             <img :src="aboutGridImage" alt="About MetaNovas" class="about-grid-img" />
           </div>
         </div> -->
-        <div class="container">
-          <div class="about-carousel-wrapper">
-            <button class="carousel-nav-btn prev-btn" @click="prevAboutSlide">
+      <div class="container">
+        <h2 class="section-title">About Us</h2>
+        <div class="about-carousel-wrapper">
+          <!-- <button class="carousel-nav-btn prev-btn" @click="prevAboutSlide">
               <span class="nav-arrow">←</span>
             </button>
             <button class="carousel-nav-btn next-btn" @click="nextAboutSlide">
               <span class="nav-arrow">→</span>
-            </button>
+            </button> -->
+          <button class="nav-btn prev-btn" @click="prevAboutSlide">
+            <div class="gradient-arrow arrow-left"></div>
+             <!-- <img src="/public/home_slices/左箭头.svg" alt=""> -->
+          </button>
 
-            <div
-              class="about-carousel-track"
-              :style="{ transform: `translateX(-${currentAboutIndex * 100}%)` }"
-            >
-              <div
-                class="about-slide"
-                v-for="(item, index) in aboutSlides"
-                :key="index"
-              >
-                <div class="about-content">
-                  <div class="about-text">
-                    <h2 class="section-title">{{ item.title }}</h2>
-                    <p>{{ item.text }}</p>
-                  </div>
-                  <div class="about-images">
-                    <img
-                      :src="item.image"
-                      :alt="item.title"
-                      class="about-grid-img"
-                    />
-                  </div>
+          <button class="nav-btn next-btn" @click="nextAboutSlide">
+            <div class="gradient-arrow arrow-right"></div>
+             <!-- <img src="/public/home_slices/右箭头.svg" alt=""/> -->
+          </button>
+
+          <div class="about-carousel-track" :style="{ transform: `translateX(-${currentAboutIndex * 100}%)` }">
+            <div class="about-slide" v-for="(item, index) in aboutSlides" :key="index">
+              <div class="about-content">
+                <div class="about-text">
+                  <p>{{ item.text }}</p>
+                </div>
+                <div class="about-images">
+                  <img :src="item.image" :alt="item.title" class="about-grid-img" />
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+      <!-- </div> -->
     </section>
 
     <!-- Cooperative Partnerships 合作伙伴 -->
-    <section
-      id="partners"
-      class="partners-section"
-      ref="partnersSection"
-      @wheel="handleWheel"
-    >
+    <section id="partners" class="partners-section" ref="partnersSection" @wheel="handleWheel">
       <div class="container" id="Cooperative" ref="cooperative">
         <h2 class="section-title">Cooperative Partnerships</h2>
         <p class="partners-description">
@@ -225,12 +171,7 @@
     </section>
 
     <!-- Technical Platform 技术平台 -->
-    <section
-      id="technology"
-      class="technology-section"
-      ref="technologySection"
-      @wheel="handleWheel"
-    >
+    <section id="technology" class="technology-section" ref="technologySection" @wheel="handleWheel">
       <div class="container">
         <h2 class="section-title">Technical Platform</h2>
         <div class="tech-cards">
@@ -267,12 +208,7 @@
     </section>
 
     <!-- R&D Services 研发服务 -->
-    <section
-      id="research"
-      class="research-section"
-      ref="researchSection"
-      @wheel="handleWheel"
-    >
+    <section id="research" class="research-section" ref="researchSection" @wheel="handleWheel">
       <div class="container" id="RDservices" ref="rd">
         <h2 class="section-title">R&D Services</h2>
         <div class="research-services-list">
@@ -303,16 +239,12 @@
               </p>
               <div class="research-stats">
                 <div class="stat-item">
-                  <img :src="stat45Image" alt="45%" class="stat-img" />
-                  <span class="stat-label"
-                    >R&D success Increase<br />over 45%</span
-                  >
+                  <img :src="stat45Image" alt="45%" class="stat-img" loading="lazy" />
+                  <span class="stat-label">R&D success Increase<br />over 45%</span>
                 </div>
                 <div class="stat-item">
                   <img :src="timeImage" alt="Time" class="stat-time-img" />
-                  <span class="stat-label"
-                    >Reduce R&D cycle<br />from months to weeks</span
-                  >
+                  <span class="stat-label">Reduce R&D cycle<br />from months to weeks</span>
                 </div>
               </div>
             </div>
@@ -320,46 +252,6 @@
         </div>
       </div>
     </section>
-
-    <!-- Awards and Honors 奖项荣誉 -->
-    <!-- <section class="awards-section" ref="awardsSection" @wheel="handleWheel">
-      <div class="container" id="AwardsHonours" ref="awards">
-        <h2 class="section-title">Awards and Honors</h2>
-        <p class="awards-description">MetaNovas has not only received recognition in numerous international top-tier
-          events for its professional knowledge and leading R&D capabilities, but also earned acclaim from various
-          mainstream international media.</p>
-        <div class="awards-content-wrapper">
-          <div class="awards-content">
-            <div class="awards-timeline">
-              <div v-for="(award, index) in awardsData" :key="index" class="timeline-item"
-                :class="{ active: currentAwardIndex === index }" @click="currentAwardIndex = index">
-                <div class="timeline-dot"></div>
-                <p class="timeline-text">{{ award.text }}</p>
-                <div v-if="currentAwardIndex === index" class="active-glow"></div>
-              </div>
-            </div>
-            <div class="awards-carousel">
-              <div class="carousel-bg-effects">
-                <div class="bg-circle bg-circle-1"></div>
-                <div class="bg-circle bg-circle-2"></div>
-                <div class="bg-circle bg-circle-3"></div>
-                <div class="bg-gradient-orb"></div>
-                <div class="bg-particles">
-                  <div class="particle" v-for="i in 12" :key="i" :style="{ '--delay': i * 0.2 + 's' }"></div>
-                </div>
-              </div>
-              <div class="carousel-container">
-                <div v-for="(award, index) in awardsData" :key="index" class="carousel-item"
-                  :class="{ active: currentAwardIndex === index }"
-                  :style="{ zIndex: awardsData.length - Math.abs(index - currentAwardIndex) }">
-                  <img :src="award.image" :alt="award.text" />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section> -->
     <section class="awards-section" ref="awardsSection" @wheel="handleWheel">
       <div class="container" id="AwardsHonours" ref="awards">
         <h2 class="section-title">Awards and Honors</h2>
@@ -373,13 +265,8 @@
         <div class="awards-content-wrapper">
           <div class="awards-content">
             <div class="awards-timeline">
-              <div
-                v-for="(award, index) in awardsData"
-                :key="index"
-                class="timeline-item"
-                :class="{ active: currentAwardIndex === index }"
-                @click="handleAwardClick(index)"
-              >
+              <div v-for="(award, index) in awardsData" :key="index" class="timeline-item"
+                :class="{ active: currentAwardIndex === index }" @click="handleAwardClick(index)">
                 <span class="timeline-year">{{ award.year }}</span>
                 <p class="timeline-text">{{ award.text }}</p>
               </div>
@@ -391,13 +278,8 @@
               </div>
 
               <div class="awards-wheel-container">
-                <div
-                  v-for="(award, index) in awardsData"
-                  :key="index"
-                  class="wheel-card"
-                  :class="getWheelClass(index)"
-                >
-                  <img :src="award.image" :alt="award.text" />
+                <div v-for="(award, index) in awardsData" :key="index" class="wheel-card" :class="getWheelClass(index)">
+                  <img :src="award.image" :alt="award.text" loading="lazy" />
                   <div class="wheel-overlay"></div>
                 </div>
               </div>
@@ -407,33 +289,16 @@
       </div>
     </section>
     <!-- Products 产品 -->
-    <section
-      id="products"
-      class="products-section"
-      ref="productsSection"
-      @wheel="handleWheel"
-    >
+    <section id="products" class="products-section" ref="productsSection" @wheel="handleWheel">
       <div class="container" id="Products" ref="products">
         <h2 class="section-title">Products</h2>
         <div class="products-grid">
-          <div
-            class="product-card"
-            v-for="(product, index) in products"
-            :key="index"
-          >
+          <div class="product-card" v-for="(product, index) in products" :key="index">
             <div class="product-image">
-              <img
-                :src="getProductBgImage(index)"
-                :alt="product.name"
-                class="product-bg-img"
-              />
+              <img :src="getProductBgImage(index)" :alt="product.name" class="product-bg-img" loading="lazy" />
             </div>
             <div class="product-content">
-              <img
-                :src="getProductIcon(index)"
-                :alt="product.name"
-                class="product-icon"
-              />
+              <img :src="getProductIcon(index)" :alt="product.name" class="product-icon" loading="lazy" />
               <h3 class="product-title">{{ product.name }}</h3>
               <p class="product-desc" v-if="product.desc">{{ product.desc }}</p>
             </div>
@@ -443,12 +308,7 @@
     </section>
 
     <!-- Services 服务 -->
-    <section
-      id="services"
-      class="services-section"
-      ref="servicesSection"
-      @wheel="handleWheel"
-    >
+    <section id="services" class="services-section" ref="servicesSection" @wheel="handleWheel">
       <div class="container">
         <h2 class="section-title">Services</h2>
         <p class="services-description">
@@ -458,17 +318,9 @@
           development for R&D teams.
         </p>
         <div class="services-grid">
-          <div
-            class="service-card"
-            v-for="(service, index) in services"
-            :key="index"
-          >
+          <div class="service-card" v-for="(service, index) in services" :key="index">
             <div class="service-image">
-              <img
-                :src="getServiceImage(index)"
-                :alt="service.name"
-                class="service-bg-img"
-              />
+              <img :src="getServiceImage(index)" :alt="service.name" class="service-bg-img" loading="lazy" />
             </div>
             <h3 class="service-title">{{ service.name }}</h3>
             <p class="service-desc">{{ service.desc }}</p>
@@ -581,15 +433,19 @@ export default {
     aboutSlides() {
       return [
         {
-          title: "About Us",
-          text: "MetaNovas Biotech is an innovative biotechnology company established in early 2021 in San Jose, USA and Shanghai, China. Our mission is to integrate artificial intelligence with life sciences and delve into complex biological networks through deep learning knowledge graphs, natural language processing and multi-omicsanalysis, MetaNovas is dedicated to becoming a global leader in AI-driven efficient ingredient and product design and development platforms.",
-          image: this.aboutGridImage,
+          // title: "About Us",
+          text: "With the principles of science, professionalism and innovation, MetaNovas has gained recognition from international brands such as L'Oréal and Beiersdorf. We have established long-term and stable partnerships with many top brands in cosmetics, foods and biopharmaceuticals, becoming their core technology collaborator and raw material supplier.",
+          image: '/about-us-card01.jpg'
         },
-        // 为了演示轮播效果，这里复制了第二份数据，您可以修改成不同的内容
         {
-          title: "Our Mission",
-          text: "We are committed to revolutionizing the biotech industry by leveraging cutting-edge AI technologies. Our platform accelerates discovery and development, ensuring safer and more effective solutions for global health and beauty.",
-          image: this.aboutGridImage, // 您可以换成另一张图
+          // title: "Our Mission",
+          text: "Since its inception, MetaNovas has achieved significant progress and earned international recognition and awards. We not only joined the Massachusetts Institute of Technology Industrial Liaison Program, but also had the honor of delivering a top-tier industry presentation at the 33rd IFSCC International Congress of Cosmetic Sciences. As a notable biotech startup, we were crowned as the champion of the 'L'Oréal Big Bang Beauty Tech Challenge' and have been recognized as one of the world's most promising health technology companies for two consecutive years.",
+          image: '/about-us-card02.jpg',
+        },
+        {
+          // title: "Our Mission",
+          text: "MetaNovas Biotech is an innovative biotechnology company established in early 2021 in Los Angeles, USA and Shanghai, China. Our mission is to integrate artificial intelligence with life sciences and delve into complex biological networks through deep learning, knowledge graphs, natural language processing and multi-omics analysis. MetaNovas is dedicated to becoming a global leader in AI-driven efficient ingredient and product design and development platforms.",
+          image: '/about-us-card03.jpg',
         },
       ];
     },
@@ -729,17 +585,17 @@ export default {
     getWheelClass(index) {
       const current = this.currentAwardIndex;
       const total = this.awardsData.length;
-      
+
       // 计算相对距离 (考虑循环，比如总共5个，当前是0，那么4应该是prev)
       // 这里的逻辑确保 prev 是 -1, active 是 0, next 是 1
       let diff = (index - current + total) % total;
-      
+
       // 调整 diff，使其变成 -1, 0, 1 的形式，方便判断
       // 例如 total=5:
       // 如果 diff 是 0 -> active
       // 如果 diff 是 1 -> next
       // 如果 diff 是 4 (即 total-1) -> prev (视为 -1)
-      
+
       if (diff === 0) {
         return 'active';
       } else if (diff === 1) {
@@ -750,7 +606,7 @@ export default {
         return 'hidden'; // 其他图片隐藏
       }
     },
-    
+
     // 点击切换（保持不变）
     handleAwardClick(index) {
       this.currentAwardIndex = index;
@@ -1043,12 +899,10 @@ export default {
   position: fixed;
   width: 22px;
   height: 22px;
-  background: radial-gradient(
-    circle,
-    #449673 0%,
-    #3a7a5f 50%,
-    rgba(68, 150, 115, 0.3) 100%
-  );
+  background: radial-gradient(circle,
+      #449673 0%,
+      #3a7a5f 50%,
+      rgba(68, 150, 115, 0.3) 100%);
   border-radius: 50%;
   pointer-events: none;
   z-index: 10000;
@@ -1062,12 +916,10 @@ export default {
 /* 鼠标残影 */
 .cursor-trail {
   position: fixed;
-  background: radial-gradient(
-    circle,
-    #449673 0%,
-    rgba(68, 150, 115, 0.5) 50%,
-    transparent 100%
-  );
+  background: radial-gradient(circle,
+      #449673 0%,
+      rgba(68, 150, 115, 0.5) 50%,
+      transparent 100%);
   border-radius: 50%;
   pointer-events: none;
   z-index: 9999;
@@ -1263,12 +1115,10 @@ export default {
   transform: translateX(-15px) translateY(-10px) scale(1.05);
 }
 
-.hero-visual:hover .hero-sphere-img {
+/* .hero-visual:hover .hero-sphere-img {
   transform: scale(1.1) rotate(10deg);
-  filter: drop-shadow(0 0 100px rgba(61, 217, 201, 0.9))
-    drop-shadow(0 0 180px rgba(61, 217, 201, 0.6))
-    drop-shadow(0 0 250px rgba(64, 253, 179, 0.4));
-}
+  filter: drop-shadow(0 0 100px rgba(61, 217, 201, 0.9)) drop-shadow(0 0 180px rgba(61, 217, 201, 0.6)) drop-shadow(0 0 250px rgba(64, 253, 179, 0.4));
+} */
 
 .hero-visual:hover .sphere-glow-ring {
   opacity: 0.8;
@@ -1291,13 +1141,13 @@ export default {
 }
 
 /* 光环特效 */
-.sphere-glow-ring {
+/* .sphere-glow-ring {
   position: absolute;
   border-radius: 50%;
   border: 1px solid rgba(61, 217, 201, 0.3);
   pointer-events: none;
   transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-}
+} */
 
 .ring-1 {
   width: 780px;
@@ -1325,6 +1175,7 @@ export default {
 }
 
 @keyframes ringPulse {
+
   0%,
   100% {
     opacity: 0.3;
@@ -1403,6 +1254,7 @@ export default {
 }
 
 @keyframes particleFloat {
+
   0%,
   100% {
     transform: translateY(0) translateX(0);
@@ -1432,33 +1284,26 @@ export default {
 }
 
 .hero-sphere-img {
-  width: 550px;
-  height: 550px;
+  width: 700px;
+  height: 700px;
   object-fit: cover;
-  border-radius: 50%;
-  animation: floatSphere 6s ease-in-out infinite,
-    sphereGlow 3s ease-in-out infinite alternate;
-  filter: drop-shadow(0 0 45px rgba(61, 217, 201, 0.6))
-    drop-shadow(0 0 90px rgba(61, 217, 201, 0.4))
-    drop-shadow(0 0 130px rgba(64, 253, 179, 0.2));
-  transition: all 0.5s ease;
+  border-radius: 2%;
+  /* animation: floatSphere 6s ease-in-out infinite; */
+  /* filter: drop-shadow(0 0 45px rgba(61, 217, 201, 0.6)) drop-shadow(0 0 90px rgba(61, 217, 201, 0.4)) drop-shadow(0 0 130px rgba(64, 253, 179, 0.2)); */
+  /* transition: all 0.5s ease; */
   position: relative;
   z-index: 1;
   /* 边缘模糊渐变 */
-  mask-image: radial-gradient(
-    circle,
-    rgba(0, 0, 0, 1) 50%,
-    rgba(0, 0, 0, 0.8) 65%,
-    rgba(0, 0, 0, 0.4) 80%,
-    rgba(0, 0, 0, 0) 100%
-  );
-  -webkit-mask-image: radial-gradient(
-    circle,
-    rgba(0, 0, 0, 1) 50%,
-    rgba(0, 0, 0, 0.8) 65%,
-    rgba(0, 0, 0, 0.4) 80%,
-    rgba(0, 0, 0, 0) 100%
-  );
+  /* mask-image: radial-gradient(circle,
+      rgba(0, 0, 0, 1) 50%,
+      rgba(0, 0, 0, 0.8) 65%,
+      rgba(0, 0, 0, 0.4) 80%,
+      rgba(0, 0, 0, 0) 100%);
+  -webkit-mask-image: radial-gradient(circle,
+      rgba(0, 0, 0, 1) 50%,
+      rgba(0, 0, 0, 0.8) 65%,
+      rgba(0, 0, 0, 0.4) 80%,
+      rgba(0, 0, 0, 0) 100%); */
 }
 
 /* 球体闪烁光效 */
@@ -1470,13 +1315,11 @@ export default {
   width: 550px;
   height: 550px;
   border-radius: 50%;
-  background: radial-gradient(
-    circle at 30% 30%,
-    rgba(64, 253, 179, 0.3) 0%,
-    rgba(61, 217, 201, 0.2) 20%,
-    transparent 50%
-  );
-  animation: shimmerRotate 8s linear infinite;
+  /* background: radial-gradient(circle at 30% 30%,
+      rgba(64, 253, 179, 0.3) 0%,
+      rgba(61, 217, 201, 0.2) 20%,
+      transparent 50%);
+  animation: shimmerRotate 8s linear infinite; */
   pointer-events: none;
   z-index: 2;
   transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
@@ -1488,15 +1331,13 @@ export default {
   position: absolute;
   width: 620px;
   height: 620px;
-  border-radius: 50%;
-  background: radial-gradient(
-    circle,
-    rgba(61, 217, 201, 0.2) 0%,
-    rgba(64, 253, 179, 0.15) 30%,
-    rgba(61, 217, 201, 0.1) 50%,
-    transparent 70%
-  );
-  animation: auraPulse 4s ease-in-out infinite;
+  /* border-radius: 50%; */
+  /* background: radial-gradient(circle,
+      rgba(61, 217, 201, 0.2) 0%,
+      rgba(64, 253, 179, 0.15) 30%,
+      rgba(61, 217, 201, 0.1) 50%,
+      transparent 70%);
+  animation: auraPulse 4s ease-in-out infinite; */
   pointer-events: none;
   z-index: 0;
   right: calc(50% - 310px - 20px);
@@ -1506,14 +1347,14 @@ export default {
 }
 
 /* 围绕球体旋转的光环 */
-.sphere-orbiting-ring {
+/* .sphere-orbiting-ring {
   position: absolute;
   border-radius: 50%;
   border: 2px solid;
   pointer-events: none;
   z-index: 1;
   transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-}
+} */
 
 .ring-orb-1 {
   width: 600px;
@@ -1538,25 +1379,24 @@ export default {
 }
 
 /* 球体底部光晕 */
-.hero-visual::before {
+/* .hero-visual::before {
   content: "";
   position: absolute;
   width: 640px;
   height: 640px;
   right: -20px;
-  background: radial-gradient(
-    circle,
-    rgba(61, 217, 201, 0.15) 0%,
-    rgba(61, 217, 201, 0.05) 40%,
-    transparent 70%
-  );
+  background: radial-gradient(circle,
+      rgba(61, 217, 201, 0.15) 0%,
+      rgba(61, 217, 201, 0.05) 40%,
+      transparent 70%);
   border-radius: 50%;
   z-index: -1;
   animation: glowPulse 4s ease-in-out infinite;
-}
+} */
 
 /* 悬浮动画 */
 @keyframes floatSphere {
+
   0%,
   100% {
     transform: translateY(0px) rotate(0deg);
@@ -1578,15 +1418,11 @@ export default {
 /* 球体发光动画 */
 @keyframes sphereGlow {
   0% {
-    filter: drop-shadow(0 0 50px rgba(61, 217, 201, 0.6))
-      drop-shadow(0 0 100px rgba(61, 217, 201, 0.4))
-      drop-shadow(0 0 150px rgba(64, 253, 179, 0.2));
+    filter: drop-shadow(0 0 50px rgba(61, 217, 201, 0.6)) drop-shadow(0 0 100px rgba(61, 217, 201, 0.4)) drop-shadow(0 0 150px rgba(64, 253, 179, 0.2));
   }
 
   100% {
-    filter: drop-shadow(0 0 70px rgba(61, 217, 201, 0.8))
-      drop-shadow(0 0 130px rgba(61, 217, 201, 0.6))
-      drop-shadow(0 0 180px rgba(64, 253, 179, 0.4));
+    filter: drop-shadow(0 0 70px rgba(61, 217, 201, 0.8)) drop-shadow(0 0 130px rgba(61, 217, 201, 0.6)) drop-shadow(0 0 180px rgba(64, 253, 179, 0.4));
   }
 }
 
@@ -1609,6 +1445,7 @@ export default {
 
 /* 光晕脉冲动画 */
 @keyframes auraPulse {
+
   0%,
   100% {
     transform: translate(-50%, -50%) scale(1);
@@ -1634,15 +1471,14 @@ export default {
 
 /* 发光脉冲动画 */
 @keyframes glowPulse {
+
   0%,
   100% {
-    filter: drop-shadow(0 0 40px rgba(61, 217, 201, 0.4))
-      drop-shadow(0 0 80px rgba(61, 217, 201, 0.2));
+    filter: drop-shadow(0 0 40px rgba(61, 217, 201, 0.4)) drop-shadow(0 0 80px rgba(61, 217, 201, 0.2));
   }
 
   50% {
-    filter: drop-shadow(0 0 60px rgba(61, 217, 201, 0.6))
-      drop-shadow(0 0 100px rgba(61, 217, 201, 0.4));
+    filter: drop-shadow(0 0 60px rgba(61, 217, 201, 0.6)) drop-shadow(0 0 100px rgba(61, 217, 201, 0.4));
   }
 }
 
@@ -1763,6 +1599,7 @@ export default {
   padding: 8px;
   border-radius: 8px;
   transition: all 0.3s ease;
+  
 }
 
 .logo-item::before {
@@ -1777,18 +1614,22 @@ export default {
   opacity: 0;
   transition: opacity 0.3s ease;
   pointer-events: none;
+  color:#449673;
 }
 
 .logo-item:hover::before {
-  opacity: 1;
+  /* opacity: 1;
   border-color: #449673;
   box-shadow: 0 0 15px rgba(68, 150, 115, 0.4),
-    inset 0 0 15px rgba(68, 150, 115, 0.2);
+    inset 0 0 15px rgba(68, 150, 115, 0.2); */
+    color:#449673;
 }
 
 .logo-item:hover .featured-logo-img {
   opacity: 1;
   transform: scale(1.05);
+  /* color:#449673; */
+  filter: invert(52%) sepia(12%) saturate(1883%) hue-rotate(113deg) brightness(93%) contrast(89%);
 }
 
 /* About Section */
@@ -1870,6 +1711,7 @@ export default {
 }
 
 @keyframes titleGlow {
+
   0%,
   100% {
     text-shadow: 0 0 20px rgba(68, 150, 115, 0.5);
@@ -1959,16 +1801,17 @@ export default {
 }
 
 .about-grid-img {
-  width: 100%;
-  max-width: 400px;
-  height: auto;
+  /* width: 100%;
+  height: 100%; */
+  width: 500px;
+  height: 300px;
   border-radius: 16px;
 }
 
 /* 新增 */
 /* 新增/修改：About 轮播样式 */
 .about-carousel-wrapper {
-  position: relative;
+  /* position: relative; */
   width: 100%;
   overflow: hidden;
   /* 隐藏超出的 Slide */
@@ -2073,6 +1916,108 @@ export default {
   }
 }
 
+/* --- 1. 按钮容器 (完全透明，只负责位置和点击区域) --- */
+.nav-btn {
+  background: none;
+  /* 去掉背景色 */
+  border: none;
+  /* 去掉边框 */
+  cursor: pointer;
+  padding: 10px;
+  /* 给一点内边距，方便点击 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+
+  /* // 放在绝对定位的位置 (根据你的布局调整) */
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+}
+
+/* // 悬停时：整体稍微放大一点点 */
+.nav-btn:hover {
+  transform: translateY(-50%) scale(1.1);
+  /* // 如果想要悬停发光，可以加一点滤镜 */
+  filter: drop-shadow(0 0 5px rgba(0, 242, 96, 0.6));
+}
+
+
+/* // 左右位置微调 */
+.prev-btn {
+  left: 0;
+}
+
+.next-btn {
+  right: 0;
+}
+
+
+/* --- 2. 渐变箭头本体 (Mask法) --- */
+.gradient-arrow {
+  width: 40px;
+  /* 箭头大小，按需调整 */
+  height: 40px;
+
+  /* // 核心：设置蓝绿渐变 */
+  background: linear-gradient(to right, #00f260, #0575e6);
+
+  /* // 遮罩设置 */
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+}
+
+/* --- 3. 引入你的 SVG 文件 --- */
+.arrow-left {
+  -webkit-mask-image: url('/home_slices/左箭头.svg');
+  mask-image: url('/home_slices/左箭头.svg');
+  position: relative;
+  left: 0;
+  top: 0;
+}
+
+.arrow-right {
+  -webkit-mask-image: url('/home_slices/右箭头.svg');
+  mask-image: url('/home_slices/右箭头.svg');
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.nav-btn {
+  position: absolute;
+  top: 40%;
+  z-index: 20; 
+  margin-top: 50px; 
+}
+
+/* 左按钮 */
+.prev-btn {
+  left: 50%;
+  margin-left: -680px; 
+}
+
+.next-btn {
+  left: 50%; 
+  margin-left: 630px; 
+
+}
+@media (max-width: 1300px) {
+  .prev-btn {
+    left: 20px;
+    margin-left: 0;
+  }
+  .next-btn {
+    left: auto;
+    right: 20px;
+    margin-left: 0;
+  }
+}
 /* end: About 轮播样式 */
 /* Partners Section */
 .partners-section {
@@ -2092,15 +2037,13 @@ export default {
   transform: translateX(-50%);
   width: 100vw;
   height: 100%;
-  background: linear-gradient(
-    to bottom,
-    #000000 0%,
-    #000000 80%,
-    rgba(0, 0, 0, 0.9) 90%,
-    rgba(0, 0, 0, 0.7) 95%,
-    rgba(0, 0, 0, 0.4) 98%,
-    rgba(0, 0, 0, 0) 100%
-  );
+  background: linear-gradient(to bottom,
+      #000000 0%,
+      #000000 80%,
+      rgba(0, 0, 0, 0.9) 90%,
+      rgba(0, 0, 0, 0.7) 95%,
+      rgba(0, 0, 0, 0.4) 98%,
+      rgba(0, 0, 0, 0) 100%);
   z-index: 0;
 }
 
@@ -2258,12 +2201,10 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: radial-gradient(
-    circle,
-    rgba(68, 150, 115, 0.15) 0%,
-    rgba(68, 150, 115, 0.05) 50%,
-    transparent 80%
-  );
+  background: radial-gradient(circle,
+      rgba(68, 150, 115, 0.15) 0%,
+      rgba(68, 150, 115, 0.05) 50%,
+      transparent 80%);
   border: 2px solid rgba(68, 150, 115, 0.4);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
@@ -2277,12 +2218,10 @@ export default {
   right: -2px;
   bottom: -2px;
   border-radius: 50%;
-  background: linear-gradient(
-    45deg,
-    rgba(68, 150, 115, 0.3),
-    rgba(61, 217, 201, 0.3),
-    rgba(68, 150, 115, 0.3)
-  );
+  background: linear-gradient(45deg,
+      rgba(68, 150, 115, 0.3),
+      rgba(61, 217, 201, 0.3),
+      rgba(68, 150, 115, 0.3));
   background-size: 200% 200%;
   opacity: 0;
   transition: opacity 0.4s ease;
@@ -2299,11 +2238,9 @@ export default {
   width: 0;
   height: 0;
   border-radius: 50%;
-  background: radial-gradient(
-    circle,
-    rgba(68, 150, 115, 0.2) 0%,
-    transparent 70%
-  );
+  background: radial-gradient(circle,
+      rgba(68, 150, 115, 0.2) 0%,
+      transparent 70%);
   transition: all 0.4s ease;
   z-index: -1;
 }
@@ -2383,11 +2320,9 @@ export default {
   left: 0;
   right: 0;
   bottom: 0;
-  background: radial-gradient(
-    circle,
-    rgba(68, 150, 115, 0.1) 0%,
-    transparent 70%
-  );
+  background: radial-gradient(circle,
+      rgba(68, 150, 115, 0.1) 0%,
+      transparent 70%);
   border-radius: 8px;
   opacity: 0;
   transition: opacity 0.4s ease;
@@ -2415,6 +2350,7 @@ export default {
 }
 
 @keyframes iconPulse {
+
   0%,
   100% {
     text-shadow: 0 0 8px rgba(68, 150, 115, 0.3);
@@ -2435,6 +2371,7 @@ export default {
 }
 
 @keyframes iconGlow {
+
   0%,
   100% {
     text-shadow: 0 0 20px rgba(68, 150, 115, 0.8),
@@ -2455,11 +2392,9 @@ export default {
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   z-index: 1;
-  background: linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 0.85) 0%,
-    rgba(255, 255, 255, 0.85) 100%
-  );
+  background: linear-gradient(90deg,
+      rgba(255, 255, 255, 0.85) 0%,
+      rgba(255, 255, 255, 0.85) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   white-space: nowrap;
@@ -2491,6 +2426,7 @@ export default {
 }
 
 @keyframes gradientShift {
+
   0%,
   100% {
     background-position: 0% 50%;
@@ -2507,6 +2443,7 @@ export default {
 }
 
 @keyframes lineGlow {
+
   0%,
   100% {
     box-shadow: 0 0 10px rgba(68, 150, 115, 0.6);
@@ -2542,11 +2479,9 @@ export default {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(
-    135deg,
-    rgba(68, 150, 115, 0.1) 0%,
-    rgba(61, 217, 201, 0.05) 100%
-  );
+  background: linear-gradient(135deg,
+      rgba(68, 150, 115, 0.1) 0%,
+      rgba(61, 217, 201, 0.05) 100%);
   opacity: 0;
   transition: opacity 0.4s ease;
   z-index: 0;
@@ -2631,11 +2566,9 @@ export default {
   left: 0;
   right: 0;
   bottom: 0;
-  background: radial-gradient(
-    circle,
-    rgba(68, 150, 115, 0.1) 0%,
-    transparent 70%
-  );
+  background: radial-gradient(circle,
+      rgba(68, 150, 115, 0.1) 0%,
+      transparent 70%);
   opacity: 0;
   transition: opacity 0.3s ease;
   border-radius: 8px;
@@ -2725,11 +2658,9 @@ export default {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(
-    135deg,
-    rgba(68, 150, 115, 0.1) 0%,
-    rgba(61, 217, 201, 0.05) 100%
-  );
+  background: linear-gradient(135deg,
+      rgba(68, 150, 115, 0.1) 0%,
+      rgba(61, 217, 201, 0.05) 100%);
   opacity: 0;
   transition: opacity 0.4s ease;
   z-index: 0;
@@ -2743,11 +2674,9 @@ export default {
   left: -50%;
   width: 200%;
   height: 200%;
-  background: radial-gradient(
-    circle,
-    rgba(68, 150, 115, 0.15) 0%,
-    transparent 70%
-  );
+  background: radial-gradient(circle,
+      rgba(68, 150, 115, 0.15) 0%,
+      transparent 70%);
   opacity: 0;
   transition: opacity 0.4s ease;
   z-index: 0;
@@ -2771,6 +2700,7 @@ export default {
 }
 
 @keyframes pulseGlow {
+
   0%,
   100% {
     transform: scale(1);
@@ -2820,11 +2750,9 @@ export default {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(
-    135deg,
-    rgba(68, 150, 115, 0.1) 0%,
-    rgba(61, 217, 201, 0.05) 100%
-  );
+  background: linear-gradient(135deg,
+      rgba(68, 150, 115, 0.1) 0%,
+      rgba(61, 217, 201, 0.05) 100%);
   border-radius: 12px;
   opacity: 0;
   transition: opacity 0.5s ease;
@@ -2864,11 +2792,9 @@ export default {
 
 .timeline-item.active {
   border-color: rgba(68, 150, 115, 0.5);
-  background: linear-gradient(
-    135deg,
-    rgba(68, 150, 115, 0.15) 0%,
-    rgba(61, 217, 201, 0.1) 100%
-  );
+  background: linear-gradient(135deg,
+      rgba(68, 150, 115, 0.15) 0%,
+      rgba(61, 217, 201, 0.1) 100%);
   box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4), 0 0 40px rgba(68, 150, 115, 0.3),
     inset 0 0 30px rgba(68, 150, 115, 0.1);
   transform: translateX(8px);
@@ -2888,6 +2814,7 @@ export default {
 }
 
 @keyframes dotPulse {
+
   0%,
   100% {
     box-shadow: 0 0 20px rgba(68, 150, 115, 0.8),
@@ -2930,6 +2857,7 @@ export default {
 }
 
 @keyframes textGlow {
+
   0%,
   100% {
     filter: brightness(1);
@@ -2968,6 +2896,7 @@ export default {
 }
 
 @keyframes glowPulse {
+
   0%,
   100% {
     box-shadow: 0 0 15px rgba(68, 150, 115, 0.8),
@@ -3007,11 +2936,9 @@ export default {
 .bg-circle {
   position: absolute;
   border-radius: 50%;
-  background: radial-gradient(
-    circle,
-    rgba(68, 150, 115, 0.3) 0%,
-    transparent 70%
-  );
+  background: radial-gradient(circle,
+      rgba(68, 150, 115, 0.3) 0%,
+      transparent 70%);
   filter: blur(50px);
   animation: circleFloat 6s ease-in-out infinite;
 }
@@ -3029,11 +2956,9 @@ export default {
   height: 300px;
   bottom: -30px;
   left: -30px;
-  background: radial-gradient(
-    circle,
-    rgba(61, 217, 201, 0.35) 0%,
-    transparent 70%
-  );
+  background: radial-gradient(circle,
+      rgba(61, 217, 201, 0.35) 0%,
+      transparent 70%);
   animation-delay: 2s;
 }
 
@@ -3043,15 +2968,14 @@ export default {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: radial-gradient(
-    circle,
-    rgba(68, 150, 115, 0.25) 0%,
-    transparent 70%
-  );
+  background: radial-gradient(circle,
+      rgba(68, 150, 115, 0.25) 0%,
+      transparent 70%);
   animation-delay: 4s;
 }
 
 @keyframes circleFloat {
+
   0%,
   100% {
     transform: translate(0, 0) scale(1);
@@ -3076,14 +3000,12 @@ export default {
   transform: translate(-50%, -50%);
   width: 500px;
   height: 500px;
-  background: conic-gradient(
-    from 0deg,
-    rgba(68, 150, 115, 0.2) 0deg,
-    rgba(61, 217, 201, 0.25) 90deg,
-    rgba(68, 150, 115, 0.2) 180deg,
-    rgba(61, 217, 201, 0.25) 270deg,
-    rgba(68, 150, 115, 0.2) 360deg
-  );
+  background: conic-gradient(from 0deg,
+      rgba(68, 150, 115, 0.2) 0deg,
+      rgba(61, 217, 201, 0.25) 90deg,
+      rgba(68, 150, 115, 0.2) 180deg,
+      rgba(61, 217, 201, 0.25) 270deg,
+      rgba(68, 150, 115, 0.2) 360deg);
   border-radius: 50%;
   filter: blur(70px);
   animation: orbRotate 15s linear infinite;
@@ -3112,12 +3034,10 @@ export default {
   position: absolute;
   width: 5px;
   height: 5px;
-  background: radial-gradient(
-    circle,
-    rgba(68, 150, 115, 1) 0%,
-    rgba(61, 217, 201, 0.8) 50%,
-    transparent 100%
-  );
+  background: radial-gradient(circle,
+      rgba(68, 150, 115, 1) 0%,
+      rgba(61, 217, 201, 0.8) 50%,
+      transparent 100%);
   border-radius: 50%;
   box-shadow: 0 0 15px rgba(68, 150, 115, 0.8), 0 0 30px rgba(68, 150, 115, 0.4),
     0 0 45px rgba(61, 217, 201, 0.3);
@@ -3186,6 +3106,7 @@ export default {
 }
 
 @keyframes particleFloat {
+
   0%,
   100% {
     transform: translate(0, 0) scale(1);
@@ -3241,33 +3162,29 @@ export default {
 }
 
 @keyframes cardFloat {
+
   0%,
   100% {
-    transform: translate(-50%, -50%) scale(1) rotateY(0deg) translateY(0)
-      rotateZ(0deg);
+    transform: translate(-50%, -50%) scale(1) rotateY(0deg) translateY(0) rotateZ(0deg);
   }
 
   25% {
-    transform: translate(-50%, -50%) scale(1.02) rotateY(2deg) translateY(-8px)
-      rotateZ(0.5deg);
+    transform: translate(-50%, -50%) scale(1.02) rotateY(2deg) translateY(-8px) rotateZ(0.5deg);
   }
 
   50% {
-    transform: translate(-50%, -50%) scale(1) rotateY(0deg) translateY(-12px)
-      rotateZ(0deg);
+    transform: translate(-50%, -50%) scale(1) rotateY(0deg) translateY(-12px) rotateZ(0deg);
   }
 
   75% {
-    transform: translate(-50%, -50%) scale(1.02) rotateY(-2deg) translateY(-8px)
-      rotateZ(-0.5deg);
+    transform: translate(-50%, -50%) scale(1.02) rotateY(-2deg) translateY(-8px) rotateZ(-0.5deg);
   }
 }
 
 /* 已展示过的图片 - 在左后方 */
 .carousel-item.prev {
   opacity: 0.4;
-  transform: translate(-50%, -50%) translateX(-200px) translateZ(-150px)
-    scale(0.65) rotateY(35deg);
+  transform: translate(-50%, -50%) translateX(-200px) translateZ(-150px) scale(0.65) rotateY(35deg);
   z-index: 2;
   filter: blur(3px);
 }
@@ -3275,8 +3192,7 @@ export default {
 /* 即将展示的图片 - 在右后方 */
 .carousel-item.next {
   opacity: 0.4;
-  transform: translate(-50%, -50%) translateX(200px) translateZ(-150px)
-    scale(0.65) rotateY(-35deg);
+  transform: translate(-50%, -50%) translateX(200px) translateZ(-150px) scale(0.65) rotateY(-35deg);
   z-index: 2;
   filter: blur(3px);
 }
@@ -3284,8 +3200,7 @@ export default {
 /* 其他隐藏的图片 */
 .carousel-item:not(.active):not(.prev):not(.next) {
   opacity: 0;
-  transform: translate(-50%, -50%) translateX(0) translateZ(-200px) scale(0.3)
-    rotateY(0deg);
+  transform: translate(-50%, -50%) translateX(0) translateZ(-200px) scale(0.3) rotateY(0deg);
   z-index: 1;
 }
 
@@ -3296,12 +3211,10 @@ export default {
   left: -4px;
   right: -4px;
   bottom: -4px;
-  background: linear-gradient(
-    135deg,
-    rgba(68, 150, 115, 0.6),
-    rgba(61, 217, 201, 0.6),
-    rgba(68, 150, 115, 0.6)
-  );
+  background: linear-gradient(135deg,
+      rgba(68, 150, 115, 0.6),
+      rgba(61, 217, 201, 0.6),
+      rgba(68, 150, 115, 0.6));
   background-size: 200% 200%;
   border-radius: 16px;
   opacity: 0;
@@ -3317,6 +3230,7 @@ export default {
 }
 
 @keyframes borderGlow {
+
   0%,
   100% {
     opacity: 0.6;
@@ -3352,14 +3266,10 @@ export default {
   bottom: 0;
   border: 2px solid transparent;
   border-radius: 14px;
-  background: linear-gradient(
-        135deg,
-        rgba(68, 150, 115, 0.3),
-        rgba(61, 217, 201, 0.3)
-      )
-      padding-box,
-    linear-gradient(135deg, rgba(68, 150, 115, 0.8), rgba(61, 217, 201, 0.8))
-      border-box;
+  background: linear-gradient(135deg,
+      rgba(68, 150, 115, 0.3),
+      rgba(61, 217, 201, 0.3)) padding-box,
+    linear-gradient(135deg, rgba(68, 150, 115, 0.8), rgba(61, 217, 201, 0.8)) border-box;
   opacity: 0;
   z-index: -1;
   transition: opacity 0.6s ease;
@@ -3372,6 +3282,7 @@ export default {
 }
 
 @keyframes borderPulse {
+
   0%,
   100% {
     box-shadow: 0 0 20px rgba(68, 150, 115, 0.5),
@@ -3390,8 +3301,7 @@ export default {
   object-fit: contain;
   object-position: center center;
   border-radius: 14px;
-  filter: drop-shadow(0 20px 60px rgba(0, 0, 0, 0.6))
-    drop-shadow(0 0 40px rgba(68, 150, 115, 0.3));
+  filter: drop-shadow(0 20px 60px rgba(0, 0, 0, 0.6)) drop-shadow(0 0 40px rgba(68, 150, 115, 0.3));
   backface-visibility: hidden;
   transform-style: preserve-3d;
   transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
@@ -3402,24 +3312,19 @@ export default {
 }
 
 .carousel-item.active img {
-  filter: drop-shadow(0 25px 80px rgba(0, 0, 0, 0.7))
-    drop-shadow(0 0 60px rgba(68, 150, 115, 0.5))
-    drop-shadow(0 0 100px rgba(61, 217, 201, 0.3));
+  filter: drop-shadow(0 25px 80px rgba(0, 0, 0, 0.7)) drop-shadow(0 0 60px rgba(68, 150, 115, 0.5)) drop-shadow(0 0 100px rgba(61, 217, 201, 0.3));
   animation: imgGlow 3s ease-in-out infinite;
 }
 
 @keyframes imgGlow {
+
   0%,
   100% {
-    filter: drop-shadow(0 25px 80px rgba(0, 0, 0, 0.7))
-      drop-shadow(0 0 60px rgba(68, 150, 115, 0.5))
-      drop-shadow(0 0 100px rgba(61, 217, 201, 0.3));
+    filter: drop-shadow(0 25px 80px rgba(0, 0, 0, 0.7)) drop-shadow(0 0 60px rgba(68, 150, 115, 0.5)) drop-shadow(0 0 100px rgba(61, 217, 201, 0.3));
   }
 
   50% {
-    filter: drop-shadow(0 30px 100px rgba(0, 0, 0, 0.8))
-      drop-shadow(0 0 80px rgba(68, 150, 115, 0.7))
-      drop-shadow(0 0 120px rgba(61, 217, 201, 0.5));
+    filter: drop-shadow(0 30px 100px rgba(0, 0, 0, 0.8)) drop-shadow(0 0 80px rgba(68, 150, 115, 0.7)) drop-shadow(0 0 120px rgba(61, 217, 201, 0.5));
   }
 }
 
@@ -3467,11 +3372,9 @@ export default {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(
-    135deg,
-    rgba(68, 150, 115, 0.1) 0%,
-    rgba(61, 217, 201, 0.05) 100%
-  );
+  background: linear-gradient(135deg,
+      rgba(68, 150, 115, 0.1) 0%,
+      rgba(61, 217, 201, 0.05) 100%);
   opacity: 0;
   transition: opacity 0.4s ease;
   z-index: 1;
@@ -3486,11 +3389,9 @@ export default {
   left: -2px;
   right: -2px;
   bottom: -2px;
-  background: linear-gradient(
-    135deg,
-    rgba(68, 150, 115, 0.3),
-    rgba(61, 217, 201, 0.3)
-  );
+  background: linear-gradient(135deg,
+      rgba(68, 150, 115, 0.3),
+      rgba(61, 217, 201, 0.3));
   border-radius: 16px;
   opacity: 0;
   transition: opacity 0.4s ease;
@@ -3578,11 +3479,11 @@ export default {
 
 .product-card:hover .product-icon {
   transform: scale(1.15) rotate(5deg);
-  filter: drop-shadow(0 0 30px rgba(68, 150, 115, 0.9))
-    drop-shadow(0 0 15px rgba(68, 150, 115, 0.6));
+  filter: drop-shadow(0 0 30px rgba(68, 150, 115, 0.9)) drop-shadow(0 0 15px rgba(68, 150, 115, 0.6));
 }
 
 @keyframes iconFloat {
+
   0%,
   100% {
     transform: translateY(0);
@@ -3652,11 +3553,9 @@ export default {
   left: 0;
   right: 0;
   bottom: 0;
-  background: radial-gradient(
-    circle at 50% 50%,
-    rgba(68, 150, 115, 0.05) 0%,
-    transparent 70%
-  );
+  background: radial-gradient(circle at 50% 50%,
+      rgba(68, 150, 115, 0.05) 0%,
+      transparent 70%);
   pointer-events: none;
   z-index: 0;
 }
@@ -3700,11 +3599,9 @@ export default {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(
-    135deg,
-    rgba(68, 150, 115, 0.1) 0%,
-    rgba(61, 217, 201, 0.05) 100%
-  );
+  background: linear-gradient(135deg,
+      rgba(68, 150, 115, 0.1) 0%,
+      rgba(61, 217, 201, 0.05) 100%);
   opacity: 0;
   transition: opacity 0.4s ease;
   z-index: 1;
@@ -3719,11 +3616,9 @@ export default {
   left: -2px;
   right: -2px;
   bottom: -2px;
-  background: linear-gradient(
-    135deg,
-    rgba(68, 150, 115, 0.3),
-    rgba(61, 217, 201, 0.3)
-  );
+  background: linear-gradient(135deg,
+      rgba(68, 150, 115, 0.3),
+      rgba(61, 217, 201, 0.3));
   border-radius: 16px;
   opacity: 0;
   transition: opacity 0.4s ease;
@@ -3811,9 +3706,11 @@ export default {
   color: rgba(255, 255, 255, 0.9);
   transform: translateX(3px);
 }
+
 /* 右侧展示区域容器 */
 .awards-display-area {
-  flex: 0 1 50%; /* 稍微加宽一点图片区域 */
+  flex: 0 1 50%;
+  /* 稍微加宽一点图片区域 */
   max-width: 500px;
   position: relative;
   height: 380px;
@@ -3841,11 +3738,9 @@ export default {
   transform: translate(-50%, -50%);
   width: 300px;
   height: 300px;
-  background: radial-gradient(
-    circle,
-    rgba(68, 150, 115, 0.15) 0%,
-    transparent 70%
-  );
+  background: radial-gradient(circle,
+      rgba(68, 150, 115, 0.15) 0%,
+      transparent 70%);
   border-radius: 50%;
   filter: blur(50px);
 }
@@ -3856,7 +3751,8 @@ export default {
   width: 100%;
   height: 100%;
   z-index: 1;
-  overflow: hidden; /* 关键：隐藏超出部分，实现遮罩效果 */
+  overflow: hidden;
+  /* 关键：隐藏超出部分，实现遮罩效果 */
   border-radius: 16px;
 }
 
@@ -3883,7 +3779,8 @@ export default {
 .award-image-card img {
   width: 100%;
   height: 100%;
-  object-fit: contain; /* 保持比例 */
+  object-fit: contain;
+  /* 保持比例 */
   /* filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.5)); */
   transition: transform 0.3s ease;
 }
@@ -3893,7 +3790,8 @@ export default {
 /* 激活状态：位于中间 */
 .slide-vertical-enter-active,
 .slide-vertical-leave-active {
-  transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1); /* 这种曲线更有高级感 */
+  transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  /* 这种曲线更有高级感 */
 }
 
 /* 刚开始进入：在下方 (稍微带点缩放，更有层次感) */
@@ -3927,53 +3825,67 @@ export default {
   background: linear-gradient(90deg, rgba(68, 150, 115, 0.15), transparent);
   border-left: 3px solid #449673;
 }
+
 /* 左侧列表调整 */
 /* 左侧列表调整 */
 .awards-timeline {
-  flex: 0 0 55%; /* 增加宽度占比，让盒子“拉长” */
-  max-width: 650px; /* 放宽最大宽度限制 */
+  flex: 0 0 55%;
+  /* 增加宽度占比，让盒子“拉长” */
+  max-width: 650px;
+  /* 放宽最大宽度限制 */
   margin-right: 40px;
   z-index: 2;
 }
 
 .timeline-item {
   display: flex;
-  flex-direction: row; /* 改为水平排列 */
-  align-items: center; /* 关键：垂直居中 */
+  flex-direction: row;
+  /* 改为水平排列 */
+  align-items: center;
+  /* 关键：垂直居中 */
   justify-content: flex-start;
   margin-left: 40px;
-  margin-bottom: 15px; /* 稍微减小间距 */
-  padding: 15px 25px; /* 调整内边距 */
+  margin-bottom: 15px;
+  /* 稍微减小间距 */
+  padding: 15px 25px;
+  /* 调整内边距 */
   position: relative;
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   cursor: pointer;
   border-radius: 12px;
   border-left: 3px solid rgba(255, 255, 255, 0.1);
-  background: rgba(0, 0, 0, 0.2); /* 给个淡淡的背景，更有“框”的感觉 */
+  background: rgba(0, 0, 0, 0.2);
+  /* 给个淡淡的背景，更有“框”的感觉 */
 }
 
 .timeline-year {
-  flex-shrink: 0; /* 防止年份被压缩 */
-  width: 80px; /* 固定宽度，保证对齐 */
-  font-size: 26px; /* 稍微加大年份字体 */
+  flex-shrink: 0;
+  /* 防止年份被压缩 */
+  width: 80px;
+  /* 固定宽度，保证对齐 */
+  font-size: 26px;
+  /* 稍微加大年份字体 */
   font-weight: 700;
   color: #449673;
   font-family: 'Segoe UI', sans-serif;
   opacity: 0.7;
   transition: all 0.3s ease;
-  margin-bottom: 0; /* 去掉之前的底部边距 */
-  margin-right: 20px; /* 给文字留出间距 */
+  margin-bottom: 0;
+  /* 去掉之前的底部边距 */
+  margin-right: 20px;
+  /* 给文字留出间距 */
   text-align: left;
 }
 
 .timeline-text {
-  flex: 1; /* 占满剩余空间 */
+  flex: 1;
+  /* 占满剩余空间 */
   font-size: 16px;
   color: rgba(255, 255, 255, 0.7);
   margin: 0;
   line-height: 1.5;
   transition: all 0.3s ease;
-  
+
   /* 核心：限制最多两行，超出省略 */
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -3987,7 +3899,8 @@ export default {
   background: linear-gradient(90deg, rgba(68, 150, 115, 0.2), transparent);
   border-left-color: #449673;
   transform: translateX(10px);
-  box-shadow: 0 5px 15px rgba(0,0,0,0.2); /* 激活时加点阴影 */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  /* 激活时加点阴影 */
 }
 
 .timeline-item.active .timeline-year {
@@ -4023,19 +3936,22 @@ export default {
   left: 50%;
   width: 100%;
   max-width: 420px;
-  aspect-ratio: 16/10; /* 保持容器比例 */
-  
+  aspect-ratio: 16/10;
+  /* 保持容器比例 */
+
   transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-  
+
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 16px;
-  /* overflow: hidden; */ /* 去掉 overflow hidden，防止投影被切 */
-  background: transparent; /* 背景透明，避免比例不一致时漏出背景色 */
-  
+  /* overflow: hidden; */
+  /* 去掉 overflow hidden，防止投影被切 */
+  background: transparent;
+  /* 背景透明，避免比例不一致时漏出背景色 */
+
   /* 默认隐藏状态 */
-  top: 150%; 
+  top: 150%;
   transform: translate(-50%, -50%) scale(0.5);
   opacity: 0;
   z-index: 1;
@@ -4045,7 +3961,7 @@ export default {
   width: 100%;
   height: 100%;
   /* 核心修改：改为 contain，确保展示完整原图比例 */
-  object-fit: contain; 
+  object-fit: contain;
   display: block;
   scale: 1.50;
   /* 加上一点投影让图片更立体 */
@@ -4061,7 +3977,8 @@ export default {
   /* background: rgba(0,0,0,0.6); 加深一点遮罩 */
   transition: background 0.6s ease;
   pointer-events: none;
-  border-radius: 16px; /* 匹配圆角 */
+  border-radius: 16px;
+  /* 匹配圆角 */
 }
 
 /* 1. Active (中间主图) */
@@ -4071,8 +3988,9 @@ export default {
   opacity: 1;
   z-index: 10;
 }
+
 .wheel-card.active .wheel-overlay {
-  background: rgba(0,0,0,0);
+  background: rgba(0, 0, 0, 0);
 }
 
 /* 2. Prev (上方备用图) */
@@ -4081,7 +3999,8 @@ export default {
   transform: translate(-50%, -90%) scale(0.75) perspective(1000px) rotateX(10deg);
   opacity: 0.3;
   z-index: 5;
-  filter: blur(2px) grayscale(50%); /* 加点灰度，区分更明显 */
+  filter: blur(2px) grayscale(50%);
+  /* 加点灰度，区分更明显 */
 }
 
 /* 3. Next (下方备用图) */

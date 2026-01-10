@@ -95,7 +95,7 @@
               </div>
               <div class="news-image-placeholder">
                 <!-- 图片占位符 -->
-                <img src="../../public/media_images/3.png" alt="" class="news-image" />
+                <img src="../../public/media_images/3.png" alt="" class="news-image" loading="lazy"/>
               </div>
             </div>
           </div>
@@ -121,7 +121,7 @@
               </div>
               <div class="news-image-placeholder">
                 <!-- 图片占位符 -->
-                <img src="../../public/media_images/4.png" alt="" class="news-image" />
+                <img src="../../public/media_images/4.png" alt="" class="news-image" loading="lazy"/>
               </div>
             </div>
           </div>
@@ -147,7 +147,7 @@
               </div>
               <div class="news-image-placeholder">
                 <!-- 图片占位符 -->
-                <img src="../../public/media_images/5.png" alt="" class="news-image" />
+                <img src="../../public/media_images/5.png" alt="" class="news-image" loading="lazy"/>
               </div>
             </div>
           </div>
@@ -171,7 +171,7 @@
               </div>
               <div class="news-image-placeholder">
                 <!-- 图片占位符 -->
-                <img src="../../public/media_images/6.png" alt="" class="news-image" />
+                <img src="../../public/media_images/6.png" alt="" class="news-image" loading="lazy"/>
               </div>
             </div>
           </div>
@@ -196,7 +196,7 @@
               </div>
               <div class="news-image-placeholder">
                 <!-- 图片占位符 -->
-                <img src="../../public/media_images/7.png" alt="" class="news-image" />
+                <img src="../../public/media_images/7.png" alt="" class="news-image" loading="lazy"/>
               </div>
             </div>
           </div>
@@ -217,7 +217,7 @@
               </div>
               <div class="news-image-placeholder">
                 <!-- 图片占位符 -->
-                <img src="../../public/media_images/8.png" alt="" class="news-image" />
+                <img src="../../public/media_images/8.png" alt="" class="news-image" loading="lazy"/>
               </div>
             </div>
           </div>
@@ -239,7 +239,7 @@
               </div>
               <div class="news-image-placeholder">
                 <!-- 图片占位符 -->
-                <img src="../../public/media_images/9.png" alt="" class="news-image" />
+                <img src="../../public/media_images/9.png" alt="" class="news-image" loading="lazy"/>
               </div>
             </div>
           </div>
@@ -260,7 +260,7 @@
               </div>
               <div class="news-image-placeholder">
                 <!-- 图片占位符 -->
-                 <img src="../../public/media_images/10-3.png" alt="" class="news-image" />
+                 <img src="../../public/media_images/10-3.png" alt="" class="news-image" loading="lazy"/>
                  <!-- <img src="../../public/media_images/10-2.png" alt="" class="news-image" /> -->
               </div>
             </div>
