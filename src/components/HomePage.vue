@@ -882,6 +882,7 @@ export default {
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
+  
   z-index: -1;
   margin: 0;
   padding: 0;
@@ -1457,7 +1458,7 @@ export default {
   transform: translateX(-50%);
   width: 100vw;
   height: 100%;
-  background: #000000;
+  background: transparent;
   z-index: 0;
 }
 
@@ -1607,7 +1608,7 @@ export default {
   transform: translateX(-50%);
   width: 100vw;
   height: 100%;
-  background: #000000;
+  background: transparent;
   z-index: 0;
 }
 
@@ -1994,13 +1995,14 @@ export default {
   transform: translateX(-50%);
   width: 100vw;
   height: 100%;
-  background: linear-gradient(to bottom,
+  /* background: linear-gradient(to bottom,
       #000000 0%,
       #000000 80%,
       rgba(0, 0, 0, 0.9) 90%,
       rgba(0, 0, 0, 0.7) 95%,
       rgba(0, 0, 0, 0.4) 98%,
-      rgba(0, 0, 0, 0) 100%);
+      rgba(0, 0, 0, 0) 100%); */
+      background: transparent;
   z-index: 0;
 }
 
@@ -3510,9 +3512,10 @@ export default {
   left: 0;
   right: 0;
   bottom: 0;
-  background: radial-gradient(circle at 50% 50%,
+  /* background: radial-gradient(circle at 50% 50%,
       rgba(68, 150, 115, 0.05) 0%,
-      transparent 70%);
+      transparent 70%); */
+      background: transparent;
   pointer-events: none;
   z-index: 0;
 }
