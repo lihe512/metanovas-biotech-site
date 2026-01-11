@@ -5,7 +5,7 @@
         <router-link to="/" class="navbar-logo">
           <div class="logo-text-group">
             <span class="logo-icon">
-              <img src="../../public/logo-no-word.png" alt="Logo"/>
+              <img src="/logo-no-word.png" alt="Logo"/>
             </span>
             <div class="logo-text-wrap">
               <span class="logo-main">MetaNovas</span>

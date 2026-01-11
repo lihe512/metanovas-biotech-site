@@ -6,7 +6,7 @@
     <!--  Hero Section -->
     <section class="hero-section" ref="heroSection" @wheel="handleWheel">
       <div class="hero-full-bg">
-        <img src="../../public/home.png" alt="Hero Background" />
+        <img src="/home.png" alt="Hero Background" />
       </div>
       <div class="hero-content">
         <h1 class="hero-title">
@@ -82,12 +82,10 @@
             </button> -->
           <button class="nav-btn prev-btn" @click="prevAboutSlide">
             <div class="gradient-arrow arrow-left"></div>
-             <!-- <img src="/public/home_slices/左箭头.svg" alt=""> -->
           </button>
 
           <button class="nav-btn next-btn" @click="nextAboutSlide">
             <div class="gradient-arrow arrow-right"></div>
-             <!-- <img src="/public/home_slices/右箭头.svg" alt=""/> -->
           </button>
 
           <div class="about-carousel-track" :style="{ transform: `translateX(-${currentAboutIndex * 100}%)` }">

@@ -118,7 +118,7 @@
           <div class="center-logo">
             <div class="logo-circle">
               <span class="logo-m">
-                 <img src="../../public/logo-no-word.png" alt="Logo"/>
+                 <img src="/logo-no-word.png" alt="Logo"/>
               </span>
             </div>
           </div>
