@@ -126,12 +126,18 @@ export default {
 </script>
 
 <style scoped>
-.container {
+/* .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 40px;
+} */
+.container {
+  max-width: 1200px;
+  width: 100%; 
+  margin: 0 auto;
+  padding: 0 40px;
+  box-sizing: border-box; 
 }
-
 .logo-text-group {
   display: flex;
   align-items: center;
@@ -443,9 +449,7 @@ export default {
     0 0 30px rgba(68, 150, 115, 0.4); */
 }
 
-.footer-brand:hover .logo-icon img {
-  /* filter: brightness(1.2) saturate(1.2); */
-}
+
 
 .footer-brand:hover .logo-icon::before {
   width: 120%;
@@ -597,79 +601,140 @@ export default {
   margin-bottom: 5px;
 }
 
-/* 响应式设计 */
+/* 平板尺寸适配 (1024px 以下) */
 @media (max-width: 1024px) {
-  .hero-section {
-    flex-direction: column;
-    text-align: center;
-    padding-top: 120px;
+  .footer-content {
+    flex-wrap: wrap; 
+    gap: 40px;
+  }
+  
+  .footer-links-group {
+    gap: 30px; 
+  }
+  .footer .contact-section {
+    padding: 0 0 40px; 
   }
 
-  .hero-content {
-    padding-left: 0;
-    flex: none;
+  .contact-content {
+    display: flex;
+    flex-direction: row; 
+    justify-content: space-between;
+    gap: 8px; 
+    margin-top: 20px;
+    padding: 0 5px;
   }
 
-  .hero-visual {
-    flex: none;
-    padding-right: 0;
-    margin-top: 40px;
+  .contact-card {
+    flex: 1; 
+    width: auto;
+    min-width: 0; 
+    padding: 15px 4px; 
+    gap: 10px; 
+    border-radius: 12px;
+    background: rgba(20, 20, 20, 0.8);
   }
-
-  .hero-sphere-img {
-    width: 400px;
+  .contact-icon-img {
+    width: 24px; 
+    height: 24px;
+    margin-top: 0;
   }
-
-  .about-content,
-  .research-content,
-  .awards-content {
-    flex-direction: column;
+  .contact-card a {
+    font-size: 10px; 
+    line-height: 1.2;
+    word-break: break-all;
+    opacity: 0.9;
+    padding: 0 2px;
   }
-
-  .products-grid,
-  .services-grid {
-    grid-template-columns: repeat(2, 1fr);
+  
+  .contact-card:active {
+    transform: scale(0.98);
+    background: rgba(40, 40, 40, 0.9);
   }
 }
 
+/* 手机尺寸适配 (768px 以下) */
 @media (max-width: 768px) {
-  .navbar-links {
+  .container {
+    padding: 0 20px;
+  }
+  .section-title {
+    font-size: 28px;
+    justify-content: center; 
+  }
+  .section-title::before,
+  .section-title::after {
     display: none;
   }
-
-  .hero-title {
-    font-size: 40px;
-  }
-
-  .featured-logos {
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  .tech-cards {
-    flex-wrap: wrap;
-  }
-
-  .products-grid,
-  .services-grid {
-    grid-template-columns: 1fr;
+  .footer .contact-section {
+    padding: 0 0 60px; 
   }
 
   .contact-content {
     flex-direction: column;
-    gap: 40px;
+    gap: 20px;
+    margin-top: 30px;
   }
 
-  .footer-brand {
+  .contact-card {
+    width: 100%; 
+    min-width: unset; 
+    padding: 25px; 
+    box-sizing: border-box;
+  }
+  .footer-content {
     flex-direction: column;
     align-items: center;
+    gap: 40px;
     text-align: center;
+  }
+  .footer-brand {
+    flex: none;
+    width: 100%;
+    align-items: center;
+    margin-bottom: 0;
+  }
+
+  .footer-brand .footer-brand-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  .footer-arrow {
+    display: none; 
   }
 
   .footer-links-group {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    gap: 30px 20px; 
+    width: 100%;
+    text-align: left; 
+  }
+  .link-column {
+    align-items: center;
+  }
+  .link-column {
+    text-align: center; 
+    align-items: center;
+  }
+  .footer-bottom {
+    padding-top: 20px;
+    margin-top: 20px;
+  }
+  
+  .footer-bottom p {
+    font-size: 12px;
+    padding: 0 10px;
+  }
+}
+
+/* 超小屏幕适配 (480px 以下) */
+@media (max-width: 480px) {
+  .footer-links-group {
+    grid-template-columns: 1fr;
+    gap: 30px;
   }
 }
 </style>

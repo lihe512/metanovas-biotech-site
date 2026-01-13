@@ -118,7 +118,7 @@
           <div class="center-logo">
             <div class="logo-circle">
               <span class="logo-m">
-                 <img src="/logo-no-word.png" alt="Logo"/>
+                <img src="/logo-no-word.png" alt="Logo" />
               </span>
             </div>
           </div>
@@ -378,9 +378,6 @@ export default {
   padding: 0 40px;
 }
 
-
-
-/* 导航栏 - 和主页一致 */
 .navbar {
   position: fixed;
   top: 0;
@@ -1695,6 +1692,213 @@ export default {
   50% {
     opacity: 1;
     transform: translateY(-50%) scale(1.15);
+  }
+}
+
+/* --- 响应式布局适配 --- */
+@media (max-width: 1200px) {
+  .container {
+    padding: 0 40px;
+  }
+
+  .tech-grid {
+    gap: 20px;
+  }
+
+  .tech-card {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 20px;
+  }
+
+  .hero-section {
+    padding: 120px 20px 60px;
+    text-align: center;
+  }
+
+  .hero-content {
+    padding-left: 0;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero-title {
+    font-size: 32px;
+    margin-bottom: 20px;
+  }
+
+  .hero-subtitle {
+    font-size: 14px;
+    text-align: justify;
+  }
+
+  .hero-cursive {
+    height: 40px;
+    margin-top: 10px;
+  }
+
+  .tech-icons-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 30px;
+  }
+
+  .tech-icons-row::before,
+  .tech-icons-row::after {
+    display: none;
+  }
+
+  .tech-icon-item {
+    gap: 10px;
+  }
+
+  .tech-icon {
+    width: 60px;
+    height: 60px;
+  }
+
+  .tech-icon img {
+    width: 30px;
+    height: 30px;
+  }
+
+  .tech-icon-label {
+    font-size: 12px;
+    padding: 6px 10px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .section-title {
+    font-size: 28px;
+    justify-content: center;
+    margin-bottom: 30px;
+  }
+
+  .section-title::before,
+  .section-title::after {
+    display: none;
+  }
+
+  .tech-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .center-logo {
+    display: none;
+  }
+
+  .tech-card {
+    padding: 25px 15px;
+  }
+
+  .tech-card-title {
+    font-size: 20px;
+  }
+
+  .tech-card-desc {
+    font-size: 13px;
+    margin-bottom: 20px;
+    padding: 0 5px;
+  }
+
+  .tech-card-flow {
+    gap: 10px;
+  }
+
+  .flow-icon {
+    width: 50px;
+    height: 50px;
+  }
+
+  .flow-icon img,
+  .flow-icon svg {
+    width: 28px;
+    height: 28px;
+  }
+
+  .flow-item span {
+    font-size: 11px;
+    max-width: 80px;
+    line-height: 1.2;
+  }
+
+  .flow-arrow {
+    width: 30px;
+  }
+
+  .arrow-shape {
+    height: 4px;
+  }
+
+  .arrow-shape::after {
+    border-left-width: 8px;
+    border-top-width: 6px;
+    border-bottom-width: 6px;
+    right: -8px;
+  }
+
+  .scroll-indicator {
+    bottom: 20px;
+    transform: translateX(-50%) scale(0.8);
+  }
+
+  .scroll-indicator {
+    position: absolute;
+    bottom: -50%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    z-index: 3;
+    animation: bounceIndicator 2s ease-in-out infinite;
+  }
+
+  .scroll-arrow {
+    width: 2px;
+    height: 30px;
+    background: linear-gradient(180deg, rgba(68, 150, 115, 0.8) 0%, transparent 100%);
+    position: relative;
+  }
+
+  .scroll-arrow::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: -4px;
+    width: 10px;
+    height: 10px;
+    border-right: 2px solid rgba(68, 150, 115, 0.8);
+    border-bottom: 2px solid rgba(68, 150, 115, 0.8);
+    transform: rotate(45deg);
+  }
+
+  .scroll-text {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.6);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+}
+
+/* 超小屏幕适配 (400px 以下) */
+@media (max-width: 400px) {
+  .hero-title {
+    font-size: 28px;
+  }
+  .tech-card-flow {
+    flex-wrap: nowrap;
+    transform: scale(0.95);
   }
 }
 </style>

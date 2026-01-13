@@ -7,6 +7,7 @@
     <section class="hero-section" ref="heroSection" @wheel="handleWheel">
       <div class="hero-full-bg">
         <img src="/home.png" alt="Hero Background" />
+         <!-- <video src="/ball.mp4" autoplay muted loop ></video> -->
       </div>
       <div class="hero-content">
         <h1 class="hero-title">
@@ -252,7 +253,7 @@
 
               <div class="awards-wheel-container">
                 <div v-for="(award, index) in awardsData" :key="index" class="wheel-card" :class="getWheelClass(index)">
-                  <img :src="award.image" :alt="award.text" loading="lazy" />
+                  <img :src="award.image" :alt="award.text"  />
                   <div class="wheel-overlay"></div>
                 </div>
               </div>
@@ -1763,41 +1764,29 @@ export default {
   height: 300px;
   border-radius: 16px;
 }
-
-/* 新增 */
-/* 新增/修改：About 轮播样式 */
 .about-carousel-wrapper {
-  /* position: relative; */
   width: 100%;
   overflow: hidden;
-  /* 隐藏超出的 Slide */
   padding-bottom: 20px;
 }
 
 .about-carousel-track {
   display: flex;
   transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-  /* 平滑过渡动画 */
   width: 100%;
 }
 
 .about-slide {
   min-width: 100%;
-  /* 让每个 slide 占满容器宽度 */
   flex-shrink: 0;
   box-sizing: border-box;
 }
-
-/* 确保 slide 内部布局和以前一致 */
 .about-content {
   display: flex;
   gap: 80px;
   align-items: flex-start;
   padding: 0 10px;
-  /* 防止左右边缘溢出 */
 }
-
-/* 调整按钮样式，使其像原来的 More 按钮 */
 .carousel-nav-btn {
   position: absolute;
   top: 50%;
@@ -1808,7 +1797,6 @@ export default {
   /* 圆形 */
   background: transparent;
   border: 2px solid #449673;
-  /* 使用主题色边框 */
   color: #ffffff;
   font-size: 24px;
   display: flex;
@@ -1822,7 +1810,6 @@ export default {
 
 .carousel-nav-btn:hover {
   background: #449673;
-  /* 悬停时填充主题色 */
   box-shadow: 0 0 15px rgba(68, 150, 115, 0.6);
   transform: translateY(-50%) scale(1.1);
 }
@@ -1830,20 +1817,15 @@ export default {
 .nav-arrow {
   line-height: 1;
   margin-top: -2px;
-  /* 微调箭头垂直居中 */
 }
 
 .prev-btn {
   left: -20px;
-  /* 放在容器左侧 */
 }
 
 .next-btn {
   right: -20px;
-  /* 放在容器右侧 */
 }
-
-/* 响应式调整 */
 @media (max-width: 1024px) {
   .about-content {
     flex-direction: column;
@@ -1853,7 +1835,6 @@ export default {
   .carousel-nav-btn {
     top: auto;
     bottom: -60px;
-    /* 移动端将箭头移到底部，避免遮挡内容 */
     transform: none;
   }
 
@@ -1867,41 +1848,27 @@ export default {
 
   .about-carousel-wrapper {
     overflow: visible;
-    /* 移动端允许按钮显示在下方 */
     margin-bottom: 60px;
   }
 }
-
-/* --- 1. 按钮容器 (完全透明，只负责位置和点击区域) --- */
 .nav-btn {
   background: none;
-  /* 去掉背景色 */
   border: none;
-  /* 去掉边框 */
   cursor: pointer;
   padding: 10px;
-  /* 给一点内边距，方便点击 */
   display: flex;
   align-items: center;
   justify-content: center;
   transition: transform 0.3s ease;
-
-  /* // 放在绝对定位的位置 (根据你的布局调整) */
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   z-index: 10;
 }
-
-/* // 悬停时：整体稍微放大一点点 */
 .nav-btn:hover {
   transform: translateY(-50%) scale(1.1);
-  /* // 如果想要悬停发光，可以加一点滤镜 */
   filter: drop-shadow(0 0 5px rgba(0, 242, 96, 0.6));
 }
-
-
-/* // 左右位置微调 */
 .prev-btn {
   left: 0;
 }
@@ -1909,18 +1876,10 @@ export default {
 .next-btn {
   right: 0;
 }
-
-
-/* --- 2. 渐变箭头本体 (Mask法) --- */
 .gradient-arrow {
   width: 40px;
-  /* 箭头大小，按需调整 */
   height: 40px;
-
-  /* // 核心：设置蓝绿渐变 */
   background: linear-gradient(to right, #00f260, #0575e6);
-
-  /* // 遮罩设置 */
   -webkit-mask-size: contain;
   mask-size: contain;
   -webkit-mask-repeat: no-repeat;
@@ -1928,8 +1887,6 @@ export default {
   -webkit-mask-position: center;
   mask-position: center;
 }
-
-/* --- 3. 引入你的 SVG 文件 --- */
 .arrow-left {
   -webkit-mask-image: url('/home_slices/左箭头.svg');
   mask-image: url('/home_slices/左箭头.svg');
@@ -1942,8 +1899,8 @@ export default {
   -webkit-mask-image: url('/home_slices/右箭头.svg');
   mask-image: url('/home_slices/右箭头.svg');
   position: absolute;
-  left: 0;
-  top: 0;
+  left: 10;
+  top: 8;
 }
 .nav-btn {
   position: absolute;
@@ -1951,8 +1908,6 @@ export default {
   z-index: 20; 
   margin-top: 50px; 
 }
-
-/* 左按钮 */
 .prev-btn {
   left: 50%;
   margin-left: -680px; 
@@ -1962,6 +1917,184 @@ export default {
   left: 50%; 
   margin-left: 630px; 
 
+}
+@media (max-width: 1280px) {
+  .container {
+    padding: 0 30px;
+    width: 100%;
+    box-sizing: border-box;
+    overflow-x: hidden; 
+  }
+  .hero-section {
+    position: relative;
+    padding-top: 120px;
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .hero-full-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+  }
+
+  .hero-full-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    left: 0 !important;
+    top: 0 !important;
+    padding: 0 20px;
+    text-align: center;
+    width: 100%;
+    max-width: 100%;
+  }
+  .hero-title {
+    font-size: 42px;
+    margin-left: 0;
+    white-space: normal;
+  }
+  .about-section {
+    padding: 40px 0 80px;
+  }
+  .about-carousel-wrapper {
+    position: relative;
+    width: 100%;
+    overflow: hidden; 
+    padding-bottom: 0;
+    margin: 0;
+  }
+
+  .about-slide {
+    width: 100%;
+    flex-shrink: 0;
+  }
+  .about-content {
+    display: flex;
+    flex-direction: column-reverse; 
+    gap: 20px;
+    padding: 0;
+    align-items: center;
+  }
+  .about-images {
+    width: 100%;
+    height: 300px;
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    flex-shrink: 0;
+  }
+
+  .about-grid-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+  }
+  .about-text {
+    width: 100%;
+    max-width: 100%;
+    padding: 0 10px;
+    box-sizing: border-box; 
+    text-align: justify;
+  }
+
+  .about-text p {
+    font-size: 16px;
+    line-height: 1.6;
+    margin: 0;
+    color: rgba(255, 255, 255, 0.85);
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+  .nav-btn {
+    position: absolute !important;
+    top: 273px !important; 
+    transform: translateY(-50%) !important;
+    width: 40px !important;
+    height: 40px !important;
+    margin: 0 !important;
+    z-index: 20;
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    backdrop-filter: blur(4px);
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+  }
+
+  .prev-btn {
+    left: 15px !important; 
+    right: auto !important;
+  }
+
+  .next-btn {
+    right: 15px !important; 
+    left: auto !important;
+  }
+
+  .gradient-arrow {
+    background: #fff !important; 
+    width: 18px;
+    height: 18px;
+    -webkit-mask-size: contain;
+    mask-size: contain;
+  }
+  .partners-logos {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .tech-cards {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .tech-card {
+    min-width: 45%;
+  }
+  .products-grid,
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero-title {
+    font-size: 36px;
+  }
+  
+  .partners-logos {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .tech-card,
+  .products-grid,
+  .services-grid {
+    grid-template-columns: 1fr; 
+  }
+  
+  .tech-card {
+    width: 100%;
+  }
 }
 @media (max-width: 1300px) {
   .prev-btn {
@@ -1974,8 +2107,6 @@ export default {
     margin-left: 0;
   }
 }
-/* end: About 轮播样式 */
-/* Partners Section */
 .partners-section {
   padding: 80px 0;
   position: relative;
@@ -3702,15 +3833,12 @@ export default {
   border-radius: 50%;
   filter: blur(50px);
 }
-
-/* 图片容器 */
 .awards-image-container {
   position: relative;
   width: 100%;
   height: 100%;
   z-index: 1;
   overflow: hidden;
-  /* 关键：隐藏超出部分，实现遮罩效果 */
   border-radius: 16px;
 }
 
@@ -3719,8 +3847,6 @@ export default {
   height: 100%;
   position: relative;
 }
-
-/* 单张图片卡片 */
 .award-image-card {
   position: absolute;
   top: 0;
@@ -3738,59 +3864,36 @@ export default {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  /* 保持比例 */
-  /* filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.5)); */
   transition: transform 0.3s ease;
 }
-
-/* === 垂直切换动画 (核心) === */
-
-/* 激活状态：位于中间 */
 .slide-vertical-enter-active,
 .slide-vertical-leave-active {
   transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
-  /* 这种曲线更有高级感 */
 }
-
-/* 刚开始进入：在下方 (稍微带点缩放，更有层次感) */
 .slide-vertical-enter-from {
   opacity: 0;
   transform: translateY(30px) scale(0.95);
 }
-
-/* 离开时：往上方飘走 */
 .slide-vertical-leave-to {
   opacity: 0;
   transform: translateY(-30px) scale(0.95);
 }
-
-/* 确保 active 状态是归位的 */
 .slide-vertical-enter-to,
 .slide-vertical-leave-from {
   opacity: 1;
   transform: translateY(0) scale(1);
 }
-
-/* 左侧 Timeline 样式微调 (确保点击感更好) */
 .timeline-item {
   cursor: pointer;
-  /* 增加点击区域 */
   padding: 16px 20px;
 }
-
-/* 选中项高亮增强 */
 .timeline-item.active {
   background: linear-gradient(90deg, rgba(68, 150, 115, 0.15), transparent);
   border-left: 3px solid #449673;
 }
-
-/* 左侧列表调整 */
-/* 左侧列表调整 */
 .awards-timeline {
   flex: 0 0 55%;
-  /* 增加宽度占比，让盒子“拉长” */
   max-width: 650px;
-  /* 放宽最大宽度限制 */
   margin-right: 40px;
   z-index: 2;
 }
@@ -3798,67 +3901,50 @@ export default {
 .timeline-item {
   display: flex;
   flex-direction: row;
-  /* 改为水平排列 */
   align-items: center;
-  /* 关键：垂直居中 */
   justify-content: flex-start;
   margin-left: 40px;
   margin-bottom: 15px;
-  /* 稍微减小间距 */
   padding: 15px 25px;
-  /* 调整内边距 */
   position: relative;
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   cursor: pointer;
   border-radius: 12px;
   border-left: 3px solid rgba(255, 255, 255, 0.1);
   background: rgba(0, 0, 0, 0.2);
-  /* 给个淡淡的背景，更有“框”的感觉 */
 }
 
 .timeline-year {
   flex-shrink: 0;
-  /* 防止年份被压缩 */
   width: 80px;
-  /* 固定宽度，保证对齐 */
   font-size: 26px;
-  /* 稍微加大年份字体 */
   font-weight: 700;
   color: #449673;
   font-family: 'Segoe UI', sans-serif;
   opacity: 0.7;
   transition: all 0.3s ease;
   margin-bottom: 0;
-  /* 去掉之前的底部边距 */
   margin-right: 20px;
-  /* 给文字留出间距 */
   text-align: left;
 }
 
 .timeline-text {
   flex: 1;
-  /* 占满剩余空间 */
   font-size: 16px;
   color: rgba(255, 255, 255, 0.7);
   margin: 0;
   line-height: 1.5;
   transition: all 0.3s ease;
-
-  /* 核心：限制最多两行，超出省略 */
   display: -webkit-box;
-  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-
-/* 激活状态 */
 .timeline-item.active {
   background: linear-gradient(90deg, rgba(68, 150, 115, 0.2), transparent);
   border-left-color: #449673;
   transform: translateX(10px);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-  /* 激活时加点阴影 */
 }
 
 .timeline-item.active .timeline-year {
@@ -3870,9 +3956,6 @@ export default {
 .timeline-item.active .timeline-text {
   color: #ffffff;
 }
-
-/* --- 右侧轮播核心样式 --- */
-
 .awards-display-area {
   flex: 1;
   position: relative;
@@ -3895,7 +3978,6 @@ export default {
   width: 100%;
   max-width: 420px;
   aspect-ratio: 16/10;
-  /* 保持容器比例 */
 
   transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
 
@@ -3903,12 +3985,7 @@ export default {
   align-items: center;
   justify-content: center;
   border-radius: 16px;
-  /* overflow: hidden; */
-  /* 去掉 overflow hidden，防止投影被切 */
   background: transparent;
-  /* 背景透明，避免比例不一致时漏出背景色 */
-
-  /* 默认隐藏状态 */
   top: 150%;
   transform: translate(-50%, -50%) scale(0.5);
   opacity: 0;
@@ -3918,12 +3995,9 @@ export default {
 .wheel-card img {
   width: 100%;
   height: 100%;
-  /* 核心修改：改为 contain，确保展示完整原图比例 */
   object-fit: contain;
   display: block;
   scale: 1.50;
-  /* 加上一点投影让图片更立体 */
-  /* filter: drop-shadow(0 10px 20px rgba(0,0,0,0.4)); */
 }
 
 .wheel-overlay {
@@ -3932,14 +4006,10 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
-  /* background: rgba(0,0,0,0.6); 加深一点遮罩 */
   transition: background 0.6s ease;
   pointer-events: none;
   border-radius: 16px;
-  /* 匹配圆角 */
 }
-
-/* 1. Active (中间主图) */
 .wheel-card.active {
   top: 50%;
   transform: translate(-50%, -50%) scale(1);
@@ -3950,23 +4020,368 @@ export default {
 .wheel-card.active .wheel-overlay {
   background: rgba(0, 0, 0, 0);
 }
-
-/* 2. Prev (上方备用图) */
 .wheel-card.prev {
   top: 55%;
   transform: translate(-50%, -90%) scale(0.75) perspective(1000px) rotateX(10deg);
   opacity: 0.3;
   z-index: 5;
   filter: blur(2px) grayscale(50%);
-  /* 加点灰度，区分更明显 */
 }
-
-/* 3. Next (下方备用图) */
 .wheel-card.next {
   top: 83%;
   transform: translate(-50%, -80%) scale(0.75) perspective(1000px) rotateX(-10deg);
   opacity: 0.3;
   z-index: 5;
   filter: blur(2px) grayscale(50%);
+}
+@media (max-width: 1200px) {
+  .container {
+    padding: 0 30px;
+  }
+  
+  .hero-section {
+    gap: 50px;
+    padding: 100px 40px 0;
+  }
+  
+  .hero-content {
+    left: 0;
+    max-width: 100%;
+  }
+  
+  .hero-title {
+    margin-left: 0;
+    font-size: 60px;
+  }
+  .prev-btn { left: 0; margin-left: 0; }
+  .next-btn { left: auto; right: 0; margin-left: 0; }
+}
+@media (max-width: 768px) {
+  .container {
+    padding: 0 20px;
+  }
+  
+  .section-title {
+    font-size: 32px;
+    flex-wrap: wrap; 
+  }
+  
+  .section-title::before,
+  .section-title::after {
+    display: none; 
+  }
+  .hero-section {
+    flex-direction: column;
+    padding: 120px 20px 60px;
+    justify-content: center;
+    gap: 40px;
+    text-align: center;
+  }
+
+  .hero-full-bg img {
+    object-position: 70% center; 
+  }
+
+  .hero-content {
+    left: 0;
+    top: 0;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero-title {
+    font-size: 42px; 
+    margin-left: 0;
+    white-space: normal;
+    line-height: 1.1;
+  }
+
+  .hero-subtitle {
+    font-size: 16px;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .hero-cursive-wrapper {
+    text-align: center;
+  }
+  
+  .hero-cursive-img {
+    height: 50px;
+    margin: 0 auto;
+  }
+  .featured-logos {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .logo-item {
+    flex: 0 0 40%; 
+  }
+  
+  .featured-logo-img {
+    max-width: 100%;
+    height: 24px;
+  }
+  .hero-section {
+    position: relative;
+    padding-top: 120px;
+    min-height: 80vh; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden; 
+  }
+  .hero-full-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+  }
+
+  .hero-full-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    object-position: center; 
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    left: 0 !important;
+    top: 0 !important;
+    padding: 0 20px;
+    text-align: center;
+    width: 100%;
+    max-width: 100%;
+  }
+  .about-section {
+    padding: 40px 0 80px;
+  }
+
+  .about-carousel-wrapper {
+    position: relative;
+    width: 100%;
+    overflow: hidden; 
+    padding-bottom: 0;
+    margin: 0;
+  }
+
+  .about-slide {
+    width: 100%;
+    flex-shrink: 0;
+  }
+  .about-content {
+    display: flex;
+    flex-direction: column-reverse; 
+    gap: 20px;
+    padding: 0;
+  }
+
+  .about-images {
+    width: 100%;
+    height: 250px;
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+  }
+
+  .about-grid-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+  }
+
+  .about-text {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box; 
+    padding: 0 10px; 
+    text-align: justify; 
+  }
+
+  .about-text p {
+    font-size: 15px;
+    line-height: 1.6;
+    margin: 0;
+    color: rgba(255, 255, 255, 0.85);
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-word; 
+  }
+  .nav-btn {
+    position: absolute !important;
+    top: 125px !important; 
+    transform: translateY(-50%) !important;
+    width: 36px !important;
+    height: 36px !important;
+    margin: 0 !important; 
+    z-index: 20;
+    
+    background: rgba(0, 0, 0, 0.5); 
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    backdrop-filter: blur(4px);
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+  }
+
+  .prev-btn {
+    left: 10px !important; 
+    right: auto !important;
+  }
+  .next-btn {
+    right: 10px !important; 
+    left: auto !important;
+  }
+
+  .gradient-arrow {
+    background: #fff !important; 
+    width: 16px;
+    height: 16px;
+    -webkit-mask-size: contain;
+    mask-size: contain;
+  }
+
+  .partners-description {
+    font-size: 15px;
+    margin-bottom: 30px;
+  }
+
+  .partners-logos {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  
+  .partner-logo-img {
+    max-width: 100px;
+  }
+
+  .tech-cards {
+    flex-direction: column; 
+    gap: 40px;
+  }
+
+  .tech-card {
+    width: 100%;
+  }
+
+  .tech-icon {
+    width: 160px;
+    height: 160px;
+  }
+  
+  .tech-icon:hover::after {
+    width: 200px;
+    height: 200px;
+  }
+  .research-services-list {
+    justify-content: flex-start;
+    gap: 15px;
+  }
+
+  .research-service-item {
+    padding: 10px 15px;
+    flex: 1 1 100%; 
+  }
+  
+  .service-text {
+    font-size: 16px;
+    white-space: normal; 
+  }
+
+  .research-content-wrapper {
+    flex-direction: column;
+    padding: 30px 20px;
+    min-height: auto;
+    background-size: cover; 
+  }
+
+  .research-text {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .research-text p {
+    font-size: 16px;
+    max-width: 100%;
+  }
+
+  .research-stats {
+    flex-direction: row; 
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  .awards-content {
+    flex-direction: column-reverse; 
+    gap: 40px;
+  }
+  
+  .awards-timeline {
+    width: 100%;
+    max-width: 100%;
+    margin-right: 0;
+    flex: none;
+  }
+
+  .timeline-item {
+    margin-left: 0;
+    padding: 15px;
+  }
+  
+  .timeline-year {
+    font-size: 20px;
+    width: 60px;
+  }
+  
+  .timeline-text {
+    font-size: 14px;
+  }
+
+  .awards-display-area {
+    width: 100%;
+    height: 300px; 
+    flex: none;
+  }
+
+  .wheel-card {
+    max-width: 280px;
+  }
+  .wheel-card.prev {
+    transform: translate(-50%, -90%) scale(0.6) perspective(1000px) rotateX(10deg);
+  }
+  
+  .wheel-card.next {
+    transform: translate(-50%, -80%) scale(0.6) perspective(1000px) rotateX(-10deg);
+  }
+
+  .products-grid {
+    grid-template-columns: 1fr;
+  }
+  .product-card:nth-child(n) {
+    grid-column: span 1;
+  }
+
+  .product-image {
+    height: 160px;
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
 }
 </style>

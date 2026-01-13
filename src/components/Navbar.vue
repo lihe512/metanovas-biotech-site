@@ -1,11 +1,11 @@
 <template>
-  <nav class="navbar" :class="{ 'scrolled': isScrolled, 'hidden': !isVisible }">
+  <nav class="navbar" :class="{ 'scrolled': isScrolled, 'hidden': !isVisible, 'mobile-open': mobileMenuOpen }">
     <div class="container">
       <div class="navbar-content">
-        <router-link to="/" class="navbar-logo">
+        <router-link to="/" class="navbar-logo" @click="closeMobileMenu">
           <div class="logo-text-group">
             <span class="logo-icon">
-              <img src="/logo-no-word.png" alt="Logo"/>
+              <img src="/logo-no-word.png" alt="Logo" />
             </span>
             <div class="logo-text-wrap">
               <span class="logo-main">MetaNovas</span>
@@ -13,7 +13,8 @@
             </div>
           </div>
         </router-link>
-        <div class="navbar-links">
+
+        <div class="navbar-links desktop-only">
           <router-link to="/">About</router-link>
           <router-link to="/technology">Technology</router-link>
           <div class="dropdown" @mouseenter="showDropdown = true" @mouseleave="showDropdown = false">
@@ -35,8 +36,46 @@
           <router-link to="/media">Media</router-link>
           <router-link to="/contact-us">Contact Us</router-link>
         </div>
+
+        <button class="hamburger-btn" @click="toggleMobileMenu" :class="{ active: mobileMenuOpen }">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
       </div>
     </div>
+
+    <transition name="fade">
+      <div v-if="mobileMenuOpen" class="mobile-menu-overlay">
+        <div class="mobile-links">
+          <router-link to="/" @click="closeMobileMenu">About</router-link>
+          <router-link to="/technology" @click="closeMobileMenu">Technology</router-link>
+
+          <div class="mobile-dropdown">
+            <div class="mobile-split-row">
+              <router-link to="/products" class="mobile-main-link" @click="closeMobileMenu">
+                Products
+              </router-link>
+
+              <div class="mobile-toggle-btn" @click.stop="toggleMobileProducts">
+                <span class="arrow" :class="{ rotated: mobileProductsOpen }">▼</span>
+              </div>
+            </div>
+            <div class="mobile-dropdown-list" v-show="mobileProductsOpen">
+              <router-link to="/products/MetaTlr" @click="closeMobileMenu">MetaTLR</router-link>
+              <router-link to="/products/clearacne-magic" @click="closeMobileMenu">ClearAcne Magic</router-link>
+              <router-link to="/products/metacono" @click="closeMobileMenu">MetaCono</router-link>
+              <router-link to="/products/omniyouth" @click="closeMobileMenu">OmniYouth</router-link>
+              <router-link to="/products/metascalp" @click="closeMobileMenu">Metascalp</router-link>
+              <router-link to="/products/PureSmile" @click="closeMobileMenu">PureSmile</router-link>
+            </div>
+          </div>
+
+          <router-link to="/media" @click="closeMobileMenu">Media</router-link>
+          <router-link to="/contact-us" @click="closeMobileMenu">Contact Us</router-link>
+        </div>
+      </div>
+    </transition>
   </nav>
 </template>
 
@@ -46,6 +85,8 @@ export default {
   data() {
     return {
       showDropdown: false,
+      mobileMenuOpen: false,
+      mobileProductsOpen: false,
       isScrolled: false,
       isVisible: true,
       lastScrollTop: 0
@@ -60,19 +101,39 @@ export default {
   methods: {
     handleScroll() {
       const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-      
-      // 滚动时显示背景
       this.isScrolled = scrollTop > 50;
-      
-      // 向下滚动时隐藏，向上滚动时显示
-      if (scrollTop > this.lastScrollTop && scrollTop > 100) {
+
+      // 向下滚动隐藏，但如果菜单打开了就不隐藏
+      if (!this.mobileMenuOpen && scrollTop > this.lastScrollTop && scrollTop > 100) {
         this.isVisible = false;
       } else {
         this.isVisible = true;
       }
-      
       this.lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+    },
+    // 切换移动端菜单
+    toggleMobileMenu() {
+      this.mobileMenuOpen = !this.mobileMenuOpen;
+      if (!this.mobileMenuOpen) {
+        this.mobileProductsOpen = false; // 关闭大菜单时重置折叠
+      }
+      // 锁定 body 滚动，防止背景滑动
+      if (this.mobileMenuOpen) {
+        document.body.style.overflow = 'hidden';
+      } else {
+        document.body.style.overflow = '';
+      }
+    },
+    // 关闭菜单（点击链接后）
+    closeMobileMenu() {
+      this.mobileMenuOpen = false;
+      document.body.style.overflow = '';
+    },
+    // 移动端展开/收起产品列表
+    toggleMobileProducts() {
+      this.mobileProductsOpen = !this.mobileProductsOpen;
     }
+
   }
 };
 </script>
@@ -229,10 +290,13 @@ export default {
 }
 
 @keyframes logoShine {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 0.3;
     transform: translate(-50%, -50%) scale(1);
   }
+
   50% {
     opacity: 0.6;
     transform: translate(-50%, -50%) scale(1.2);
@@ -240,10 +304,13 @@ export default {
 }
 
 @keyframes logoGlow {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 0.6;
     filter: blur(5px);
   }
+
   50% {
     opacity: 1;
     filter: blur(8px);
@@ -268,7 +335,7 @@ export default {
 
 .navbar-logo:hover .logo-main {
   color: #3DD9C9;
-  text-shadow: 
+  text-shadow:
     0 0 10px rgba(61, 217, 201, 0.5),
     0 0 20px rgba(68, 150, 115, 0.3);
   transform: translateX(2px);
@@ -336,15 +403,15 @@ export default {
   width: 100%;
 }
 
-.navbar-links > a:hover,
-.navbar-links > a.router-link-active,
+.navbar-links>a:hover,
+.navbar-links>a.router-link-active,
 .navbar-links .dropdown-trigger:hover,
 .navbar-links .dropdown-trigger.router-link-active {
   color: #449673;
   text-shadow: 0 0 10px rgba(68, 150, 115, 0.5);
 }
 
-.navbar-links > a.router-link-active::after,
+.navbar-links>a.router-link-active::after,
 .navbar-links .dropdown-trigger.router-link-active::after {
   content: '';
   position: absolute;
@@ -361,6 +428,7 @@ export default {
 .dropdown {
   position: relative;
 }
+
 /* .dropdown::after{
   content: '';
   position: absolute;
@@ -403,7 +471,7 @@ export default {
   border-radius: 16px;
   padding: 8px 0;
   min-width: 220px;
-  box-shadow: 
+  box-shadow:
     0 12px 48px rgba(0, 0, 0, 0.6),
     0 0 30px rgba(68, 150, 115, 0.3),
     inset 0 1px 0 rgba(255, 255, 255, 0.05);
@@ -509,10 +577,171 @@ export default {
   .navbar-links {
     display: none;
   }
-  
+
   .container {
     padding: 0 20px;
   }
 }
-</style>
 
+.hamburger-btn {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 20px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 1100;
+}
+
+.hamburger-btn span {
+  width: 100%;
+  height: 2px;
+  background-color: #fff;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+.hamburger-btn.active span:nth-child(1) {
+  transform: translateY(9px) rotate(45deg);
+}
+
+.hamburger-btn.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger-btn.active span:nth-child(3) {
+  transform: translateY(-9px) rotate(-45deg);
+}
+
+.mobile-menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(10, 10, 10, 0.98);
+  backdrop-filter: blur(20px);
+  z-index: 1000;
+  padding-top: 100px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.mobile-links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px;
+  padding-bottom: 50px;
+}
+
+.mobile-links a {
+  font-size: 20px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.mobile-dropdown {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.mobile-split-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px; 
+  position: relative;
+}
+.mobile-main-link {
+  font-size: 20px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 5px 0; 
+}
+
+.mobile-toggle-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px; 
+  height: 40px;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.mobile-toggle-btn .arrow {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6);
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.mobile-toggle-btn .arrow.rotated {
+  transform: rotate(180deg);
+  color: #449673; 
+}
+
+.mobile-dropdown-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px; 
+  margin-top: 10px;
+  background: rgba(255, 255, 255, 0.03);
+  width: 100%;
+  padding: 15px 0;
+  border-radius: 8px; 
+}
+
+.mobile-dropdown-list a {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.7);
+}
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+/* --- 响应式媒体查询 --- */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 20px;
+  }
+  .desktop-only {
+    display: none;
+  }
+  .hamburger-btn {
+    display: flex;
+  }
+  .logo-icon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .logo-main {
+    font-size: 15px;
+  }
+
+  .logo-sub {
+    font-size: 9px;
+  }
+
+  .logo-text-group {
+    gap: 8px;
+  }
+  .navbar.mobile-open {
+    background: #0a0a0a;
+  }
+}
+</style>

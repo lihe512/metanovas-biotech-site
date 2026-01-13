@@ -151,4 +151,18 @@ onBeforeUnmount(() => {
   box-shadow: 0 0 12px rgba(61, 217, 201, 0.5);
   will-change: left, top, opacity, transform;
 }
+@media (max-width: 1024px) {
+  .global-cursor-container,
+  .cursor-ball,
+  .cursor-trail {
+    display: none !important;
+  }
+}
+@media (hover: none) and (pointer: coarse) {
+  .global-cursor-container,
+  .cursor-ball,
+  .cursor-trail {
+    display: none !important;
+  }
+}
 </style>
