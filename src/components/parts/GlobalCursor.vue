@@ -56,7 +56,8 @@ const initCursorTrail = () => {
 
       // 更新残影数据
       trails.value = positions.map((pos, index) => {
-        const opacity = 1 - (index / trailCount) * 0.8;
+        // 修改点：减缓透明度衰减，让尾巴更亮更长
+        const opacity = 1 - (index / trailCount); 
         const scale = 1 - (index / trailCount) * 0.4;
         const size = 36 * scale;
 
@@ -66,9 +67,10 @@ const initCursorTrail = () => {
             top: pos.y + "px",
             width: size + "px",
             height: size + "px",
-            opacity: opacity * 0.8,
+            // 修改点：移除之前的 * 0.8，保持 100% 亮度开始
+            opacity: opacity, 
             transform: `translate(-50%, -50%) scale(${scale})`,
-            transition: "opacity 0.3s ease-out", // 仅透明度过渡，位置由 JS 控制
+            transition: "opacity 0.1s ease-out", // 修改点：加快过渡反应，减少延迟感
           },
         };
       });
@@ -86,10 +88,8 @@ const initCursorTrail = () => {
 };
 
 onMounted(() => {
-  // 监听全屏鼠标事件
   window.addEventListener('mousemove', onMouseMove);
   window.addEventListener('mouseout', (e) => {
-    // 只有当鼠标真正离开窗口时才触发
     if (!e.relatedTarget && !e.toElement) {
       onMouseLeave();
     }
@@ -116,6 +116,8 @@ onBeforeUnmount(() => {
   width: 100vw;
   height: 100vh;
   z-index: 9999;
+  /* 允许光效叠加，增强亮度 */
+  mix-blend-mode: screen; 
 }
 
 /* 自定义鼠标 - 蓝绿色小球 */
@@ -123,45 +125,48 @@ onBeforeUnmount(() => {
   position: fixed;
   width: 22px;
   height: 22px;
+  /* 修改点：中心颜色更亮 */
   background: radial-gradient(circle,
-      #449673 0%,
-      #3a7a5f 50%,
+      #80ffdb 0%, 
+      #449673 60%,
       rgba(68, 150, 115, 0.3) 100%);
   border-radius: 50%;
   pointer-events: none;
   z-index: 10000;
   transform: translate(-50%, -50%);
-  box-shadow: 0 0 10px rgba(68, 150, 115, 0.8), 0 0 20px rgba(68, 150, 115, 0.5),
-    0 0 40px rgba(68, 150, 115, 0.3);
+  /* 修改点：增强阴影发光范围 */
+  box-shadow: 
+    0 0 15px rgba(128, 255, 219, 0.8), 
+    0 0 30px rgba(68, 150, 115, 0.6),
+    0 0 50px rgba(68, 150, 115, 0.4);
   transition: opacity 0.3s ease;
   opacity: 0;
-  will-change: left, top; /* 性能优化提示 */
+  will-change: left, top;
 }
 
 /* 鼠标残影 */
 .cursor-trail {
   position: fixed;
+  /* 修改点：调整渐变，让光晕更实 */
   background: radial-gradient(circle,
-      #449673 0%,
-      rgba(68, 150, 115, 0.5) 50%,
+      rgba(128, 255, 219, 0.9) 0%,
+      rgba(68, 150, 115, 0.6) 50%,
       transparent 100%);
   border-radius: 50%;
   pointer-events: none;
   z-index: 9999;
-  box-shadow: 0 0 12px rgba(61, 217, 201, 0.5);
+  /* 修改点：增加残影的辉光 */
+  box-shadow: 0 0 20px rgba(61, 217, 201, 0.6);
   will-change: left, top, opacity, transform;
 }
+
 @media (max-width: 1024px) {
-  .global-cursor-container,
-  .cursor-ball,
-  .cursor-trail {
+  .global-cursor-container, .cursor-ball, .cursor-trail {
     display: none !important;
   }
 }
 @media (hover: none) and (pointer: coarse) {
-  .global-cursor-container,
-  .cursor-ball,
-  .cursor-trail {
+  .global-cursor-container, .cursor-ball, .cursor-trail {
     display: none !important;
   }
 }
