@@ -213,7 +213,7 @@
               </p>
               <div class="research-stats">
                 <div class="stat-item">
-                  <img :src="stat45Image" alt="45%" class="stat-img" loading="lazy" />
+                  <img :src="stat45Image" alt="45%" class="stat-img" />
                   <span class="stat-label">R&D success Increase<br />over 45%</span>
                 </div>
                 <div class="stat-item">
@@ -269,10 +269,10 @@
         <div class="products-grid">
           <div class="product-card" v-for="(product, index) in products" :key="index">
             <div class="product-image">
-              <img :src="getProductBgImage(index)" :alt="product.name" class="product-bg-img" loading="lazy" />
+              <img :src="getProductBgImage(index)" :alt="product.name" class="product-bg-img"/>
             </div>
             <div class="product-content">
-              <img :src="getProductIcon(index)" :alt="product.name" class="product-icon" loading="lazy" />
+              <img :src="getProductIcon(index)" :alt="product.name" class="product-icon"  />
               <h3 class="product-title">{{ product.name }}</h3>
               <p class="product-desc" v-if="product.desc">{{ product.desc }}</p>
             </div>
@@ -294,7 +294,7 @@
         <div class="services-grid">
           <div class="service-card" v-for="(service, index) in services" :key="index">
             <div class="service-image">
-              <img :src="getServiceImage(index)" :alt="service.name" class="service-bg-img" loading="lazy" />
+              <img :src="getServiceImage(index)" :alt="service.name" class="service-bg-img" />
             </div>
             <h3 class="service-title">{{ service.name }}</h3>
             <p class="service-desc">{{ service.desc }}</p>
