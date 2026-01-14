@@ -45,7 +45,7 @@
             <h4>About us</h4>
             <a @click.prevent="handleLinkClick('/', 'Cooperative')" href="javaScript:;">Cooperative Partnerships</a>
             <a @click.prevent="handleLinkClick('/', 'RDservices')" href="javaScript:;">R&D services</a>
-            <a @click.prevent="handleLinkClick('/', 'AwardsHonours')" href="javaScript:;">Awards and Honours</a>
+            <a @click.prevent="handleLinkClick('/', 'AwardsHonours')" href="javaScript:;">Awards and Honors</a>
             <a @click.prevent="handleLinkClick('/', 'Products')" href="javaScript:;">Products</a>
           </div>
           <div class="link-column">

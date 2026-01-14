@@ -20,9 +20,9 @@
           <div class="dropdown" @mouseenter="showDropdown = true" @mouseleave="showDropdown = false">
             <router-link to="/products" class="dropdown-trigger">
               Products
-              <span class="dropdown-arrow" :class="{ active: showDropdown }">▼</span>
+              <!-- <span class="dropdown-arrow" :class="{ active: showDropdown }">▼</span> -->
             </router-link>
-            <transition name="dropdown">
+            <!-- <transition name="dropdown">
               <div v-if="showDropdown" class="dropdown-menu">
                 <router-link to="/products/MetaTlr" class="dropdown-item">MetaTLR</router-link>
                 <router-link to="/products/clearacne-magic" class="dropdown-item">ClearAcne Magic</router-link>
@@ -31,7 +31,7 @@
                 <router-link to="/products/metascalp" class="dropdown-item">Metascalp</router-link>
                 <router-link to="/products/PureSmile" class="dropdown-item">PureSmile</router-link>
               </div>
-            </transition>
+            </transition> -->
           </div>
           <router-link to="/media">Media</router-link>
           <router-link to="/contact-us">Contact Us</router-link>

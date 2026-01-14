@@ -1,5 +1,5 @@
 <template>
-  <div class="home-page" >
+  <div class="home-page">
     <!-- 背景层 -->
     <div class="page-background"></div>
 
@@ -7,7 +7,7 @@
     <section class="hero-section" ref="heroSection" @wheel="handleWheel">
       <div class="hero-full-bg">
         <img src="/home.png" alt="Hero Background" />
-         <!-- <video src="/ball.mp4" autoplay muted loop ></video> -->
+        <!-- <video src="/ball2.mp4" autoplay muted loop></video> -->
       </div>
       <div class="hero-content">
         <h1 class="hero-title">
@@ -54,33 +54,10 @@
 
     <!-- About Us 关于我们 -->
     <section id="about" class="about-section" ref="aboutSection" @wheel="handleWheel">
-      <!-- <div class="container"> -->
-      <!-- <div class="about-content">
-          <div class="about-text">
-            <h2 class="section-title">About Us</h2>
-            <p>MetaNovas Biotech is an innovative biotechnology company established in early 2021 in San Jose, USA and
-              Shanghai, China. Our mission is to integrate artificial intelligence with life sciences and delve into
-              complex biological networks through deep learning knowledge graphs, natural language processing and
-              multi-omicsanalysis, MetaNovas is dedicated to becoming a global leader in AI-driven efficient ingredient
-              and product design and development platforms.</p>
-            <button class="about-btn">
-              <img :src="aboutBtnImage" alt="More" class="about-btn-img" />
-              <span class="about-btn-text">More <span class="btn-arrow">→</span></span>
-            </button>
-          </div>
-          <div class="about-images">
-            <img :src="aboutGridImage" alt="About MetaNovas" class="about-grid-img" />
-          </div>
-        </div> -->
+      
       <div class="container">
         <h2 class="section-title">About Us</h2>
         <div class="about-carousel-wrapper">
-          <!-- <button class="carousel-nav-btn prev-btn" @click="prevAboutSlide">
-              <span class="nav-arrow">←</span>
-            </button>
-            <button class="carousel-nav-btn next-btn" @click="nextAboutSlide">
-              <span class="nav-arrow">→</span>
-            </button> -->
           <button class="nav-btn prev-btn" @click="prevAboutSlide">
             <div class="gradient-arrow arrow-left"></div>
           </button>
@@ -89,7 +66,10 @@
             <div class="gradient-arrow arrow-right"></div>
           </button>
 
-          <div class="about-carousel-track" :style="{ transform: `translateX(-${currentAboutIndex * 100}%)` }">
+          <div class="about-carousel-track" :style="{
+            transform: `translateX(-${currentAboutIndex * 100}%)`,
+            transition: isResetting ? 'none' : 'transform 0.6s ease'
+          }">
             <div class="about-slide" v-for="(item, index) in aboutSlides" :key="index">
               <div class="about-content">
                 <div class="about-text">
@@ -239,8 +219,12 @@
         <div class="awards-content-wrapper">
           <div class="awards-content">
             <div class="awards-timeline">
+              <div class="timeline-mask top"></div>
+              <div class="timeline-mask bottom"></div>
+
               <div v-for="(award, index) in awardsData" :key="index" class="timeline-item"
-                :class="{ active: currentAwardIndex === index }" @click="handleAwardClick(index)">
+                :class="{ active: currentAwardIndex === index }" @click="handleAwardClick(index)"
+                :style="getTimelineItemStyle(index)">
                 <span class="timeline-year">{{ award.year }}</span>
                 <p class="timeline-text">{{ award.text }}</p>
               </div>
@@ -253,7 +237,7 @@
 
               <div class="awards-wheel-container">
                 <div v-for="(award, index) in awardsData" :key="index" class="wheel-card" :class="getWheelClass(index)">
-                  <img :src="award.image" :alt="award.text"  />
+                  <img :src="award.image" :alt="award.text" />
                   <div class="wheel-overlay"></div>
                 </div>
               </div>
@@ -269,10 +253,10 @@
         <div class="products-grid">
           <div class="product-card" v-for="(product, index) in products" :key="index">
             <div class="product-image">
-              <img :src="getProductBgImage(index)" :alt="product.name" class="product-bg-img"/>
+              <img :src="getProductBgImage(index)" :alt="product.name" class="product-bg-img" />
             </div>
             <div class="product-content">
-              <img :src="getProductIcon(index)" :alt="product.name" class="product-icon"  />
+              <img :src="getProductIcon(index)" :alt="product.name" class="product-icon" />
               <h3 class="product-title">{{ product.name }}</h3>
               <p class="product-desc" v-if="product.desc">{{ product.desc }}</p>
             </div>
@@ -317,6 +301,7 @@ export default {
   data() {
     return {
       activeTab: "drugable",
+      isResetting: false,
       // 鼠标残影数据
       trails: [],
       trailCount: 40,
@@ -330,98 +315,134 @@ export default {
       currentAboutIndex: 0,
       currentAwardIndex: 0,
       slideDirection: "up", // 'up' or 'down'
-      awardsImages: [
-        "/轮播图_slices/awards-card-02@2x.png",
-        "/轮播图_slices/awards-card-03@2x.png",
-        "/轮播图_slices/awards-card-04@2x.png",
-        "/轮播图_slices/awards-card-05@2x.png",
-        "/轮播图_slices/awards-card-06@2x.png",
-      ],
+      // awardsImages: [
+      //   "/轮播图_slices/awards-card-02@2x.png",
+      //   "/轮播图_slices/awards-card-03@2x.png",
+      //   "/轮播图_slices/awards-card-04@2x.png",
+      //   "/轮播图_slices/awards-card-05@2x.png",
+      //   "/轮播图_slices/awards-card-06@2x.png",
+      // ],
       awardsData: [
-        // {
-        //   year: "2023",
-        //   text: "Top Industrial Presentation at the 2023 IFSCC International Cosmetic Conference",
-        //   image: "/轮播图_slices/awards-card-02@2x.png",
-        // },
         {
-          year: "2023",
-          text: "Top Industrial Presentation at the 2023 IFSCC International Cosmetic Conference",
-          image: "/轮播图_slices/awards-card-03@2x.png",
+          year: "2024",
+          text: "Top 10 Finalist - Cargill Future Food Asia 2024",
+          image: "/轮播图_slices/awards-card-03@2x.png",///////
+        },
+        {
+          year: "2024",
+          text: "'15 AI Companies Redefining Global Industries' - Startup Bubble News",
+          image: "/轮播图_slices/awards-card-03@2x.png",////
         },
         {
           year: "2023",
-          text: "Published Top-tier Papers",
-          image: "/轮播图_slices/awards-card-04@2x.png",
+          text: "HolonIQ 2023 HealthTech 200 East Asia's Most Promising Companies",
+          image: "/轮播图_slices/awards-card-03@2x.png",/////
         },
         {
           year: "2023",
-          text: "Received the 'Top 250 Most Promising Global Health Tech Companies' honors in both 2022 and 2023",
+          text: "'Best AI-Led Functional Food Development Firm 2023' by LUXlife Magazine ",
+          image: "/轮播图_slices/awards-card-03@2x.png",///
+        },
+        {
+          year: "2023",
+          text: "L'Oréal BIG BANG Beauty Tech Challenge China Champion",
+          image: "/轮播图_slices/awards-card-04@2x.png",///
+        },
+        {
+          year: "2023",
+          text: "Selected as IFSCC Congress Podium Presentation",
           image: "/轮播图_slices/awards-card-05@2x.png",
         },
         {
-          year: "2023",
-          text: "Featured in Leading Mainstream Media",
+          year: "2022-23",
+          text: "Galen Growth HealthTech 250 Most Promising Companies ",
           image: "/轮播图_slices/awards-card-06@2x.png",
         },
       ],
       products: [
+        // {
+        //   name: "Anti-inflammatory peptide",
+        //   desc: "Reduces the level of pro-inflammatory cytokines and attenuates the inflammatory response",
+        // },
+        // {
+        //   name: "Anti-acne Peptide",
+        //   desc: "Reduces the level of pro-inflammatory cytokines and attenuates the inflammatory response",
+        // },
+        // {
+        //   name: "Anti-wrinkle peptide",
+        //   desc: "Instant wrinkle removal. Relax facial muscles and instantly erase facial wrinkles.",
+        // },
+        // {
+        //   name: "Gingival Protection Peptide",
+        //   desc: "Oral microbiome balancer Antibacterial, anti-inflammatory and enhancing oral protection",
+        // },
+        // {
+        //   name: "Vaginal Care Antimicrobial Peptide",
+        //   desc: "Vaginal health promoter. Effectively inhibits various pathogenic bacteria and reduces inflammation",
+        // },
         {
-          name: "Anti-inflammatory peptide",
-          desc: "Reduces the level of pro-inflammatory cytokines and attenuates the inflammatory response",
+          name: "Skin Health & Anti-Aging",
+          desc: "Advanced peptides for calmer, resilient, and youthful skin — targeting inflammation, oil balance, UV protection, and visible aging signs.",
         },
         {
-          name: "Anti-acne Peptide",
-          desc: "Reduces the level of pro-inflammatory cytokines and attenuates the inflammatory response",
+          name: "Scalp & Hair Care",
+          desc: "Comprehensive support for healthy scalp and vibrant hair — soothing irritation, boosting density, and maintaining natural color.",
         },
         {
-          name: "Anti-wrinkle peptide",
-          desc: "Instant wrinkle removal. Relax facial muscles and instantly erase facial wrinkles.",
+          name: "Oral Health",
+          desc: "Gentle microbiome-balancing peptides for stronger gums and fresher breath — with targeted antibacterial and soothing benefits.",
         },
         {
-          name: "Gingival Protection Peptide",
-          desc: "Oral microbiome balancer Antibacterial, anti-inflammatory and enhancing oral protection",
+          name: "Intimate Health",
+          desc: "Mild, effective peptides for intimate comfort — supporting natural balance, reducing irritation, and promoting daily wellness.",
         },
         {
-          name: "Vaginal Care Antimicrobial Peptide",
-          desc: "Vaginal health promoter. Effectively inhibits various pathogenic bacteria and reduces inflammation",
+          name: "Custom Peptide Solutions",
+          desc: "AI-powered custom development of tailored peptides — fast, exclusive solutions designed for your brand's specific claims and formulations.",
         },
       ],
       services: [
         {
-          name: "AI-driven new formulation",
-          desc: "Our team has expertise in developing highly innovative artificial intelligence-assisted formulations for cosmetics.",
+          name: "AI-driven new formulations",
+          desc: "Discover cutting-edge formulations powered by artificial intelligence and grounded in scientific research. Experience the optimal blend of ingredients meticulously designed to achieve the finest health results.",
         },
         {
-          name: "AI-driven raw formulation",
-          desc: "Develop highly innovative and proprietary active ingredients for the treatment.",
+          name: "AI designed novel molecules",
+          desc: "Leverage our advanced technology, which fuses deep learning and molecular dynamics simulations, to generate groundbreaking functional peptides efficiently. These state-of-the-art molecules demonstrate impressive success rates, as confirmed by both in-vitro and in-vivo models.",
         },
         {
-          name: "AI-driven new formulation",
-          desc: "Develop highly innovative and proprietary active ingredients for the treatment.",
+          name: "AI expanding new applications of old ingredients",
+          desc: "Unveil the hidden health potentials of existing ingredients as our AI-driven, expansive knowledge graph brings to light previously undiscovered applications and benefits in the realm of health and wellness.",
+        },
+        {
+          name: "AI repurposing drugs",
+          desc: "Harness the power of AI to transform existing drugs for novel applications through insightful biological network inference and comprehensive multi-omics analysis, creating innovative solutions for diverse medical needs.",
         },
       ],
     };
   },
   computed: {
-    // 新增：About 轮播数据
     aboutSlides() {
-      return [
+      const slides = [
         {
           // title: "About Us",
+          text: "MetaNovas Biotech is an innovative biotechnology company established in early 2021 in Los Angeles, USA and Shanghai, China. Our mission is to integrate artificial intelligence with life sciences and delve into complex biological networks through deep learning, knowledge graphs, natural language processing and multi-omics analysis. MetaNovas is dedicated to becoming a global leader in AI-driven efficient ingredient and product design and development platforms.",
+          image: '/about-us-card03.jpg',
+
+        },
+        {
+          // title: "Our Mission",
           text: "With the principles of science, professionalism and innovation, MetaNovas has gained recognition from international brands such as L'Oréal and Beiersdorf. We have established long-term and stable partnerships with many top brands in cosmetics, foods and biopharmaceuticals, becoming their core technology collaborator and raw material supplier.",
           image: '/about-us-card01.jpg'
+
         },
         {
           // title: "Our Mission",
           text: "Since its inception, MetaNovas has achieved significant progress and earned international recognition and awards. We not only joined the Massachusetts Institute of Technology Industrial Liaison Program, but also had the honor of delivering a top-tier industry presentation at the 33rd IFSCC International Congress of Cosmetic Sciences. As a notable biotech startup, we were crowned as the champion of the 'L'Oréal Big Bang Beauty Tech Challenge' and have been recognized as one of the world's most promising health technology companies for two consecutive years.",
           image: '/about-us-card02.jpg',
         },
-        {
-          // title: "Our Mission",
-          text: "MetaNovas Biotech is an innovative biotechnology company established in early 2021 in Los Angeles, USA and Shanghai, China. Our mission is to integrate artificial intelligence with life sciences and delve into complex biological networks through deep learning, knowledge graphs, natural language processing and multi-omics analysis. MetaNovas is dedicated to becoming a global leader in AI-driven efficient ingredient and product design and development platforms.",
-          image: '/about-us-card03.jpg',
-        },
-      ];
+      ]
+      return [...slides, slides[0]]
     },
     // 使用 computed 属性处理中文文件名的 URL 编码
     aboutGridImage() {
@@ -567,7 +588,7 @@ export default {
       } else if (diff === total - 1) {
         return 'prev';
       } else {
-        return 'hidden'; 
+        return 'hidden';
       }
     },
     handleAwardClick(index) {
@@ -575,31 +596,63 @@ export default {
       this.startAwardsCarousel()
     },
     nextAboutSlide() {
-      if (this.currentAboutIndex < this.aboutSlides.length - 1) {
-        this.currentAboutIndex++;
-      } else {
+      if (this.currentAboutIndex === this.aboutSlides.length - 1) {
+        this.isResetting = true;
         this.currentAboutIndex = 0;
+        setTimeout(() => {
+          this.isResetting = false;
+          this.currentAboutIndex++;
+        }, 50);
+        return;
       }
+      this.currentAboutIndex++;
     },
     prevAboutSlide() {
-      if (this.currentAboutIndex > 0) {
-        this.currentAboutIndex--;
-      } else {
+      if (this.currentAboutIndex === 0) {
+        this.isResetting = true;
         this.currentAboutIndex = this.aboutSlides.length - 1;
+        setTimeout(() => {
+          this.isResetting = false;
+          this.currentAboutIndex--;
+        }, 50);
+        return;
       }
+      this.currentAboutIndex--;
     },
+    getTimelineItemStyle(index) {
+    const total = this.awardsData.length;
+    const current = this.currentAwardIndex;
+    let diff = (index - current);
+    while (diff < -total / 2) diff += total;
+    while (diff > total / 2) diff -= total;
+    const itemHeight = 90; 
+    const activeScale = 1;
+    const otherScale = 0.9;
+    const translateY = diff * itemHeight;
+    const top = `calc(50% + ${translateY}px)`;
+    const isActive = diff === 0;
+    const isVisible = Math.abs(diff) <= 2; 
+
+    return {
+      top: top,
+      position: 'absolute', 
+      width: '100%',
+      transform: `translateY(-50%) scale(${isActive ? activeScale : otherScale})`,
+      opacity: isVisible ? (isActive ? 1 : 0.4) : 0, 
+      zIndex: isActive ? 10 : 1,
+      pointerEvents: isVisible ? 'auto' : 'none', 
+      transition: 'all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)' 
+    };
+  },
     scrollToHash() {
       if (!this.$route.hash) return;
-
       this.$nextTick(() => {
         requestAnimationFrame(() => {
           const el = document.querySelector(this.$route.hash);
           if (!el) return;
 
           const headerOffset = 0;
-          const y =
-            el.getBoundingClientRect().top + window.pageYOffset - headerOffset;
-
+          const y = el.getBoundingClientRect().top + window.pageYOffset - headerOffset;
           window.scrollTo({
             top: y,
             behavior: "smooth",
@@ -607,13 +660,10 @@ export default {
         });
       });
     },
-    // 鼠标移动处理
     onMouseMove(e) {
       this.mouseX = e.clientX;
       this.mouseY = e.clientY;
       this.isMouseInPage = true;
-
-      // 更新主光标位置
       if (this.$refs.cursorBall) {
         this.$refs.cursorBall.style.left = e.clientX + "px";
         this.$refs.cursorBall.style.top = e.clientY + "px";
@@ -727,10 +777,19 @@ export default {
     },
 
     getServiceImage(index) {
-      const images = ["图层 92.png", "图层 290.png", "图层 291.png"];
+      // const images = ["图层 92.png", "图层 290.png", "图层 291.png"];
+      // return (
+      //   "/home_slices/" + encodeURIComponent(images[index] || "图层 92.png")
+      // );
+      const images = [
+        "core-product-1.jpg",
+        "core-product-2.jpg",
+        "core-product-3.jpg",
+        "core-product-4.jpg"
+      ]
       return (
-        "/home_slices/" + encodeURIComponent(images[index] || "图层 92.png")
-      );
+        "/home_slices/" + encodeURIComponent(images[index] || "core-product-1.jpg")
+      )
     },
 
     handleImageError(event, logoNum) {
@@ -747,7 +806,7 @@ export default {
       if (logoNum <= filenames.length) {
         event.target.src =
           "/home_slices/" + encodeURIComponent(filenames[logoNum - 1]);
-      }handleAwardClick
+      } handleAwardClick
     },
 
     getCarouselItemClass(index) {
@@ -774,7 +833,7 @@ export default {
     },
 
     startAwardsCarousel() {
-      if(this.awardsCarouselInterval){
+      if (this.awardsCarouselInterval) {
         clearInterval(this.awardsCarouselInterval)
       }
       this.awardsCarouselInterval = setInterval(() => {
@@ -881,7 +940,7 @@ export default {
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
-  
+
   z-index: -1;
   margin: 0;
   padding: 0;
@@ -962,23 +1021,25 @@ export default {
   background-attachment: fixed;
   z-index: 0; */
 }
+
 .hero-full-bg {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 1; 
+  z-index: 1;
   overflow: hidden;
 }
 
 .hero-full-bg img {
   width: 100%;
   height: 100%;
-  object-fit:cover;
+  object-fit: cover;
   object-position: center;
   display: block;
 }
+
 .hero-content {
   flex: 0 0 auto;
   max-width: 480px;
@@ -1556,7 +1617,7 @@ export default {
   padding: 8px;
   border-radius: 8px;
   transition: all 0.3s ease;
-  
+
 }
 
 .logo-item::before {
@@ -1571,7 +1632,7 @@ export default {
   opacity: 0;
   transition: opacity 0.3s ease;
   pointer-events: none;
-  color:#449673;
+  color: #449673;
 }
 
 .logo-item:hover::before {
@@ -1579,7 +1640,7 @@ export default {
   border-color: #449673;
   box-shadow: 0 0 15px rgba(68, 150, 115, 0.4),
     inset 0 0 15px rgba(68, 150, 115, 0.2); */
-    color:#449673;
+  color: #449673;
 }
 
 .logo-item:hover .featured-logo-img {
@@ -1764,6 +1825,7 @@ export default {
   height: 300px;
   border-radius: 16px;
 }
+
 .about-carousel-wrapper {
   width: 100%;
   overflow: hidden;
@@ -1781,12 +1843,14 @@ export default {
   flex-shrink: 0;
   box-sizing: border-box;
 }
+
 .about-content {
   display: flex;
   gap: 80px;
   align-items: flex-start;
   padding: 0 10px;
 }
+
 .carousel-nav-btn {
   position: absolute;
   top: 50%;
@@ -1826,6 +1890,7 @@ export default {
 .next-btn {
   right: -20px;
 }
+
 @media (max-width: 1024px) {
   .about-content {
     flex-direction: column;
@@ -1851,6 +1916,7 @@ export default {
     margin-bottom: 60px;
   }
 }
+
 .nav-btn {
   background: none;
   border: none;
@@ -1865,10 +1931,12 @@ export default {
   transform: translateY(-50%);
   z-index: 10;
 }
+
 .nav-btn:hover {
   transform: translateY(-50%) scale(1.1);
   filter: drop-shadow(0 0 5px rgba(0, 242, 96, 0.6));
 }
+
 .prev-btn {
   left: 0;
 }
@@ -1876,6 +1944,7 @@ export default {
 .next-btn {
   right: 0;
 }
+
 .gradient-arrow {
   width: 40px;
   height: 40px;
@@ -1887,6 +1956,7 @@ export default {
   -webkit-mask-position: center;
   mask-position: center;
 }
+
 .arrow-left {
   -webkit-mask-image: url('/home_slices/左箭头.svg');
   mask-image: url('/home_slices/左箭头.svg');
@@ -1902,29 +1972,33 @@ export default {
   left: 10;
   top: 8;
 }
+
 .nav-btn {
   position: absolute;
   top: 40%;
-  z-index: 20; 
-  margin-top: 50px; 
+  z-index: 20;
+  margin-top: 50px;
 }
+
 .prev-btn {
   left: 50%;
-  margin-left: -680px; 
+  margin-left: -680px;
 }
 
 .next-btn {
-  left: 50%; 
-  margin-left: 630px; 
+  left: 50%;
+  margin-left: 630px;
 
 }
+
 @media (max-width: 1280px) {
   .container {
     padding: 0 30px;
     width: 100%;
     box-sizing: border-box;
-    overflow-x: hidden; 
+    overflow-x: hidden;
   }
+
   .hero-section {
     position: relative;
     padding-top: 120px;
@@ -1961,18 +2035,21 @@ export default {
     width: 100%;
     max-width: 100%;
   }
+
   .hero-title {
     font-size: 42px;
     margin-left: 0;
     white-space: normal;
   }
+
   .about-section {
     padding: 40px 0 80px;
   }
+
   .about-carousel-wrapper {
     position: relative;
     width: 100%;
-    overflow: hidden; 
+    overflow: hidden;
     padding-bottom: 0;
     margin: 0;
   }
@@ -1981,13 +2058,15 @@ export default {
     width: 100%;
     flex-shrink: 0;
   }
+
   .about-content {
     display: flex;
-    flex-direction: column-reverse; 
+    flex-direction: column-reverse;
     gap: 20px;
     padding: 0;
     align-items: center;
   }
+
   .about-images {
     width: 100%;
     height: 300px;
@@ -2005,11 +2084,12 @@ export default {
     object-fit: cover;
     border-radius: 12px;
   }
+
   .about-text {
     width: 100%;
     max-width: 100%;
     padding: 0 10px;
-    box-sizing: border-box; 
+    box-sizing: border-box;
     text-align: justify;
   }
 
@@ -2023,9 +2103,10 @@ export default {
     overflow-wrap: break-word;
     word-break: break-word;
   }
+
   .nav-btn {
     position: absolute !important;
-    top: 273px !important; 
+    top: 273px !important;
     transform: translateY(-50%) !important;
     width: 40px !important;
     height: 40px !important;
@@ -2035,7 +2116,7 @@ export default {
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 50%;
     backdrop-filter: blur(4px);
-    
+
     display: flex;
     align-items: center;
     justify-content: center;
@@ -2043,33 +2124,37 @@ export default {
   }
 
   .prev-btn {
-    left: 15px !important; 
+    left: 15px !important;
     right: auto !important;
   }
 
   .next-btn {
-    right: 15px !important; 
+    right: 15px !important;
     left: auto !important;
   }
 
   .gradient-arrow {
-    background: #fff !important; 
+    background: #fff !important;
     width: 18px;
     height: 18px;
     -webkit-mask-size: contain;
     mask-size: contain;
   }
+
   .partners-logos {
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
   }
+
   .tech-cards {
     flex-wrap: wrap;
     justify-content: center;
   }
+
   .tech-card {
     min-width: 45%;
   }
+
   .products-grid,
   .services-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -2081,32 +2166,35 @@ export default {
   .hero-title {
     font-size: 36px;
   }
-  
+
   .partners-logos {
     grid-template-columns: repeat(2, 1fr);
   }
-  
+
   .tech-card,
   .products-grid,
   .services-grid {
-    grid-template-columns: 1fr; 
+    grid-template-columns: 1fr;
   }
-  
+
   .tech-card {
     width: 100%;
   }
 }
+
 @media (max-width: 1300px) {
   .prev-btn {
     left: 20px;
     margin-left: 0;
   }
+
   .next-btn {
     left: auto;
     right: 20px;
     margin-left: 0;
   }
 }
+
 .partners-section {
   padding: 80px 0;
   position: relative;
@@ -2131,7 +2219,7 @@ export default {
       rgba(0, 0, 0, 0.7) 95%,
       rgba(0, 0, 0, 0.4) 98%,
       rgba(0, 0, 0, 0) 100%); */
-      background: transparent;
+  background: transparent;
   z-index: 0;
 }
 
@@ -2812,10 +2900,14 @@ export default {
 }
 
 .awards-timeline {
-  flex: 0 1 45%;
-  max-width: 550px;
+  flex: 0 0 50%; 
+  max-width: 600px;
+  margin-right: 40px;
+  position: relative;
+  height: 450px; 
+  overflow: hidden; 
+  
 }
-
 .timeline-item {
   display: flex;
   align-items: flex-start;
@@ -2845,6 +2937,7 @@ export default {
   opacity: 0;
   transition: opacity 0.5s ease;
   z-index: 0;
+  
 }
 
 .timeline-item:hover {
@@ -2875,7 +2968,7 @@ export default {
   background: #449673;
   border-color: #3dd9c9;
   box-shadow: 0 0 15px rgba(68, 150, 115, 0.6), 0 0 30px rgba(68, 150, 115, 0.3);
-  transform: scale(1.3);
+  /* transform: scale(1.3); */
 }
 
 .timeline-item.active {
@@ -2915,16 +3008,24 @@ export default {
   }
 }
 
+/* 修改文字样式 */
 .timeline-text {
-  font-size: 17px;
+  font-size: 16px; 
   color: rgba(255, 255, 255, 0.8);
-  line-height: 1.5;
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  flex: 1;
+  line-height: 1.4; 
+  flex: 1; 
+  min-width: 0;
   font-weight: 400;
   position: relative;
   z-index: 2;
   letter-spacing: 0.2px;
+  white-space: normal !important; 
+  overflow-wrap: break-word;  
+  word-wrap: break-word;     
+  word-break: break-word;     
+  
+  overflow: visible;
+  text-overflow: unset;
 }
 
 .timeline-item:hover .timeline-text {
@@ -3587,7 +3688,7 @@ export default {
   font-weight: 600;
   color: #3dd9c9;
   margin-top: 10px;
-  margin-left: 70px;
+  /* margin-left: 0; */
   transition: all 0.3s ease;
   position: relative;
 }
@@ -3617,7 +3718,7 @@ export default {
   font-size: 15px;
   color: rgba(255, 255, 255, 0.7);
   margin-top: 10px;
-  margin-left: 70px;
+  /* margin-left: 70px; */
   line-height: 1.6;
   transition: all 0.3s ease;
 }
@@ -3644,7 +3745,7 @@ export default {
   /* background: radial-gradient(circle at 50% 50%,
       rgba(68, 150, 115, 0.05) 0%,
       transparent 70%); */
-      background: transparent;
+  background: transparent;
   pointer-events: none;
   z-index: 0;
 }
@@ -3666,7 +3767,7 @@ export default {
 
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 25px;
   position: relative;
   z-index: 1;
@@ -3833,6 +3934,7 @@ export default {
   border-radius: 50%;
   filter: blur(50px);
 }
+
 .awards-image-container {
   position: relative;
   width: 100%;
@@ -3847,6 +3949,7 @@ export default {
   height: 100%;
   position: relative;
 }
+
 .award-image-card {
   position: absolute;
   top: 0;
@@ -3866,33 +3969,40 @@ export default {
   object-fit: contain;
   transition: transform 0.3s ease;
 }
+
 .slide-vertical-enter-active,
 .slide-vertical-leave-active {
   transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
 }
+
 .slide-vertical-enter-from {
   opacity: 0;
   transform: translateY(30px) scale(0.95);
 }
+
 .slide-vertical-leave-to {
   opacity: 0;
   transform: translateY(-30px) scale(0.95);
 }
+
 .slide-vertical-enter-to,
 .slide-vertical-leave-from {
   opacity: 1;
   transform: translateY(0) scale(1);
 }
+
 .timeline-item {
   cursor: pointer;
   padding: 16px 20px;
 }
+
 .timeline-item.active {
   background: linear-gradient(90deg, rgba(68, 150, 115, 0.15), transparent);
   border-left: 3px solid #449673;
 }
+
 .awards-timeline {
-  flex: 0 0 55%;
+  flex: 0 0 60%;
   max-width: 650px;
   margin-right: 40px;
   z-index: 2;
@@ -3916,7 +4026,7 @@ export default {
 
 .timeline-year {
   flex-shrink: 0;
-  width: 80px;
+  width: 50px;
   font-size: 26px;
   font-weight: 700;
   color: #449673;
@@ -3940,6 +4050,7 @@ export default {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
 .timeline-item.active {
   background: linear-gradient(90deg, rgba(68, 150, 115, 0.2), transparent);
   border-left-color: #449673;
@@ -3956,6 +4067,7 @@ export default {
 .timeline-item.active .timeline-text {
   color: #ffffff;
 }
+
 .awards-display-area {
   flex: 1;
   position: relative;
@@ -4010,6 +4122,7 @@ export default {
   pointer-events: none;
   border-radius: 16px;
 }
+
 .wheel-card.active {
   top: 50%;
   transform: translate(-50%, -50%) scale(1);
@@ -4020,6 +4133,7 @@ export default {
 .wheel-card.active .wheel-overlay {
   background: rgba(0, 0, 0, 0);
 }
+
 .wheel-card.prev {
   top: 55%;
   transform: translate(-50%, -90%) scale(0.75) perspective(1000px) rotateX(10deg);
@@ -4027,6 +4141,7 @@ export default {
   z-index: 5;
   filter: blur(2px) grayscale(50%);
 }
+
 .wheel-card.next {
   top: 83%;
   transform: translate(-50%, -80%) scale(0.75) perspective(1000px) rotateX(-10deg);
@@ -4034,42 +4149,54 @@ export default {
   z-index: 5;
   filter: blur(2px) grayscale(50%);
 }
+
 @media (max-width: 1200px) {
   .container {
     padding: 0 30px;
   }
-  
+
   .hero-section {
     gap: 50px;
     padding: 100px 40px 0;
   }
-  
+
   .hero-content {
     left: 0;
     max-width: 100%;
   }
-  
+
   .hero-title {
     margin-left: 0;
     font-size: 60px;
   }
-  .prev-btn { left: 0; margin-left: 0; }
-  .next-btn { left: auto; right: 0; margin-left: 0; }
+
+  .prev-btn {
+    left: 0;
+    margin-left: 0;
+  }
+
+  .next-btn {
+    left: auto;
+    right: 0;
+    margin-left: 0;
+  }
 }
+
 @media (max-width: 768px) {
   .container {
     padding: 0 20px;
   }
-  
+
   .section-title {
     font-size: 32px;
-    flex-wrap: wrap; 
+    flex-wrap: wrap;
   }
-  
+
   .section-title::before,
   .section-title::after {
-    display: none; 
+    display: none;
   }
+
   .hero-section {
     flex-direction: column;
     padding: 120px 20px 60px;
@@ -4079,7 +4206,7 @@ export default {
   }
 
   .hero-full-bg img {
-    object-position: 70% center; 
+    object-position: 70% center;
   }
 
   .hero-content {
@@ -4093,7 +4220,7 @@ export default {
   }
 
   .hero-title {
-    font-size: 42px; 
+    font-size: 42px;
     margin-left: 0;
     white-space: normal;
     line-height: 1.1;
@@ -4108,34 +4235,37 @@ export default {
   .hero-cursive-wrapper {
     text-align: center;
   }
-  
+
   .hero-cursive-img {
     height: 50px;
     margin: 0 auto;
   }
+
   .featured-logos {
     flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
   }
-  
+
   .logo-item {
-    flex: 0 0 40%; 
+    flex: 0 0 40%;
   }
-  
+
   .featured-logo-img {
     max-width: 100%;
     height: 24px;
   }
+
   .hero-section {
     position: relative;
     padding-top: 120px;
-    min-height: 80vh; 
+    min-height: 80vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    overflow: hidden; 
+    overflow: hidden;
   }
+
   .hero-full-bg {
     position: absolute;
     top: 0;
@@ -4148,8 +4278,8 @@ export default {
   .hero-full-bg img {
     width: 100%;
     height: 100%;
-    object-fit: cover; 
-    object-position: center; 
+    object-fit: cover;
+    object-position: center;
   }
 
   .hero-content {
@@ -4162,6 +4292,7 @@ export default {
     width: 100%;
     max-width: 100%;
   }
+
   .about-section {
     padding: 40px 0 80px;
   }
@@ -4169,7 +4300,7 @@ export default {
   .about-carousel-wrapper {
     position: relative;
     width: 100%;
-    overflow: hidden; 
+    overflow: hidden;
     padding-bottom: 0;
     margin: 0;
   }
@@ -4178,9 +4309,10 @@ export default {
     width: 100%;
     flex-shrink: 0;
   }
+
   .about-content {
     display: flex;
-    flex-direction: column-reverse; 
+    flex-direction: column-reverse;
     gap: 20px;
     padding: 0;
   }
@@ -4205,9 +4337,9 @@ export default {
   .about-text {
     width: 100%;
     max-width: 100%;
-    box-sizing: border-box; 
-    padding: 0 10px; 
-    text-align: justify; 
+    box-sizing: border-box;
+    padding: 0 10px;
+    text-align: justify;
   }
 
   .about-text p {
@@ -4218,22 +4350,23 @@ export default {
     white-space: normal;
     word-wrap: break-word;
     overflow-wrap: break-word;
-    word-break: break-word; 
+    word-break: break-word;
   }
+
   .nav-btn {
     position: absolute !important;
-    top: 125px !important; 
+    top: 125px !important;
     transform: translateY(-50%) !important;
     width: 36px !important;
     height: 36px !important;
-    margin: 0 !important; 
+    margin: 0 !important;
     z-index: 20;
-    
-    background: rgba(0, 0, 0, 0.5); 
+
+    background: rgba(0, 0, 0, 0.5);
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 50%;
     backdrop-filter: blur(4px);
-    
+
     display: flex;
     align-items: center;
     justify-content: center;
@@ -4241,16 +4374,17 @@ export default {
   }
 
   .prev-btn {
-    left: 10px !important; 
+    left: 10px !important;
     right: auto !important;
   }
+
   .next-btn {
-    right: 10px !important; 
+    right: 10px !important;
     left: auto !important;
   }
 
   .gradient-arrow {
-    background: #fff !important; 
+    background: #fff !important;
     width: 16px;
     height: 16px;
     -webkit-mask-size: contain;
@@ -4266,13 +4400,13 @@ export default {
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
   }
-  
+
   .partner-logo-img {
     max-width: 100px;
   }
 
   .tech-cards {
-    flex-direction: column; 
+    flex-direction: column;
     gap: 40px;
   }
 
@@ -4284,11 +4418,12 @@ export default {
     width: 160px;
     height: 160px;
   }
-  
+
   .tech-icon:hover::after {
     width: 200px;
     height: 200px;
   }
+
   .research-services-list {
     justify-content: flex-start;
     gap: 15px;
@@ -4296,19 +4431,19 @@ export default {
 
   .research-service-item {
     padding: 10px 15px;
-    flex: 1 1 100%; 
+    flex: 1 1 100%;
   }
-  
+
   .service-text {
     font-size: 16px;
-    white-space: normal; 
+    white-space: normal;
   }
 
   .research-content-wrapper {
     flex-direction: column;
     padding: 30px 20px;
     min-height: auto;
-    background-size: cover; 
+    background-size: cover;
   }
 
   .research-text {
@@ -4322,15 +4457,16 @@ export default {
   }
 
   .research-stats {
-    flex-direction: row; 
+    flex-direction: row;
     flex-wrap: wrap;
     gap: 20px;
   }
+
   .awards-content {
-    flex-direction: column-reverse; 
+    flex-direction: column-reverse;
     gap: 40px;
   }
-  
+
   .awards-timeline {
     width: 100%;
     max-width: 100%;
@@ -4342,29 +4478,30 @@ export default {
     margin-left: 0;
     padding: 15px;
   }
-  
+
   .timeline-year {
     font-size: 20px;
     width: 60px;
   }
-  
+
   .timeline-text {
     font-size: 14px;
   }
 
   .awards-display-area {
     width: 100%;
-    height: 300px; 
+    height: 300px;
     flex: none;
   }
 
   .wheel-card {
     max-width: 280px;
   }
+
   .wheel-card.prev {
     transform: translate(-50%, -90%) scale(0.6) perspective(1000px) rotateX(10deg);
   }
-  
+
   .wheel-card.next {
     transform: translate(-50%, -80%) scale(0.6) perspective(1000px) rotateX(-10deg);
   }
@@ -4372,6 +4509,7 @@ export default {
   .products-grid {
     grid-template-columns: 1fr;
   }
+
   .product-card:nth-child(n) {
     grid-column: span 1;
   }

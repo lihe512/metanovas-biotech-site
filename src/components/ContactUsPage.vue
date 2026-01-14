@@ -51,7 +51,8 @@
                   <option value="Ingredient Discovery Partnerships">Ingredient Discovery Partnerships</option>
                   <option value="Press Inquiries">Press Inquiries</option>
                   <option value="Career Inquiries">Career Inquiries</option>
-                  <option value="General inquiries">General inquiries</option>
+                  <option value="General Inquiries">General Inquiries</option>
+                  <option value="Request Detailed Product Information">Request Detailed Product Information</option>
                 </select>
               </div>
               <div class="form-group">
