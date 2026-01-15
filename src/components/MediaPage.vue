@@ -172,7 +172,7 @@
                   Outstanding Young Returnees</h2>
                 <p class="news-description">
                   MetaNovas Biotech founder and CEO Meijie Wang was selected for the Forbes China 100 Outstanding Young
-                  Returnees in the “Growth Potential” category. Recognized for leadership in AI-driven biotechnology,
+                  Returnees in the "Growth Potential" category. Recognized for leadership in AI-driven biotechnology,
                   she has led MetaNovas to pioneer functional ingredient platforms, secure international patents, and
                   collaborate with global brands, advancing AI-powered bioactive innovation.
                 </p>
@@ -211,7 +211,7 @@
                   Innovation at SCC78 in Los Angeles</h2>
                 <p class="news-description">
                   MetaNovas Biotech, the only Chinese company selected for the 78th Annual SCC Meeting, will present in
-                  the “AI Beauty Revolution” session, demonstrating how its AI platform accelerates cosmetic ingredient
+                  the "AI Beauty Revolution" session, demonstrating how its AI platform accelerates cosmetic ingredient
                   and product development to global industry leaders.
                 </p>
                 <button class="read-more-btn" @click="readArticle(9)">Read it</button>
@@ -483,7 +483,7 @@ export default {
 }
 
 .featured-title {
-  font-size: 28px;
+  font-size: 24px;
   font-weight: 700;
   line-height: 1.3;
   color: #ffffff;

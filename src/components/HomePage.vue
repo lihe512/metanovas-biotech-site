@@ -216,7 +216,7 @@
           international media.
         </p>
 
-        <div class="awards-content-wrapper">
+        <!-- <div class="awards-content-wrapper">
           <div class="awards-content">
             <div class="awards-timeline">
               <div class="timeline-mask top"></div>
@@ -243,7 +243,47 @@
               </div>
             </div>
           </div>
+        </div> -->
+        <div class="awards-content-wrapper">
+  
+  <div class="awards-content desktop-view">
+    <div class="awards-timeline">
+      <div class="timeline-mask top"></div>
+      <div class="timeline-mask bottom"></div>
+      <div v-for="(award, index) in awardsData" :key="index" class="timeline-item"
+        :class="{ active: currentAwardIndex === index }" @click="handleAwardClick(index)"
+        :style="getTimelineItemStyle(index)">
+        <span class="timeline-year">{{ award.year }}</span>
+        <p class="timeline-text">{{ award.text }}</p>
+      </div>
+    </div>
+
+    <div class="awards-display-area">
+      <div class="display-bg-effects">
+        <div class="bg-gradient-orb"></div>
+      </div>
+      <div class="awards-wheel-container">
+        <div v-for="(award, index) in awardsData" :key="index" class="wheel-card" :class="getWheelClass(index)">
+          <img :src="award.image" :alt="award.text" />
+          <div class="wheel-overlay"></div>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="awards-mobile-list mobile-view">
+    <div class="mobile-award-card" v-for="(award, index) in awardsData" :key="'mobi-'+index">
+      <div class="mobile-card-image">
+         <img :src="award.image" :alt="award.text" />
+      </div>
+      <div class="mobile-card-content">
+        <span class="mobile-year">{{ award.year }}</span>
+        <p class="mobile-text">{{ award.text }}</p>
+      </div>
+    </div>
+  </div>
+
+</div>
       </div>
     </section>
     <!-- Products 产品 -->
@@ -4417,8 +4457,8 @@ export default {
   }
 
   .tech-icon {
-    width: 160px;
-    height: 160px;
+    width: 120px;
+    height: 120px;
   }
 
   .tech-icon:hover::after {
@@ -4530,6 +4570,109 @@ export default {
 
   .services-grid {
     grid-template-columns: 1fr;
+  }
+}
+/* --- 新增：响应式显示控制 --- */
+.mobile-view {
+  display: none; /* 默认桌面端隐藏移动版 */
+}
+
+.desktop-view {
+  display: flex;
+  gap: 60px;
+  align-items: center;
+  width: 100%;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+
+/* --- 移动端样式覆盖 --- */
+@media (max-width: 768px) {
+  /* 1. 隐藏原来的桌面端复杂布局 */
+  .desktop-view {
+    display: none !important;
+  }
+
+  /* 2. 显示移动端列表 */
+  .mobile-view {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    padding-top: 10px;
+  }
+
+  /* 3. 移动端卡片样式 */
+  .mobile-award-card {
+    background: rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    /* 玻璃拟态效果 */
+    backdrop-filter: blur(5px);
+    transition: transform 0.3s ease;
+  }
+  
+  /* 给卡片加一个微弱的绿色边框光晕 */
+  .mobile-award-card::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    border-radius: 12px;
+    padding: 1px;
+    background: linear-gradient(135deg, rgba(68, 150, 115, 0.4), transparent);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  .mobile-card-image {
+    width: 100%;
+    height: 180px; /* 控制图片高度 */
+    background: radial-gradient(circle at center, rgba(68, 150, 115, 0.1) 0%, transparent 70%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+
+  .mobile-card-image img {
+    height: 100%;
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 5px 15px rgba(0,0,0,0.3));
+  }
+
+  .mobile-card-content {
+    padding: 15px 20px 20px;
+    background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.3) 100%);
+  }
+
+  .mobile-year {
+    display: block;
+    font-size: 24px;
+    font-weight: 700;
+    color: #449673;
+    margin-bottom: 8px;
+    font-family: 'Segoe UI', sans-serif;
+    text-shadow: 0 0 10px rgba(68, 150, 115, 0.3);
+  }
+
+  .mobile-text {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  /* 优化容器内边距，利用移动端屏幕空间 */
+  .awards-content-wrapper {
+    padding: 20px;
+    background-size: cover;
   }
 }
 </style>

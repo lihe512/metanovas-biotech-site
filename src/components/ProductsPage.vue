@@ -178,7 +178,7 @@
         </div>
         <!--  -->
         <div class="why-choose-section">
-          <h2 class="section-title center-title">Why Partering With MetaNovas</h2>
+          <h2 class="section-title center-title">Why Choose us</h2>
           <!-- <h2 class="product-title">Why Partering With MetaNovas</h2> -->
           <div class="benefits-grid">
             <div class="benefit-card">
@@ -1885,7 +1885,7 @@ export default {
   
   .vs-badge {
     top:auto;
-    bottom: 48%;
+    bottom: 49%;
     transform: translate(-50%, 70%);
   }
 }
