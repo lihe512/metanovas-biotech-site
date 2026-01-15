@@ -326,37 +326,37 @@ export default {
         {
           year: "2024",
           text: "Top 10 Finalist - Cargill Future Food Asia 2024",
-          image: "/轮播图_slices/awards-card-03@2x.png",///////
+          image: "/awards/honor1.png",///////
         },
         {
           year: "2024",
           text: "'15 AI Companies Redefining Global Industries' - Startup Bubble News",
-          image: "/轮播图_slices/awards-card-03@2x.png",////
+          image: "/awards/honor2.png",////
         },
         {
           year: "2023",
           text: "HolonIQ 2023 HealthTech 200 East Asia's Most Promising Companies",
-          image: "/轮播图_slices/awards-card-03@2x.png",/////
+          image: "/awards/honor3.png",/////
         },
         {
           year: "2023",
           text: "'Best AI-Led Functional Food Development Firm 2023' by LUXlife Magazine ",
-          image: "/轮播图_slices/awards-card-03@2x.png",///
+          image: "/awards/honor4.png",///
         },
         {
           year: "2023",
           text: "L'Oréal BIG BANG Beauty Tech Challenge China Champion",
-          image: "/轮播图_slices/awards-card-04@2x.png",///
+          image: "/awards/honor5.png",///
         },
         {
           year: "2023",
           text: "Selected as IFSCC Congress Podium Presentation",
-          image: "/轮播图_slices/awards-card-05@2x.png",
+          image: "/awards/honor6.png",
         },
         {
           year: "2022-23",
           text: "Galen Growth HealthTech 250 Most Promising Companies ",
-          image: "/轮播图_slices/awards-card-06@2x.png",
+          image: "/awards/honor7.png",
         },
       ],
       products: [
@@ -636,7 +636,7 @@ export default {
     return {
       top: top,
       position: 'absolute', 
-      width: '100%',
+      width: 'calc(100% - 100px)',
       transform: `translateY(-50%) scale(${isActive ? activeScale : otherScale})`,
       opacity: isVisible ? (isActive ? 1 : 0.4) : 0, 
       zIndex: isActive ? 10 : 1,
@@ -4109,7 +4109,7 @@ export default {
   height: 100%;
   object-fit: contain;
   display: block;
-  scale: 1.50;
+  scale: 1.1;
 }
 
 .wheel-overlay {
@@ -4128,13 +4128,14 @@ export default {
   transform: translate(-50%, -50%) scale(1);
   opacity: 1;
   z-index: 10;
+  border-radius: 20%;
 }
 
 .wheel-card.active .wheel-overlay {
   background: rgba(0, 0, 0, 0);
 }
 
-.wheel-card.prev {
+/* .wheel-card.prev {
   top: 55%;
   transform: translate(-50%, -90%) scale(0.75) perspective(1000px) rotateX(10deg);
   opacity: 0.3;
@@ -4148,7 +4149,7 @@ export default {
   opacity: 0.3;
   z-index: 5;
   filter: blur(2px) grayscale(50%);
-}
+} */
 
 @media (max-width: 1200px) {
   .container {
@@ -4484,9 +4485,17 @@ export default {
     width: 60px;
   }
 
-  .timeline-text {
-    font-size: 14px;
-  }
+ .timeline-text {
+  flex: 1;
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+  line-height: 1.5;
+  transition: all 0.3s ease;
+  /* 删除原来的裁剪属性，允许自动换行 */
+  white-space: normal; 
+  overflow: visible;
+}
 
   .awards-display-area {
     width: 100%;
