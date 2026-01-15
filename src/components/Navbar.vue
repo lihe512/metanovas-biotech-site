@@ -57,18 +57,18 @@
                 Products
               </router-link>
 
-              <div class="mobile-toggle-btn" @click.stop="toggleMobileProducts">
+              <!-- <div class="mobile-toggle-btn" @click.stop="toggleMobileProducts">
                 <span class="arrow" :class="{ rotated: mobileProductsOpen }">▼</span>
-              </div>
+              </div> -->
             </div>
-            <div class="mobile-dropdown-list" v-show="mobileProductsOpen">
+            <!-- <div class="mobile-dropdown-list" v-show="mobileProductsOpen">
               <router-link to="/products/MetaTlr" @click="closeMobileMenu">MetaTLR</router-link>
               <router-link to="/products/clearacne-magic" @click="closeMobileMenu">ClearAcne Magic</router-link>
               <router-link to="/products/metacono" @click="closeMobileMenu">MetaCono</router-link>
               <router-link to="/products/omniyouth" @click="closeMobileMenu">OmniYouth</router-link>
               <router-link to="/products/metascalp" @click="closeMobileMenu">Metascalp</router-link>
               <router-link to="/products/PureSmile" @click="closeMobileMenu">PureSmile</router-link>
-            </div>
+            </div> -->
           </div>
 
           <router-link to="/media" @click="closeMobileMenu">Media</router-link>
