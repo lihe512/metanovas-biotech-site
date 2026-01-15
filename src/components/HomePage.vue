@@ -6,8 +6,8 @@
     <!--  Hero Section -->
     <section class="hero-section" ref="heroSection" @wheel="handleWheel">
       <div class="hero-full-bg">
-        <img src="/home.png" alt="Hero Background" />
-        <!-- <video src="/ball2.mp4" autoplay muted loop></video> -->
+        <!-- <img src="/home.png" alt="Hero Background" /> -->
+        <video src="/ball2.mp4" autoplay muted loop></video>
       </div>
       <div class="hero-content">
         <h1 class="hero-title">
@@ -54,7 +54,7 @@
 
     <!-- About Us 关于我们 -->
     <section id="about" class="about-section" ref="aboutSection" @wheel="handleWheel">
-      
+
       <div class="container">
         <h2 class="section-title">About Us</h2>
         <div class="about-carousel-wrapper">
@@ -620,30 +620,30 @@ export default {
       this.currentAboutIndex--;
     },
     getTimelineItemStyle(index) {
-    const total = this.awardsData.length;
-    const current = this.currentAwardIndex;
-    let diff = (index - current);
-    while (diff < -total / 2) diff += total;
-    while (diff > total / 2) diff -= total;
-    const itemHeight = 90; 
-    const activeScale = 1;
-    const otherScale = 0.9;
-    const translateY = diff * itemHeight;
-    const top = `calc(50% + ${translateY}px)`;
-    const isActive = diff === 0;
-    const isVisible = Math.abs(diff) <= 2; 
+      const total = this.awardsData.length;
+      const current = this.currentAwardIndex;
+      let diff = (index - current);
+      while (diff < -total / 2) diff += total;
+      while (diff > total / 2) diff -= total;
+      const itemHeight = 90;
+      const activeScale = 1;
+      const otherScale = 0.9;
+      const translateY = diff * itemHeight;
+      const top = `calc(50% + ${translateY}px)`;
+      const isActive = diff === 0;
+      const isVisible = Math.abs(diff) <= 2;
 
-    return {
-      top: top,
-      position: 'absolute', 
-      width: 'calc(100% - 100px)',
-      transform: `translateY(-50%) scale(${isActive ? activeScale : otherScale})`,
-      opacity: isVisible ? (isActive ? 1 : 0.4) : 0, 
-      zIndex: isActive ? 10 : 1,
-      pointerEvents: isVisible ? 'auto' : 'none', 
-      transition: 'all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)' 
-    };
-  },
+      return {
+        top: top,
+        position: 'absolute',
+        width: 'calc(100% - 100px)',
+        transform: `translateY(-50%) scale(${isActive ? activeScale : otherScale})`,
+        opacity: isVisible ? (isActive ? 1 : 0.4) : 0,
+        zIndex: isActive ? 10 : 1,
+        pointerEvents: isVisible ? 'auto' : 'none',
+        transition: 'all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)'
+      };
+    },
     scrollToHash() {
       if (!this.$route.hash) return;
       this.$nextTick(() => {
@@ -2900,14 +2900,15 @@ export default {
 }
 
 .awards-timeline {
-  flex: 0 0 50%; 
+  flex: 0 0 50%;
   max-width: 600px;
   margin-right: 40px;
   position: relative;
-  height: 450px; 
-  overflow: hidden; 
-  
+  height: 450px;
+  overflow: hidden;
+
 }
+
 .timeline-item {
   display: flex;
   align-items: flex-start;
@@ -2937,7 +2938,7 @@ export default {
   opacity: 0;
   transition: opacity 0.5s ease;
   z-index: 0;
-  
+
 }
 
 .timeline-item:hover {
@@ -3010,20 +3011,20 @@ export default {
 
 /* 修改文字样式 */
 .timeline-text {
-  font-size: 16px; 
+  font-size: 16px;
   color: rgba(255, 255, 255, 0.8);
-  line-height: 1.4; 
-  flex: 1; 
+  line-height: 1.4;
+  flex: 1;
   min-width: 0;
   font-weight: 400;
   position: relative;
   z-index: 2;
   letter-spacing: 0.2px;
-  white-space: normal !important; 
-  overflow-wrap: break-word;  
-  word-wrap: break-word;     
-  word-break: break-word;     
-  
+  white-space: normal !important;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+
   overflow: visible;
   text-overflow: unset;
 }
@@ -4407,8 +4408,8 @@ export default {
   }
 
   .tech-cards {
-    flex-direction: column;
-    gap: 40px;
+    flex-direction: row;
+    gap: 20px;
   }
 
   .tech-card {
@@ -4485,17 +4486,17 @@ export default {
     width: 60px;
   }
 
- .timeline-text {
-  flex: 1;
-  font-size: 16px;
-  color: rgba(255, 255, 255, 0.7);
-  margin: 0;
-  line-height: 1.5;
-  transition: all 0.3s ease;
-  /* 删除原来的裁剪属性，允许自动换行 */
-  white-space: normal; 
-  overflow: visible;
-}
+  .timeline-text {
+    flex: 1;
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0;
+    line-height: 1.5;
+    transition: all 0.3s ease;
+    /* 删除原来的裁剪属性，允许自动换行 */
+    white-space: normal;
+    overflow: visible;
+  }
 
   .awards-display-area {
     width: 100%;
