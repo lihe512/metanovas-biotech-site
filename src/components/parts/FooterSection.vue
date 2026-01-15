@@ -670,7 +670,7 @@ export default {
   }
 
   .contact-content {
-    flex-direction: column;
+    flex-direction: row;
     gap: 20px;
     margin-top: 30px;
   }
@@ -682,7 +682,7 @@ export default {
     box-sizing: border-box;
   }
   .footer-content {
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     gap: 40px;
     text-align: center;
@@ -733,7 +733,7 @@ export default {
 /* 超小屏幕适配 (480px 以下) */
 @media (max-width: 480px) {
   .footer-links-group {
-    grid-template-columns: 1fr;
+    grid-template-columns: -1fr;
     gap: 30px;
   }
 }
